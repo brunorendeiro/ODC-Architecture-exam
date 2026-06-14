@@ -501,6 +501,46 @@
   .count-pill:hover  { border-color: var(--os-teal); color: var(--text); }
   .count-pill.active { border-color: var(--os-teal); background: rgba(0,212,170,0.08); color: var(--os-teal); }
 
+  /* ── MULTI-SELECT HINT ── */
+  .multiselect-hint {
+    display: inline-block;
+    background: rgba(167,139,250,0.12);
+    border: 1px solid rgba(167,139,250,0.3);
+    color: #a78bfa;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+  }
+
+  /* ── MULTI-SELECT OPTION CHECKBOX ── */
+  .option-check {
+    width: 28px; height: 28px;
+    min-width: 28px;
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    transition: all 0.2s;
+  }
+  .option.selected .option-check { background: rgba(167,139,250,0.2); border-color: #a78bfa; color: #a78bfa; }
+  .option.selected { border-color: #a78bfa; background: rgba(167,139,250,0.06); }
+  .option.correct  .option-check { background: var(--green); color: #fff; border-color: var(--green); }
+  .option.wrong    .option-check { background: var(--red);   color: #fff; border-color: var(--red); }
+  .option.missed   { border-color: var(--accent2); background: rgba(240,165,0,0.07); }
+  .option.missed   .option-check { background: var(--accent2); color: #000; border-color: var(--accent2); }
+
+  /* ── CHECK ANSWER BUTTON ROW ── */
+  .check-answer-row { margin-top: 20px; }
+
+  /* ── MULTI-SELECT EXPLANATION HEADER VARIANTS ── */
+  .exp-header.partial { background: rgba(240,165,0,0.12); color: var(--accent2); border: 1px solid rgba(240,165,0,0.25); border-bottom: none; }
+  .exp-body.partial   { border: 1px solid rgba(240,165,0,0.2); border-top: none; border-radius: 0 0 14px 14px; }
+
   @media (max-width: 600px) {
     .score-panel    { grid-template-columns: 1fr 1fr; }
     .breakdown-grid { grid-template-columns: 1fr; }
@@ -616,7 +656,11 @@
         <span class="q-tag cloud" id="qTag">Cloud-native</span>
       </div>
       <div class="question-text" id="questionText"></div>
+      <div id="multiselectHint" style="display:none"><span class="multiselect-hint">☑ Select all that apply</span></div>
       <div class="options" id="optionsContainer"></div>
+      <div class="check-answer-row" id="checkAnswerRow" style="display:none">
+        <button class="btn btn-primary" onclick="submitMultiSelect()">Check Answer</button>
+      </div>
       <div class="explanation-panel" id="explanationPanel"></div>
     </div>
 
@@ -1632,12 +1676,13 @@ const RAW_QUESTIONS = [
   },
   {
     "id": 78, "category": "cloud",
-    "question": "What caching strategy is used for query results in ODC?",
+    "question": "What is the main benefit of ODC's containerized runtime for application scalability?",
+    "documentationUrl": "https://success.outsystems.com/documentation/outsystems_developer_cloud/app_architecture/",
     "answerOptions": [
-      { "text": "Kubernetes pod memory caching", "isCorrect": true, "rationale": "ODC uses Kubernetes pod memory to cache query results, keeping frequently accessed data in memory within the pod and reducing database load." },
-      { "text": "Platform-level caching shared across all apps", "isCorrect": false, "rationale": "ODC uses pod-level memory caching, not a shared platform-level cache that would create coupling between apps." },
-      { "text": "Local disk caching on the server", "isCorrect": false, "rationale": "Local disk caching is not the strategy used. ODC's containerized model uses pod memory, not local disk." },
-      { "text": "Persistent storage caching in Aurora", "isCorrect": false, "rationale": "Aurora is the relational database, not a caching layer. Query result caching happens in pod memory, not persistent storage." }
+      { "text": "Each app runs in its own container and can scale independently based on demand", "isCorrect": true, "rationale": "Containerization means each ODC App is an isolated deployment unit. The platform can spin up or down container instances for each App independently based on load, without affecting other Apps. This is a key cloud-native scalability benefit." },
+      { "text": "All apps share a single container to optimize memory usage", "isCorrect": false, "rationale": "Shared containers would mean one app's high load impacts all others. ODC uses per-app containers for isolation and independent scaling." },
+      { "text": "Containers eliminate the need for databases in ODC", "isCorrect": false, "rationale": "ODC Apps still use databases (Amazon Aurora) for persistent data. Containers package the application runtime, not replace the data layer." },
+      { "text": "Containers require manual scaling configuration by developers", "isCorrect": false, "rationale": "ODC's Kubernetes-based infrastructure handles auto-scaling automatically. Developers do not need to configure scaling rules manually." }
     ]
   },
   {
@@ -1732,12 +1777,13 @@ const RAW_QUESTIONS = [
   },
   {
     "id": 88, "category": "cloud",
-    "question": "What architecture model does Amazon Aurora Serverless use in ODC?",
+    "question": "What does 'build once, deploy anywhere' mean in ODC's CI/CD pipeline?",
+    "documentationUrl": "https://success.outsystems.com/documentation/outsystems_developer_cloud/deploying_assets/",
     "answerOptions": [
-      { "text": "Decoupled compute and storage", "isCorrect": true, "rationale": "Amazon Aurora Serverless uses a decoupled compute and storage architecture: the database storage scales independently from compute capacity, allowing ODC to scale database resources up and down automatically based on demand." },
-      { "text": "Single-tier monolithic architecture", "isCorrect": false, "rationale": "Aurora Serverless uses a distributed, decoupled model — the opposite of a single-tier monolith." },
-      { "text": "Fixed compute allocation", "isCorrect": false, "rationale": "Aurora Serverless automatically adjusts compute capacity on demand. Fixed allocation is the traditional model that Serverless replaces." },
-      { "text": "On-premises relational database model", "isCorrect": false, "rationale": "Aurora Serverless is a fully managed, cloud-native database service. It has no on-premises deployment model." }
+      { "text": "The same container image built in Development is promoted to QA and then to Production without recompilation", "isCorrect": true, "rationale": "ODC builds the application into a container image once (in Development). That exact image is promoted through stages — no recompilation happens at QA or Production. This guarantees that what was tested is exactly what runs in Production." },
+      { "text": "Developers write code once and it runs on any cloud provider without changes", "isCorrect": false, "rationale": "ODC runs on AWS. 'Build once' refers to the CI/CD artifact promotion model, not cloud portability." },
+      { "text": "Libraries are built once and automatically distributed to all consumer apps", "isCorrect": false, "rationale": "Libraries must be explicitly referenced and updated by consumer apps. They are not automatically distributed. 'Build once' describes the container image promotion model." },
+      { "text": "Configuration values are defined once and applied to all stages automatically", "isCorrect": false, "rationale": "ODC deliberately separates configuration per stage so Dev, QA, and Prod can have different values. Configuration is not shared across stages." }
     ]
   },
   {
@@ -2717,6 +2763,121 @@ const RAW_QUESTIONS = [
     ]
   },
 
+  // ── NEW QUESTIONS FROM OFFICIAL REVIEW REPORT ─────────────────────────────
+  {
+    "id": 207, "category": "design",
+    "question": "What is the primary objective of the Disclose phase?",
+    "documentationUrl": "https://success.outsystems.com/documentation/outsystems_developer_cloud/app_architecture/building_a_well_architected_app/",
+    "answerOptions": [
+      { "text": "Define deployment stages", "isCorrect": false, "rationale": "Deployment stages are an infrastructure concern, not part of Disclose. Stages (Dev, QA, Prod) are managed in the ODC Portal, not defined during the architecture design process." },
+      { "text": "Identify business concepts, requirements, NFRs and UX expectations", "isCorrect": true, "rationale": "Disclose is the first phase where architects gather all business information before any design decisions. The four areas covered are: business requirements/processes/personas/roles, information architecture, non-functional requirements and integrations, and UX expectations." },
+      { "text": "Create libraries", "isCorrect": false, "rationale": "Library creation happens during implementation, not the Disclose phase. Disclose is about discovery and information gathering." },
+      { "text": "Configure events", "isCorrect": false, "rationale": "Events are an implementation concern. Disclose focuses on understanding the business — what it needs and what constraints exist — before any technical decisions are made." }
+    ]
+  },
+  {
+    "id": 208, "category": "design",
+    "question": "What is the purpose of the Organize phase?",
+    "documentationUrl": "https://success.outsystems.com/documentation/outsystems_developer_cloud/app_architecture/building_a_well_architected_app/",
+    "answerOptions": [
+      { "text": "Create applications", "isCorrect": false, "rationale": "Applications are created during Assemble, not Organize. Organize is about grouping concepts, not creating ODC assets." },
+      { "text": "Group concepts into bounded contexts with clear ownership and independent release cycles", "isCorrect": true, "rationale": "Organize takes the concepts from Disclose and clusters them into bounded contexts based on business domain, ownership, and cohesion. Each bounded context should have a single owner and can be released independently." },
+      { "text": "Configure integrations", "isCorrect": false, "rationale": "Integrations are identified in Disclose and implemented later. Organize groups concepts into bounded contexts — it does not configure systems or integrations." },
+      { "text": "Publish libraries", "isCorrect": false, "rationale": "Publishing is a deployment activity that happens after development. Organize is a design-time activity focused on grouping business concepts, not publishing artefacts." }
+    ]
+  },
+  {
+    "id": 209, "category": "design",
+    "question": "What is the main goal of the Assemble phase?",
+    "documentationUrl": "https://success.outsystems.com/documentation/outsystems_developer_cloud/app_architecture/building_a_well_architected_app/",
+    "answerOptions": [
+      { "text": "Create environments", "isCorrect": false, "rationale": "Environments (Stages) are platform infrastructure managed in the ODC Portal, not part of the Assemble phase. Assemble maps bounded contexts to ODC assets, not to platform infrastructure." },
+      { "text": "Transform bounded contexts into concrete ODC implementation components (Apps and Libraries)", "isCorrect": true, "rationale": "Assemble maps each bounded context to specific ODC assets, assigns ownership, and defines release cycles. It is where design decisions from Disclose and Organize become a concrete ODC architecture blueprint." },
+      { "text": "Create events", "isCorrect": false, "rationale": "Events are defined at implementation time inside applications. Assemble defines the architecture — which Apps and Libraries to create — not the internal implementation details." },
+      { "text": "Configure monitoring", "isCorrect": false, "rationale": "Monitoring is an operational concern configured after deployment. Assemble is an architecture design phase focused on mapping bounded contexts to ODC components." }
+    ]
+  },
+  {
+    "id": 210, "category": "libraries",
+    "question": "Why can't Libraries own Entities in ODC?",
+    "documentationUrl": "https://success.outsystems.com/documentation/outsystems_developer_cloud/building_apps/libraries/",
+    "answerOptions": [
+      { "text": "Libraries are stateless and cannot persist data", "isCorrect": true, "rationale": "Libraries are stateless by design — they contain reusable logic, UI components, and structures, but have no runtime data persistence. Entities require a database, which belongs to Applications, not Libraries." },
+      { "text": "Libraries cannot expose any elements publicly", "isCorrect": false, "rationale": "Libraries CAN expose elements publicly — that is their primary purpose. Public Blocks, Server Actions, Structures, Client Actions are all valid Library exports." },
+      { "text": "Libraries cannot consume external APIs", "isCorrect": false, "rationale": "Libraries can wrap external APIs using the External Libraries SDK. The restriction on Entities is about data persistence, not API consumption." },
+      { "text": "Libraries cannot be versioned", "isCorrect": false, "rationale": "Libraries have explicit versioning (Revision + Version via SemVer in the Portal). Versioning is a core feature of Libraries, not a limitation." }
+    ]
+  },
+  {
+    "id": 211, "category": "libraries",
+    "question": "Where should API keys and environment-specific configurations be stored in ODC?",
+    "documentationUrl": "https://success.outsystems.com/documentation/outsystems_developer_cloud/building_apps/libraries/",
+    "answerOptions": [
+      { "text": "Library", "isCorrect": false, "rationale": "Libraries are stateless and shared across consumers. Storing API keys in a Library would mean all consumers share the same key with no per-stage differentiation, which is architecturally wrong." },
+      { "text": "Application", "isCorrect": true, "rationale": "Configuration values (API keys, endpoints, environment-specific settings) belong in the consuming Application's configuration. ODC allows each App to have different configuration values per Stage (Dev, QA, Prod), with secrets masked in the Portal." },
+      { "text": "Event", "isCorrect": false, "rationale": "Events are asynchronous messages for decoupled communication, not configuration storage." },
+      { "text": "Static Entity", "isCorrect": false, "rationale": "Static Entities store reference data (like lookup tables), not runtime configuration or secrets. Secret values should never be stored in Static Entities." }
+    ]
+  },
+  {
+    "id": 212, "category": "patterns",
+    "question": "Why does ODC recommend using Service Actions for cross-application communication?",
+    "documentationUrl": "https://success.outsystems.com/documentation/outsystems_developer_cloud/app_architecture/service_actions/",
+    "answerOptions": [
+      { "text": "To increase coupling between applications", "isCorrect": false, "rationale": "Service Actions do the opposite — they reduce coupling by providing a controlled contract between producer and consumer that allows independent deployment." },
+      { "text": "To support loosely coupled applications and enable independent deployments", "isCorrect": true, "rationale": "Service Actions create weak dependencies between Apps, meaning the producer and consumer can be deployed independently. The consumer calls the Service Action at runtime without being compiled into the producer's container." },
+      { "text": "To replace all REST API integrations", "isCorrect": false, "rationale": "Service Actions are for internal ODC cross-app communication. REST APIs are still used for integrating with external systems outside the ODC factory." },
+      { "text": "To replace Libraries", "isCorrect": false, "rationale": "Libraries and Service Actions serve different purposes. Libraries share reusable business-agnostic building blocks (strong dependency). Service Actions expose domain-specific operations between Apps (weak dependency)." }
+    ]
+  },
+  {
+    "id": 213, "category": "events",
+    "multiSelect": true,
+    "question": "Which are benefits of Event-Driven Architecture in ODC?",
+    "documentationUrl": "https://success.outsystems.com/documentation/outsystems_developer_cloud/building_apps/about_event_driven_architecture/event_driven_architecture_in_odc/",
+    "answerOptions": [
+      { "text": "Asynchronous communication — producers do not wait for consumers to process the event", "isCorrect": true, "rationale": "EDA is inherently asynchronous: the producer publishes the event and continues immediately, without waiting for any consumer to handle it. This prevents cascading failures when a consumer is slow or unavailable." },
+      { "text": "Architecture decoupling — producers and consumers are independent and do not reference each other directly", "isCorrect": true, "rationale": "In EDA, the producer does not know who its consumers are. Consumers subscribe to events independently. This means new consumers can be added without changing the producer, and the producer can be changed without notifying consumers." },
+      { "text": "Tight coupling between producer and consumer applications", "isCorrect": false, "rationale": "This is the opposite of what EDA provides. Tight coupling is the problem EDA solves. With events, the producer does not hold a direct reference to any consumer — they communicate only through the event broker." },
+      { "text": "Reduced scalability due to synchronous bottlenecks", "isCorrect": false, "rationale": "EDA improves scalability, not reduces it. Because communication is asynchronous and producers do not wait for consumers, the system can handle higher load without synchronous bottlenecks slowing everything down." }
+    ]
+  },
+  {
+    "id": 214, "category": "events",
+    "multiSelect": true,
+    "question": "Which are components of Event-Driven Architecture in ODC?",
+    "documentationUrl": "https://success.outsystems.com/documentation/outsystems_developer_cloud/building_apps/about_event_driven_architecture/event_driven_architecture_in_odc/",
+    "answerOptions": [
+      { "text": "Events — the messages published to signal that something happened", "isCorrect": true, "rationale": "Events are the core unit of EDA. An event represents something that happened in the system (e.g., OrderCreated, PaymentProcessed). It carries a payload and is published to a broker." },
+      { "text": "Event Producers — applications that publish events when something significant happens", "isCorrect": true, "rationale": "Event Producers are the applications that fire events. The producer defines the event, publishes it, and has no knowledge of who subscribes to it." },
+      { "text": "Event Consumers — applications that subscribe to events and execute handlers when events are received", "isCorrect": true, "rationale": "Event Consumers subscribe to one or more events. When an event is published, the consumer's handler (an action) is triggered automatically by the platform." },
+      { "text": "A centralized database shared by all producer and consumer applications", "isCorrect": false, "rationale": "EDA does NOT rely on a centralized shared database. That would create tight coupling through data. EDA achieves decoupling specifically by avoiding shared data — apps communicate through events, not shared tables." },
+      { "text": "Synchronous communication channels that block until all consumers respond", "isCorrect": false, "rationale": "EDA communication is asynchronous, not synchronous. The producer does not block or wait for consumer responses. Synchronous blocking communication is what Service Actions provide, not events." }
+    ]
+  },
+  {
+    "id": 215, "category": "events",
+    "question": "Where can an Event trigger be defined in ODC?",
+    "documentationUrl": "https://success.outsystems.com/documentation/outsystems_developer_cloud/building_apps/about_event_driven_architecture/implement_events_in_odc/",
+    "answerOptions": [
+      { "text": "In any application in the factory", "isCorrect": false, "rationale": "An event trigger must be in the same application that owns (defines) the event. You cannot trigger an event from a different application than the one that created it." },
+      { "text": "Only in the application where the Event is defined", "isCorrect": true, "rationale": "The Event trigger is tightly scoped to the application that owns the Event definition. Only that application can fire (trigger) the event. Other applications can subscribe as consumers, but cannot trigger it." },
+      { "text": "In a dedicated Event management application", "isCorrect": false, "rationale": "ODC has no concept of a dedicated Event management app. Events are defined and triggered within regular Apps." },
+      { "text": "In the ODC Platform services", "isCorrect": false, "rationale": "Platform services handle event routing and delivery infrastructure, but Event triggers are defined by developers inside their Apps, not in platform services." }
+    ]
+  },
+  {
+    "id": 216, "category": "events",
+    "question": "Where can Event handlers be defined in ODC?",
+    "documentationUrl": "https://success.outsystems.com/documentation/outsystems_developer_cloud/building_apps/about_event_driven_architecture/implement_events_in_odc/",
+    "answerOptions": [
+      { "text": "Only in the same application that published the event", "isCorrect": false, "rationale": "The producer does not handle its own events in EDA. The producer fires and forgets. Handlers are defined in consumer applications that subscribe." },
+      { "text": "In any application that subscribes to the event", "isCorrect": true, "rationale": "Any ODC application can subscribe to an event published by another application and define a handler action to execute when that event is received. This is the decoupling mechanism — many independent apps can react to the same event." },
+      { "text": "Only in a dedicated Event consumer application", "isCorrect": false, "rationale": "There is no requirement for a dedicated consumer app. Any App in the factory can subscribe and define handlers." },
+      { "text": "Only in Platform services", "isCorrect": false, "rationale": "Platform services deliver the event; they do not execute business logic handlers. Handlers are developer-defined actions inside consumer Apps." }
+    ]
+  },
+
   // ── TRUSTED SCHOOL LIVE EP.2 (Fundamentals deep-dive) ────────────────────
   {
     "id": 153, "category": "cloud",
@@ -2855,10 +3016,11 @@ function startExam() {
   if (state.filter !== 'all') pool = pool.filter(q => q.category === state.filter);
   pool = shuffle(pool);
   if (state.count > 0) pool = pool.slice(0, state.count);
-  state.questions = pool;
-  state.current   = 0;
-  state.answers   = new Array(pool.length).fill(null);
-  state.wrongIds  = new Set();
+  state.questions    = pool;
+  state.current      = 0;
+  state.answers      = new Array(pool.length).fill(null);
+  state.wrongIds     = new Set();
+  state.pendingMulti = {};
   document.getElementById('setupScreen').style.display = 'none';
   document.getElementById('quizScreen').style.display  = 'block';
   document.getElementById('resultsScreen').classList.remove('show');
@@ -2888,27 +3050,66 @@ function renderQuestion() {
   tagEl.className   = 'q-tag ' + (q.category || 'cloud');
   document.getElementById('questionText').textContent = q.question;
 
+  const isMulti        = !!q.multiSelect;
   const letters        = ['A','B','C','D','E'];
   const opts           = document.getElementById('optionsContainer');
   const existingAnswer = state.answers[state.current];
   const isAnswered     = existingAnswer !== null;
   opts.innerHTML = '';
 
-  q.answerOptions.forEach((opt, i) => {
-    const div = document.createElement('div');
-    div.className = 'option' + (isAnswered ? ' disabled' : '');
-    if (isAnswered) {
-      if (opt.isCorrect) div.className += ' correct';
-      else if (i === existingAnswer.selected && !opt.isCorrect) div.className += ' wrong';
-    }
-    div.innerHTML = `<div class="option-letter">${letters[i]}</div><div class="option-text">${escapeHtml(opt.text)}</div>`;
-    if (!isAnswered) div.onclick = () => selectAnswer(i);
-    opts.appendChild(div);
-  });
+  // Multi-select hint
+  const hintEl = document.getElementById('multiselectHint');
+  hintEl.style.display = isMulti ? 'block' : 'none';
+
+  // Track pending multi-select selections (before submit)
+  if (!state.pendingMulti) state.pendingMulti = {};
+  if (!isAnswered && isMulti && !state.pendingMulti[state.current]) {
+    state.pendingMulti[state.current] = new Set();
+  }
+
+  if (isMulti) {
+    q.answerOptions.forEach((opt, i) => {
+      const div = document.createElement('div');
+      const pending = state.pendingMulti[state.current] || new Set();
+      if (isAnswered) {
+        const selSet = new Set(existingAnswer.selected);
+        const isSelected = selSet.has(i);
+        const correctness = opt.isCorrect
+          ? (isSelected ? 'correct' : 'missed')   // correct but not picked → missed
+          : (isSelected ? 'wrong' : '');           // wrong and picked → wrong; wrong and not picked → fine
+        div.className = 'option disabled ' + correctness;
+        div.innerHTML = `<div class="option-check">${opt.isCorrect ? (isSelected ? '✓' : '○') : (isSelected ? '✗' : '')}</div><div class="option-text">${escapeHtml(opt.text)}</div>`;
+      } else {
+        const isChecked = pending.has(i);
+        div.className = 'option' + (isChecked ? ' selected' : '');
+        div.innerHTML = `<div class="option-check">${isChecked ? '✓' : ''}</div><div class="option-text">${escapeHtml(opt.text)}</div>`;
+        div.onclick = () => toggleMultiOption(i);
+      }
+      opts.appendChild(div);
+    });
+  } else {
+    q.answerOptions.forEach((opt, i) => {
+      const div = document.createElement('div');
+      div.className = 'option' + (isAnswered ? ' disabled' : '');
+      if (isAnswered) {
+        if (opt.isCorrect) div.className += ' correct';
+        else if (i === existingAnswer.selected && !opt.isCorrect) div.className += ' wrong';
+      }
+      div.innerHTML = `<div class="option-letter">${letters[i]}</div><div class="option-text">${escapeHtml(opt.text)}</div>`;
+      if (!isAnswered) div.onclick = () => selectAnswer(i);
+      opts.appendChild(div);
+    });
+  }
+
+  // Show/hide "Check Answer" button for multi-select
+  const checkRow = document.getElementById('checkAnswerRow');
+  checkRow.style.display = (isMulti && !isAnswered) ? 'block' : 'none';
 
   const expPanel = document.getElementById('explanationPanel');
   if (isAnswered && state.mode === 'study') {
-    expPanel.innerHTML = buildExplanationPanel(q, existingAnswer.selected);
+    expPanel.innerHTML = isMulti
+      ? buildMultiExplanationPanel(q, existingAnswer.selected)
+      : buildExplanationPanel(q, existingAnswer.selected);
     expPanel.classList.add('show');
   } else {
     expPanel.classList.remove('show');
@@ -2927,6 +3128,24 @@ function selectAnswer(idx) {
   if (!isCorrect) state.wrongIds.add(q.id);
   renderQuestion();
 }
+function toggleMultiOption(idx) {
+  if (!state.pendingMulti) state.pendingMulti = {};
+  if (!state.pendingMulti[state.current]) state.pendingMulti[state.current] = new Set();
+  const s = state.pendingMulti[state.current];
+  if (s.has(idx)) s.delete(idx); else s.add(idx);
+  renderQuestion();
+}
+function submitMultiSelect() {
+  const q = state.questions[state.current];
+  if (!state.pendingMulti || !state.pendingMulti[state.current]) return;
+  const selected = [...state.pendingMulti[state.current]];
+  const correctIndices = q.answerOptions.map((o,i) => o.isCorrect ? i : -1).filter(i => i>=0);
+  const isCorrect = correctIndices.length === selected.length &&
+    correctIndices.every(i => selected.includes(i));
+  state.answers[state.current] = { selected, correct: isCorrect };
+  if (!isCorrect) state.wrongIds.add(q.id);
+  renderQuestion();
+}
 function nextQuestion() {
   if (state.current < state.questions.length-1) { state.current++; renderQuestion(); } else endExam();
 }
@@ -2934,17 +3153,29 @@ function prevQuestion() {
   if (state.current > 0) { state.current--; renderQuestion(); }
 }
 
+
 // ── EXPLANATION ───────────────────────────────────────────────────────────────
 function escapeHtml(str) {
   return (str||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
+
+function docLinkHtml(q) {
+  // Prefer explicit documentationUrl on the question; fall back to keyword lookup
+  const url   = q.documentationUrl || getDocSource(q.question, q.answerOptions).url;
+  const title = q.documentationUrl  ? 'Official Documentation' : getDocSource(q.question, q.answerOptions).title;
+  return `<a class="exp-doc-link" href="${escapeHtml(url)}" target="_blank" rel="noopener">
+    <span class="exp-doc-link-icon">📖</span>
+    <span class="exp-doc-link-text">${escapeHtml(title)}</span>
+    <span class="exp-doc-link-arrow">↗</span>
+  </a>`;
+}
+
 function buildExplanationPanel(q, selectedIdx) {
   const letters     = ['A','B','C','D','E'];
   const selectedOpt = q.answerOptions[selectedIdx];
   const correctOpt  = q.answerOptions.find(o => o.isCorrect);
   const correctIdx  = q.answerOptions.indexOf(correctOpt);
   const wasCorrect  = selectedOpt.isCorrect;
-  const doc         = getDocSource(q.question, q.answerOptions);
   let html = '';
 
   html += wasCorrect
@@ -2990,12 +3221,54 @@ function buildExplanationPanel(q, selectedIdx) {
     }
   }
 
-  html += `</div>
-  <a class="exp-doc-link" href="${doc.url}" target="_blank" rel="noopener">
-    <span class="exp-doc-link-icon">📄</span>
-    <span class="exp-doc-link-text">Source: ${escapeHtml(doc.title)}</span>
-    <span class="exp-doc-link-arrow">↗</span>
-  </a>`;
+  html += `</div>${docLinkHtml(q)}`;
+  return html;
+}
+
+function buildMultiExplanationPanel(q, selectedArr) {
+  const letters  = ['A','B','C','D','E'];
+  const selSet   = new Set(selectedArr);
+  const corrIdxs = q.answerOptions.map((o,i) => o.isCorrect ? i : -1).filter(i => i>=0);
+  const isFullyCorrect = corrIdxs.length === selectedArr.length && corrIdxs.every(i => selSet.has(i));
+  const isPartial = !isFullyCorrect && corrIdxs.some(i => selSet.has(i));
+
+  let headerClass, bodyClass, headerText, icon;
+  if (isFullyCorrect) {
+    headerClass = 'correct'; bodyClass = 'correct'; icon = '✅'; headerText = 'All correct! Well done.';
+  } else if (isPartial) {
+    headerClass = 'partial'; bodyClass = 'partial'; icon = '⚠️'; headerText = 'Partially correct — review all options below';
+  } else {
+    headerClass = 'wrong'; bodyClass = 'wrong'; icon = '❌'; headerText = 'Incorrect — see the explanation';
+  }
+
+  let html = `<div class="exp-header ${headerClass}"><span class="exp-icon">${icon}</span> ${headerText}</div>`;
+  html += `<div class="exp-body ${bodyClass}">`;
+  html += `<div class="exp-section"><div class="exp-section-title all-title">All options explained</div>`;
+
+  q.answerOptions.forEach((opt, i) => {
+    const wasSelected = selSet.has(i);
+    let dotClass, labelClass, dotSymbol;
+    if (opt.isCorrect && wasSelected) {
+      dotClass = 'correct'; labelClass = 'correct'; dotSymbol = '✓';
+    } else if (opt.isCorrect && !wasSelected) {
+      dotClass = 'wrong'; labelClass = 'wrong-label'; dotSymbol = '○';
+    } else if (!opt.isCorrect && wasSelected) {
+      dotClass = 'wrong'; labelClass = 'wrong-label'; dotSymbol = '✗';
+    } else {
+      dotClass = 'neutral'; labelClass = ''; dotSymbol = letters[i];
+    }
+    const tag = opt.isCorrect
+      ? (wasSelected ? ' ✓ Correct — you selected this' : ' ✗ Correct — you missed this')
+      : (wasSelected ? ' ✗ Wrong — you should not have selected this' : '');
+    html += `<div class="exp-answer-row">
+      <div class="exp-dot ${dotClass}">${dotSymbol}</div>
+      <div class="exp-answer-text">
+        <div class="exp-answer-label ${labelClass}">${letters[i]}. ${escapeHtml(opt.text)}${tag ? `<span style="font-size:10px;opacity:0.7"> — ${tag.trim()}</span>` : ''}</div>
+        <div class="exp-rationale ${opt.isCorrect ? 'correct' : (wasSelected ? 'wrong-rat' : '')}">${escapeHtml(opt.rationale||'')}</div>
+      </div></div>`;
+  });
+
+  html += `</div></div>${docLinkHtml(q)}`;
   return html;
 }
 
