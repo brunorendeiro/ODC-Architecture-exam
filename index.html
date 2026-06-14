@@ -2167,13 +2167,14 @@ const RAW_QUESTIONS = [
   // ── WEBINAR QUESTIONS (Pune User Group ODC Architecture session) ──────────
   {
     "id": 146, "category": "cloud",
-    "question": "Which elements can be made Public in an ODC Web Application (not Library)?",
+    "question": "Which of the following is the complete list of elements that can be made Public in an ODC Application (Web or Mobile)?",
     "answerOptions": [
-      { "text": "Service Actions and Roles", "isCorrect": true, "rationale": "In an ODC Web Application, only Service Actions and Roles can be made Public for consumption by other apps. Client Actions, Server Actions, Blocks, and Structures inside an Application cannot be made Public — that is a key difference from O11 and from Libraries, where more elements can be exposed." },
-      { "text": "Client Actions and Server Actions", "isCorrect": false, "rationale": "Client Actions and Server Actions inside an Application cannot be made Public in ODC. To expose reusable logic, it must live in a Library (as Service Actions or Client Actions) or be exposed as a Service Action from the Application." },
-      { "text": "Blocks and Structures", "isCorrect": false, "rationale": "Blocks and Structures can be made Public inside a Library, not inside an Application. Applications have restricted public exposure compared to Libraries." },
-      { "text": "All elements, same as in OutSystems 11", "isCorrect": false, "rationale": "This is a key difference from O11. In ODC, Applications have much stricter limits on what can be made Public. Only Service Actions and Roles can be exposed from an Application." }
-    ]
+      { "text": "Service Actions and Roles only", "isCorrect": false, "rationale": "This is a common misconception. Service Actions and Roles can indeed be made Public, but they are not the only elements. An Application can also make Entities, Static Entities, and Events public. Saying 'only Service Actions and Roles' leaves out three important public element types." },
+      { "text": "Service Actions, Roles, Entities, Static Entities, and Events", "isCorrect": true, "rationale": "An ODC Application can make five types of elements Public: (1) Service Actions — for cross-app logic calls (weak dependency); (2) Roles — so other apps can check, grant or revoke access; (3) Entities — allowing other apps to read or write the producer's data; (4) Static Entities — sharing reference/lookup data; (5) Events — allowing other apps to subscribe and react asynchronously. What cannot be made Public in an App: Server Actions, Client Actions, Blocks, and Structures — those belong in Libraries." },
+      { "text": "Blocks, Structures, Server Actions, and Client Actions", "isCorrect": false, "rationale": "Blocks, Structures, Server Actions, and Client Actions are the elements that can be made Public in a Library — not directly in an Application. If you want to expose reusable UI (Blocks) or reusable logic (Server/Client Actions), the correct approach is to put them in a Library." },
+      { "text": "All elements, including Screens and Timers", "isCorrect": false, "rationale": "Screens and Timers cannot be made Public in the sense of cross-app consumption. While Screens can be navigated to via deep links, they are not 'public elements' consumed by other apps the way Service Actions or Entities are. Timers are internal scheduled jobs with no public exposure mechanism." }
+    ],
+    "documentationUrl": "https://success.outsystems.com/documentation/outsystems_developer_cloud/app_architecture/reuse_elements_across_apps/"
   },
   {
     "id": 147, "category": "cloud",
