@@ -666,8 +666,8 @@ const RAW_QUESTIONS = [
     "id": 2, "category": "cloud",
     "question": "What is the main difference between a strong dependency and a weak dependency in ODC?",
     "answerOptions": [
-      { "text": "Strong dependencies are for data only; weak dependencies are for logic only.", "isCorrect": false, "rationale": "The distinction is not about content type but about the impact on deployment." },
-      { "text": "Strong dependencies require joint deployment; weak dependencies allow independent deployment.", "isCorrect": true, "rationale": "With a strong dependency, if the producer changes its public interface, the consumer must be updated and redeployed too. Weak dependencies allow independent evolution." },
+      { "text": "Strong dependencies are for data only; weak dependencies are for logic only.", "isCorrect": false, "rationale": "The distinction is not about content type but about how the dependency is packaged and how it affects deployment." },
+      { "text": "With a strong dependency the producer's code is compiled into the consumer's container; with a weak dependency both sides deploy independently.", "isCorrect": true, "rationale": "A strong dependency (e.g., App → Library) means the Library is packaged inside the consumer App's container at build time. A change to the Library's public interface requires the consumer to update and republish. A weak dependency (e.g., App → App via Service Action) means each side deploys independently — the consumer calls the producer at runtime without being recompiled when the producer changes." },
       { "text": "Weak dependencies are deprecated in ODC.", "isCorrect": false, "rationale": "Weak dependencies exist and are recommended for decoupling services in ODC." },
       { "text": "There is no distinction between strong and weak dependencies in ODC.", "isCorrect": false, "rationale": "ODC clearly distinguishes both dependency types in app architecture." }
     ]
@@ -744,12 +744,12 @@ const RAW_QUESTIONS = [
   },
   {
     "id": 10, "category": "cloud",
-    "question": "Which of the following App types does NOT exist in ODC?",
+    "question": "Which of the following is NOT a valid ODC application type?",
     "answerOptions": [
-      { "text": "Web App", "isCorrect": false, "rationale": "Web App (responsive) is one of the App types in ODC." },
-      { "text": "Tablet App", "isCorrect": false, "rationale": "Tablet App is one of the mobile App types in ODC." },
-      { "text": "Desktop App", "isCorrect": true, "rationale": "ODC does not have a 'Desktop' App type — the available types are Web (responsive), Tablet and Phone. Web Apps are responsive and work on desktop through the browser." },
-      { "text": "Phone App", "isCorrect": false, "rationale": "Phone App is one of the mobile App types in ODC, for native phone applications." }
+      { "text": "Web App", "isCorrect": false, "rationale": "Web App is a valid ODC application type — it creates responsive web applications accessible through the browser." },
+      { "text": "Desktop App", "isCorrect": true, "rationale": "ODC does not have a 'Desktop App' type. The three official ODC application types are: Web App (responsive web), Mobile App (native phone/tablet), and Agentic App (AI-powered autonomous workflows). Web Apps are responsive and work on desktop through the browser, so there is no separate Desktop type." },
+      { "text": "Mobile App", "isCorrect": false, "rationale": "Mobile App is a valid ODC application type — it creates native iOS and Android applications, available in Phone and Tablet templates." },
+      { "text": "Agentic App", "isCorrect": false, "rationale": "Agentic App is a valid and official ODC application type — introduced to host AI-powered agents and autonomous workflows. It is one of the three application types alongside Web App and Mobile App." }
     ]
   },
   {
@@ -1504,10 +1504,10 @@ const RAW_QUESTIONS = [
     "id": 65, "category": "cloud",
     "question": "What ensures secure communication between the Platform and Runtime clusters in ODC?",
     "answerOptions": [
-      { "text": "NATS (Neural Autonomic Transport System)", "isCorrect": true, "rationale": "NATS is the message-oriented middleware used in ODC to ensure secure, reliable communication between Platform and Runtime components. It provides a high-performance messaging channel." },
-      { "text": "DynamoDB", "isCorrect": false, "rationale": "DynamoDB is a NoSQL database service, not a communication or messaging system." },
-      { "text": "REST APIs", "isCorrect": false, "rationale": "REST APIs are used for external integrations, not for internal secure communication between ODC Platform and Runtime clusters." },
-      { "text": "CDN (Content Delivery Network)", "isCorrect": false, "rationale": "CDNs distribute static content to end users. They are not used for internal cluster-to-cluster communication security in ODC." }
+      { "text": "NATS message-oriented middleware", "isCorrect": true, "rationale": "NATS is the message-oriented middleware (MOM) used in ODC for internal communication between Platform and Runtime cluster components. It provides a high-performance, reliable messaging channel. Note: NATS handles the messaging channel; all communication in ODC is secured at the transport layer using TLS (Transport Layer Security). The question asks about the communication mechanism, not the encryption protocol." },
+      { "text": "DynamoDB", "isCorrect": false, "rationale": "DynamoDB is a NoSQL database used by the Platform Build Service for configuration and operational data — it is not a communication or messaging channel." },
+      { "text": "REST APIs", "isCorrect": false, "rationale": "REST APIs are used for external integrations (e.g., consuming external systems from ODC apps). They are not the internal messaging channel between Platform and Runtime clusters." },
+      { "text": "CDN (Content Delivery Network)", "isCorrect": false, "rationale": "CDNs distribute static content to end users geographically. They play no role in internal cluster-to-cluster communication within ODC infrastructure." }
     ]
   },
   {
@@ -1652,12 +1652,12 @@ const RAW_QUESTIONS = [
   },
   {
     "id": 80, "category": "cloud",
-    "question": "What channel ensures secure message transmission between internal ODC components?",
+    "question": "What protocol secures ALL internal and external communication in ODC — between apps, between clusters, and with external clients?",
     "answerOptions": [
-      { "text": "Message-oriented middleware (NATS)", "isCorrect": true, "rationale": "ODC uses NATS as message-oriented middleware to ensure secure, high-performance message transmission between internal components such as Platform and Runtime services." },
-      { "text": "Webhooks", "isCorrect": false, "rationale": "Webhooks are outbound HTTP callbacks for external integrations, not the internal messaging channel used by ODC components." },
-      { "text": "REST APIs", "isCorrect": false, "rationale": "REST APIs are used for external integrations, not for the internal secure message channel between ODC Platform and Runtime components." },
-      { "text": "CDN (Content Delivery Network)", "isCorrect": false, "rationale": "CDNs distribute static content to end users. They are not used for internal component-to-component message transmission." }
+      { "text": "TLS (Transport Layer Security)", "isCorrect": true, "rationale": "ODC secures all communication using TLS — between the browser and the app, between the Platform and Runtime clusters, between internal services, and with any external systems. TLS is the encryption and authentication layer that prevents eavesdropping and tampering. NATS is the messaging middleware that handles communication routing internally, but TLS is the protocol that makes all communication secure." },
+      { "text": "NATS (message-oriented middleware)", "isCorrect": false, "rationale": "NATS is the messaging middleware used for internal component communication — it handles routing and delivery of messages between Platform and Runtime services. However, NATS does not provide encryption or authentication by itself. TLS is the protocol that secures all ODC communication." },
+      { "text": "IPSec (IP Security)", "isCorrect": false, "rationale": "IPSec is a network-layer security protocol sometimes used in VPNs. ODC uses TLS at the transport layer, not IPSec, for securing communication between its components and clients." },
+      { "text": "OAuth 2.0", "isCorrect": false, "rationale": "OAuth 2.0 is an authorization framework used for user authentication and API access delegation — not a transport-level encryption protocol. ODC uses OAuth/OIDC for identity, but TLS for encrypting the actual communication channel." }
     ]
   },
   {
@@ -1807,7 +1807,7 @@ const RAW_QUESTIONS = [
     "question": "How many times is a failed Event retried in ODC, and with what interval pattern?",
     "answerOptions": [
       { "text": "3 times, with a fixed 1-minute interval.", "isCorrect": false, "rationale": "The number of retries in ODC is higher and the interval is not fixed." },
-      { "text": "Up to 10 times, with exponential backoff (5s, 10s, 20s, 30s, 1min, 2min, 4min, 8min, 16min, 32min).", "isCorrect": true, "rationale": "In case of failure, ODC retries the Event up to 10 times. The interval between retries increases exponentially: 5s, 10s, 20s, 30s, 1min, 2min, 4min, 8min, 16min, 32min." },
+      { "text": "Up to 10 times, with exponential backoff at 2, 4, 8, 16, and 32-minute intervals.", "isCorrect": true, "rationale": "ODC retries failed Events up to 10 times using an exponential backoff policy. The backoff intervals are 2, 4, 8, 16, and 32 minutes. This gives consumer handlers time to recover before the next attempt, while ensuring persistent failures are not retried indefinitely." },
       { "text": "5 times, with a fixed 30-second interval.", "isCorrect": false, "rationale": "It is up to 10 retries, not 5, and the interval is exponential, not fixed." },
       { "text": "Never — if the Event fails, it is discarded.", "isCorrect": false, "rationale": "ODC has a robust retry mechanism for failed Events — up to 10 attempts with exponential backoff." }
     ]
@@ -1818,8 +1818,8 @@ const RAW_QUESTIONS = [
     "answerOptions": [
       { "text": "Libraries, Web Apps and Mobile Apps.", "isCorrect": false, "rationale": "Libraries CANNOT have Events. Events are exclusive to Apps." },
       { "text": "Only in Web Apps (responsive).", "isCorrect": false, "rationale": "Events can be created in both Web Apps and Mobile Apps — they are not exclusive to Web Apps." },
-      { "text": "Only in Web Apps and Mobile Apps — NOT in Libraries.", "isCorrect": true, "rationale": "Events in ODC can only be created in Web Apps and Mobile Apps. Libraries do not support Events, Timers, Screens, Service Actions, REST Expose, Roles or Entities." },
-      { "text": "In any asset type, including Libraries and External Logic.", "isCorrect": false, "rationale": "Neither Libraries nor External Logic support Events. Events are exclusive to Apps (Web and Mobile)." }
+      { "text": "In Apps (Web, Mobile, and Agentic) — NOT in Libraries.", "isCorrect": true, "rationale": "Events in ODC can only be created in App types: Web Apps, Mobile Apps, and Agentic Apps. Libraries do not support Events (nor Timers, Screens, Service Actions, REST Expose, Roles, or Entities). With the introduction of Agentic Apps as a first-class application type, Events are available across all App types." },
+      { "text": "In any asset type, including Libraries and External Logic.", "isCorrect": false, "rationale": "Neither Libraries nor External Logic (External Libraries SDK) support Events. Events are exclusive to Apps." }
     ]
   },
   {
@@ -1947,10 +1947,10 @@ const RAW_QUESTIONS = [
     "id": 129, "category": "libraries",
     "question": "What can you view about app reuse in the ODC Portal?",
     "answerOptions": [
-      { "text": "The stage on which the app is deployed", "isCorrect": true, "rationale": "In the ODC Portal, when viewing a library or app, you can see which stage it is deployed to (Development, QA, Production), giving visibility into the deployment state as part of the reuse context." },
-      { "text": "The app's consumers or producers list", "isCorrect": false, "rationale": "Consumer/producer relationships are viewed through Impact Analysis, not the general app reuse view in the Portal." },
-      { "text": "The Public property settings for each element", "isCorrect": false, "rationale": "Public property settings are configured in ODC Studio, not viewed in the Portal." },
-      { "text": "A list of all Blocks used in the app", "isCorrect": false, "rationale": "Block-level usage details are visible in ODC Studio, not in the ODC Portal's reuse overview." }
+      { "text": "The producers and consumers of the asset — which apps it depends on and which apps depend on it", "isCorrect": true, "rationale": "In the ODC Portal, the asset detail page shows the full producer-consumer dependency graph: which assets the selected asset consumes (its producers) and which assets consume it (its consumers). This gives visibility into reuse relationships across the entire factory, helping architects understand the impact of changes and who depends on a given app or Library." },
+      { "text": "The stage on which the app is deployed", "isCorrect": false, "rationale": "Deployment stage information is visible in the ODC Portal's deployment section, not specifically as part of the app reuse view. The reuse context shows producers and consumers, not deployment stage." },
+      { "text": "The Public property settings for each element", "isCorrect": false, "rationale": "Public property settings are configured and viewed in ODC Studio, not in the Portal. The Portal shows deployment, versioning, and dependency information at the asset level." },
+      { "text": "A list of all Blocks used in the app", "isCorrect": false, "rationale": "Block-level element details are visible in ODC Studio. The Portal operates at the asset (App/Library) level, showing dependency relationships between assets rather than element-level composition." }
     ]
   },
   {
@@ -2109,12 +2109,12 @@ const RAW_QUESTIONS = [
   },
   {
     "id": 145, "category": "cloud",
-    "question": "How does the ODC cloud platform maintain data isolation for multiple tenants sharing the same infrastructure?",
+    "question": "In ODC's multi-tenant cloud architecture, how is data isolation achieved between different customer organisations sharing the same platform infrastructure?",
     "answerOptions": [
-      { "text": "The platform engine automatically injects a unique tenant identifier into every database query before execution, with no code changes required from developers", "isCorrect": true, "rationale": "ODC's multi-tenant isolation is handled transparently by the platform engine. Before any query reaches the database, the engine intercepts it and injects the tenant's unique identifier. Developers never need to add tenant filtering to their code manually — this eliminates human error and ensures perfect data isolation across all tenants sharing the same infrastructure." },
-      { "text": "Developers must manually include a tenant ID parameter in every database query they write", "isCorrect": false, "rationale": "Manual tenant ID injection is error-prone and inconsistent. ODC automates this entirely at the platform engine level so developers cannot accidentally expose one tenant's data to another." },
-      { "text": "Each tenant gets a completely separate dedicated database server", "isCorrect": false, "rationale": "Dedicated servers per tenant would be extremely expensive. ODC achieves isolation on shared infrastructure through automatic query-level tenant ID injection, not physical database separation." },
-      { "text": "Data isolation is achieved through field-level encryption that only the tenant can decrypt", "isCorrect": false, "rationale": "ODC uses query-level tenant ID filtering for isolation, not field-level encryption. Encryption addresses data-at-rest confidentiality, not the multi-tenant isolation problem." }
+      { "text": "Each ODC organisation's app data is stored in isolated database schemas per Stage, and Platform services are designed as multi-tenant with organisation-level separation", "isCorrect": true, "rationale": "ODC achieves data isolation at two levels: (1) each Stage (Dev, QA, Prod) of an organisation has its own isolated database schema, so data from different organisations never mixes in the same schema; (2) the Platform services (build, deploy, portal) are multi-tenant by design, with organisation-level access controls. This gives each customer a logically isolated environment without requiring dedicated hardware per tenant." },
+      { "text": "The platform engine automatically injects a unique tenant identifier into every database query at runtime", "isCorrect": false, "rationale": "This automatic query-level tenant ID injection is not the documented ODC isolation mechanism. ODC achieves isolation through schema-level separation per Stage rather than injecting tenant identifiers into shared table queries. Conflating these mechanisms can give a false sense of security about how isolation works." },
+      { "text": "Each customer organisation gets a completely separate dedicated Kubernetes cluster and database server", "isCorrect": false, "rationale": "Dedicated infrastructure per tenant would be extremely expensive. ODC is a shared platform (SaaS) where multiple organisations share the same underlying AWS infrastructure. Isolation is achieved through logical separation (schemas, namespaces, access controls) rather than physical separation." },
+      { "text": "Data isolation relies entirely on field-level encryption where each tenant holds a unique decryption key", "isCorrect": false, "rationale": "While ODC encrypts data at rest and in transit using TLS and encryption keys, this addresses confidentiality — not the logical isolation of tenant data in shared schemas. The isolation mechanism is structural (separate schemas per stage) rather than encryption-based." }
     ]
   },
 
@@ -2359,8 +2359,8 @@ const RAW_QUESTIONS = [
     "id": 176, "category": "cloud",
     "question": "In ODC's cloud infrastructure, which service stores the OML project files (app revisions as blob data)?",
     "answerOptions": [
-      { "text": "Amazon Aurora", "isCorrect": false, "rationale": "Amazon Aurora stores app revisions metadata and dependency information in a relational format — not the raw OML project files. Aurora is the relational database used for structured metadata." },
-      { "text": "Amazon S3", "isCorrect": true, "rationale": "Amazon S3 (object storage) stores current and historical app revisions as blob data — the actual OML project files. S3 is chosen for its scalability, durability, and cost-effectiveness for large binary objects. Amazon Aurora stores the structured metadata about those revisions; S3 stores the file content itself." },
+      { "text": "Amazon Aurora", "isCorrect": true, "rationale": "Amazon Aurora stores current and historical app revisions as OML blob data. Aurora is ODC's primary relational database for the Platform services — it holds both structured metadata (dependencies, configuration) and the OML project files (app revisions) as blob data. This single service acts as the source of truth for the build pipeline." },
+      { "text": "Amazon S3", "isCorrect": false, "rationale": "S3 is associated with configuration and metadata from the Platform Build Service, not the primary store for OML project file blobs. A common misconception is that S3 is always used for binary/blob data — in ODC's architecture, Aurora serves this role for OML revisions." },
       { "text": "Amazon DynamoDB", "isCorrect": false, "rationale": "DynamoDB is used by the Platform Build Service for configuration and metadata (settings, build parameters, service-specific operational information). It does not store OML project files." },
       { "text": "Amazon ECR (Elastic Container Registry)", "isCorrect": false, "rationale": "ECR stores container images — the compiled, deployable artifacts. OML project files (the source representation) are stored in S3, not ECR. ECR receives the output after the Build Service compiles the OML into a container image." }
     ]
@@ -2570,6 +2570,108 @@ const RAW_QUESTIONS = [
       { "text": "No — a Block and a Server Action serving different purposes should never be in the same Library; each Library must contain a single type of element", "isCorrect": false, "rationale": "ODC has no rule that a Library must contain only one type of element. A Library that groups related reusable assets (a UI component, its validation logic, and its data structure) is cohesive and well-designed — it provides a complete, usable set of elements around a shared concern." },
       { "text": "Yes — all three elements (Block, Server Action, Structure) are valid Library assets that together form a cohesive, reusable address-handling component", "isCorrect": true, "rationale": "This is an example of a well-scoped Library: (1) the Block handles the reusable UI for customer search, (2) the Server Action provides reusable server-side logic for address validation, (3) the Structure provides a stable data contract (AddressDTO) shared between producers and consumers. All three are valid Library elements, they are cohesive (all address/customer related), and they are business-agnostic enough to be genuinely reusable." },
       { "text": "No — the public Server Action is invalid because Libraries can only expose Client Actions, not Server Actions", "isCorrect": false, "rationale": "Libraries CAN expose public Server Actions. In fact, Server Actions in Libraries are one of the primary mechanisms for sharing reusable server-side logic in ODC. Client Actions can also be public in Libraries, but Server Actions are explicitly supported and commonly used." }
+    ]
+  },
+
+  // ── AGENTIC APPS, DATA FABRIC, WORKFLOWS, OBSERVABILITY ─────────────────
+  {
+    "id": 197, "category": "cloud",
+    "question": "Which ODC application type is specifically designed to host AI-powered agents and autonomous workflows?",
+    "answerOptions": [
+      { "text": "Web App", "isCorrect": false, "rationale": "Web Apps are for building responsive browser-based user interfaces. They can consume Agentic Apps through Service Actions, but they are not the application type for hosting AI agents." },
+      { "text": "Mobile App", "isCorrect": false, "rationale": "Mobile Apps create native iOS and Android applications. Like Web Apps, they can consume Agentic Apps, but they do not host AI agents or autonomous workflows." },
+      { "text": "Agentic App", "isCorrect": true, "rationale": "Agentic Apps are a dedicated ODC application type designed to host AI-powered agents that can perform tasks, automate complex multi-step workflows, and operate with some degree of autonomy. They are consumed by Web and Mobile Apps through a dedicated Service Action named Call<AgentName>. This is a first-class asset type alongside Web App and Mobile App." },
+      { "text": "Library", "isCorrect": false, "rationale": "Libraries are for reusable building blocks (Blocks, Server Actions, Structures, Themes). They do not host executable AI agents, maintain state, or run workflows. A Library cannot be the host for an Agentic App — that requires the Agentic App asset type." }
+    ]
+  },
+  {
+    "id": 198, "category": "cloud",
+    "question": "What is the primary purpose of an Agentic App in ODC?",
+    "answerOptions": [
+      { "text": "Hosting responsive web pages with forms and navigation flows", "isCorrect": false, "rationale": "Responsive web pages with screens and navigation are the domain of Web Apps, not Agentic Apps. Agentic Apps have no screens — they host AI agents and autonomous logic." },
+      { "text": "Executing autonomous or semi-autonomous AI-driven processes that coordinate multiple steps with some degree of independence", "isCorrect": true, "rationale": "Agentic Apps are designed for AI agents that can plan and execute multi-step processes with autonomy — for example, an agent that reads customer data, decides the next step, calls external tools, and completes a task without step-by-step human instruction. Web and Mobile Apps consume the agent's capability through the Call<AgentName> Service Action." },
+      { "text": "Storing shared themes and reusable UI components for the entire organisation", "isCorrect": false, "rationale": "Themes and reusable UI components belong in Libraries. Agentic Apps are executable applications with AI logic, not storage for design assets." },
+      { "text": "Managing deployment pipelines and environment configuration across Stages", "isCorrect": false, "rationale": "Deployment pipelines and Stage configuration are managed by the ODC Portal and its CI/CD tooling. This is platform infrastructure, not an application type." }
+    ]
+  },
+  {
+    "id": 199, "category": "patterns",
+    "question": "What is the primary goal of Data Fabric in ODC?",
+    "answerOptions": [
+      { "text": "Replace ODC's internal relational database (Aurora) with a distributed file system", "isCorrect": false, "rationale": "Data Fabric does not replace ODC's internal database infrastructure. It is an integration feature — it allows ODC apps to query external data sources, not to change how ODC's own data is stored." },
+      { "text": "Centralize access to distributed external data sources so ODC apps can query them without duplicating the data first", "isCorrect": true, "rationale": "Data Fabric lets developers query external data sources (SAP, Salesforce, databases, APIs) directly from ODC Studio through External Entities, Aggregates, and SQL nodes — without having to import and duplicate that data into ODC's own entities first. This keeps the external system as the source of truth while making the data accessible to ODC apps." },
+      { "text": "Replace all REST integrations with a single unified data layer", "isCorrect": false, "rationale": "Data Fabric complements existing integration approaches — it does not replace REST. It focuses on data source federation: making external data queryable as if it were local, not eliminating API patterns." },
+      { "text": "Eliminate all external APIs so ODC apps can operate fully offline", "isCorrect": false, "rationale": "Data Fabric connects to external systems — it requires external APIs or database connections to function. The goal is to make external data accessible, not to eliminate external dependencies." }
+    ]
+  },
+  {
+    "id": 200, "category": "patterns",
+    "question": "An organisation has customer data in Salesforce, orders in SAP, and inventory in a legacy Oracle database. Developers need to query across all three from ODC without copying the data. Which ODC feature addresses this?",
+    "answerOptions": [
+      { "text": "Cold Cache integration pattern — import all data into ODC Entities and sync with Timers", "isCorrect": false, "rationale": "Cold Cache works by copying external data into ODC Entities and refreshing it periodically. This creates data duplication and introduces latency. If the business wants to query the live, authoritative data across multiple systems, Data Fabric is the right answer." },
+      { "text": "Data Fabric — connect to each external system as a data source and query them as External Entities from ODC Studio", "isCorrect": true, "rationale": "Data Fabric is designed exactly for this scenario. It lets developers create connections to Salesforce, SAP, Oracle, and other external systems, then query their data using External Entities, Aggregates, and SQL nodes — directly from ODC Studio. The data stays in the external system (no duplication); ODC accesses it on demand." },
+      { "text": "Create a Library with three public Server Actions — one to call each external API — and have all Apps consume the Library", "isCorrect": false, "rationale": "While wrapping external APIs in Library Server Actions (the Integration Wrapper pattern) is valid for some scenarios, it is not the dedicated ODC feature for querying distributed external data sources. Data Fabric provides richer capabilities: External Entities that can be used in Aggregates and SQL, not just action-level calls." },
+      { "text": "Move all three external datasets into Amazon Aurora so ODC can query them natively", "isCorrect": false, "rationale": "Migrating Salesforce, SAP, and Oracle data into Aurora would be a massive data migration project that makes ODC the system of record — defeating the purpose of keeping those systems authoritative. Data Fabric solves this without migration." }
+    ]
+  },
+  {
+    "id": 201, "category": "patterns",
+    "question": "Which ODC capability is most appropriate for a long-running business process that includes human approval steps — for example, an employee onboarding flow that requires HR sign-off before IT provisioning?",
+    "answerOptions": [
+      { "text": "Client Action — triggered by a button click on the onboarding screen, it calls each step in sequence", "isCorrect": false, "rationale": "Client Actions run synchronously in the browser session. They cannot wait for human approvals that may take hours or days — the browser session would time out. Long-running processes that pause for human interaction require a stateful mechanism." },
+      { "text": "Workflow — it orchestrates tasks, decisions, and human approval steps as a stateful, long-running process", "isCorrect": true, "rationale": "Workflows in ODC are designed for exactly this scenario: long-running, stateful business processes that include tasks (automated steps), decisions (conditional routing), and human interaction (approval tasks that pause until a person acts). A Workflow persists its state between steps — it can wait days or weeks for an HR approval before proceeding to IT provisioning." },
+      { "text": "Timer — schedule the onboarding steps to run every hour until all approvals are received", "isCorrect": false, "rationale": "A Timer is a scheduled background job that runs automatically at fixed intervals. It has no built-in support for human approval tasks, process state management, or conditional branching based on decisions. Polling with a Timer is an anti-pattern for approval-based processes." },
+      { "text": "Event — publish an 'OnboardingStarted' event and have HR and IT subscribe independently", "isCorrect": false, "rationale": "Events are excellent for decoupled, parallel notifications. However, they do not inherently support process state, sequential steps with dependencies, or human approval gates. If you publish an event and need to wait for HR approval before proceeding to IT provisioning, an Event alone cannot manage that sequential dependency. A Workflow is the correct tool." }
+    ]
+  },
+  {
+    "id": 202, "category": "patterns",
+    "question": "What is the key difference between a Workflow and a Timer in ODC?",
+    "answerOptions": [
+      { "text": "Timers support human approval tasks; Workflows only run scheduled automated jobs", "isCorrect": false, "rationale": "This is inverted. Timers are for scheduled automated background jobs with no human interaction capability. Workflows support process state, conditional routing, and human interaction including approval tasks." },
+      { "text": "Workflows maintain process state, support conditional sequencing, and can pause for human interaction; Timers execute a scheduled Server Action automatically on a fixed schedule", "isCorrect": true, "rationale": "A Timer is a simple scheduled trigger: it runs a Server Action at a configured time/interval, with no state between runs. A Workflow is a stateful orchestration engine: it tracks where in the process it is, routes based on decisions, and can pause indefinitely at a human task (approval, data entry) before continuing. They solve fundamentally different problems." },
+      { "text": "Workflows run only once; Timers can repeat", "isCorrect": false, "rationale": "Workflows can repeat — they are triggered by a business event or action, and many instances can run simultaneously. Timers also repeat on their schedule. The difference is not about repetition but about the capability to orchestrate stateful, human-interactive processes." },
+      { "text": "There is no practical difference — both are background execution mechanisms in ODC", "isCorrect": false, "rationale": "There is a fundamental difference. Timers are fire-and-forget scheduled actions with no state. Workflows are stateful orchestration engines with support for human tasks, conditional branching, parallel execution, and long-running duration. Using a Timer where a Workflow is needed is a common design mistake." }
+    ]
+  },
+  {
+    "id": 203, "category": "events",
+    "question": "What is the primary architectural benefit of Event-Driven Architecture (EDA) in ODC compared to synchronous Service Action calls?",
+    "answerOptions": [
+      { "text": "Events create stronger coupling between producer and consumer — the producer knows exactly who is listening", "isCorrect": false, "rationale": "EDA does the opposite: the producer publishes an event to a broker without knowing or caring who consumes it. This is looser coupling than a Service Action call, where the producer explicitly invokes a known consumer." },
+      { "text": "Events enable loose coupling — the producer publishes without knowing its consumers, and consumers subscribe independently without blocking the producer", "isCorrect": true, "rationale": "This is the core EDA benefit: the Order App can publish 'OrderCreated' without knowing whether Stock, Fraud, or Notification apps are listening. Each consumer subscribes independently. If a consumer is temporarily unavailable, the producer is not blocked. This makes the system more resilient and easier to extend — adding a new consumer requires no change to the producer." },
+      { "text": "Events guarantee that all consumers receive and process the event before the producer continues", "isCorrect": false, "rationale": "Events are asynchronous — the producer publishes and continues immediately; it does not wait for consumer processing. This is precisely what makes EDA non-blocking and loosely coupled. If you need synchronous confirmation, a Service Action call is more appropriate." },
+      { "text": "EDA eliminates the need for all other integration patterns — Service Actions become unnecessary", "isCorrect": false, "rationale": "EDA complements, not replaces, other patterns. Service Actions are still the right choice for synchronous operations (immediate return, transactional steps). EDA is best for decoupled notifications, parallel fan-out, and async processing. The choice depends on whether the operation needs to be synchronous or asynchronous." }
+    ]
+  },
+  {
+    "id": 204, "category": "events",
+    "question": "A producer App publishes an 'InvoiceGenerated' event. Six months later, the team needs to add a new field to the event payload. Existing consumers depend on the current payload structure. What is the correct approach?",
+    "answerOptions": [
+      { "text": "Add the field directly to the existing event — consumers automatically adapt to new fields they don't read", "isCorrect": false, "rationale": "Adding a field to an existing event is potentially a breaking change if the event payload type constraints are affected. More importantly, if the field is REQUIRED, consumers that don't provide it will fail. Even for optional additions, the safer approach is to version the event or introduce a new event to protect existing consumers." },
+      { "text": "Delete the existing event and replace it with a new event that has the updated payload — consumers will discover the new event on their own", "isCorrect": false, "rationale": "Deleting an existing event immediately breaks all consumers that subscribe to it. There is no automatic discovery mechanism. This approach would require coordinating simultaneous updates across all consumer Apps — exactly the tight coupling EDA is designed to avoid." },
+      { "text": "Introduce a new event version or a parallel event with the expanded payload, and migrate consumers gradually", "isCorrect": true, "rationale": "Incompatible changes to an event contract require a migration strategy that protects existing consumers. Options include: (1) creating a new event (e.g., 'InvoiceGeneratedV2') with the expanded payload while keeping the original event running during migration; (2) ensuring backward compatibility by making new fields optional with defaults. The goal is that no existing consumer breaks while new consumers can benefit from the richer payload." },
+      { "text": "Notify all consumer teams verbally and update the event in the next sprint — consumers will fix their handlers in parallel", "isCorrect": false, "rationale": "Verbal coordination for a breaking contract change is unreliable and creates a hard release dependency across teams — exactly the anti-pattern that EDA is designed to avoid. The correct architectural approach is to version the contract so teams can migrate independently." }
+    ]
+  },
+  {
+    "id": 205, "category": "cloud",
+    "question": "Which activity is part of observability in an ODC distributed application landscape?",
+    "answerOptions": [
+      { "text": "Creating shared UI Themes in a Library", "isCorrect": false, "rationale": "Theme creation is a design and development activity in ODC Studio. It improves visual consistency but has no observability function." },
+      { "text": "Monitoring application health, tracking failures, and analysing logs and traces across services", "isCorrect": true, "rationale": "Observability in ODC means having visibility into runtime application behaviour: health status, error rates, response times, and detailed logs/traces that help diagnose failures. In a distributed architecture with multiple Apps, this means being able to follow a request across app boundaries and identify exactly where and why something failed. The ODC Portal provides monitoring dashboards and log access for this purpose." },
+      { "text": "Publishing a new Library version to the ODC Portal", "isCorrect": false, "rationale": "Publishing a Library version is a development lifecycle activity. It updates the available version for consumer Apps to adopt — it is not an observability function." },
+      { "text": "Creating Roles and assigning them to application users", "isCorrect": false, "rationale": "Role management is a security and access control activity. While audit logging of role assignments may contribute to security observability, the act of creating Roles itself is a design activity, not observability." }
+    ]
+  },
+  {
+    "id": 206, "category": "cloud",
+    "question": "Why is observability especially important in a distributed ODC architecture with many Apps communicating via Service Actions and Events?",
+    "answerOptions": [
+      { "text": "Because observability eliminates all inter-app dependencies, making the architecture simpler", "isCorrect": false, "rationale": "Observability does not change the architecture or eliminate dependencies — it gives you visibility into how those dependencies behave at runtime. Dependencies remain; observability makes their behaviour understandable." },
+      { "text": "Because a failure in one App may manifest as a problem in a different App, and observability allows you to trace issues across service boundaries to find the root cause", "isCorrect": true, "rationale": "In a distributed architecture, a failure in App A (e.g., a Service Action timeout) may surface as an error in App B (the caller). Without distributed tracing and logs, debugging this means guessing which of many Apps caused the original failure. Observability tools (logs, traces, health metrics across all Apps) let you follow the chain of calls across boundaries and identify the root cause quickly, even when the symptom and the cause are in different Apps." },
+      { "text": "Because observability reduces database size by compressing log data automatically", "isCorrect": false, "rationale": "Database size management is not a function of observability. Observability focuses on runtime visibility: logs, traces, metrics. Log compression or retention policies are operational concerns separate from the purpose of observability." },
+      { "text": "Because observability replaces the need for logging code in individual Apps", "isCorrect": false, "rationale": "Observability augments application logging — it does not replace it. Individual Apps still produce logs and traces; observability tooling aggregates, correlates, and makes those logs searchable across all Apps. Good observability requires thoughtful logging within each App." }
     ]
   },
 
