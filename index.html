@@ -2491,6 +2491,88 @@ const RAW_QUESTIONS = [
     ]
   },
 
+  // ── TRUE/FALSE CONVERSIONS + PRINCIPLE-BASED SCENARIO QUESTIONS ─────────
+  {
+    "id": 189, "category": "design",
+    "question": "A developer discovers that a date-sorting utility is used in 3 different Apps and immediately proposes extracting it into a Library. A senior architect cautions against premature extraction. What is the main risk of always centralising every reusable piece of logic into a Library?",
+    "answerOptions": [
+      { "text": "Libraries cannot contain utility functions — only Blocks and Themes are allowed", "isCorrect": false, "rationale": "Libraries CAN contain Server Actions (public utility logic). There is no rule forbidding utility functions. The concern here is not a platform restriction but an architectural judgment call." },
+      { "text": "If the logic is unstable or too domain-specific, creating a Library dependency introduces coupling without meaningful benefit", "isCorrect": true, "rationale": "Reuse should be intentional, not reflexive. A Library is the right choice when the asset is stable, business-agnostic, and genuinely needed by multiple teams. Extracting logic prematurely — before it has stabilised or proven its reuse value — creates a Library that changes often, forcing coordinated updates across all consumers. The rule is: centralise what is ready to be shared, not everything that technically could be." },
+      { "text": "ODC enforces a maximum of 10 Libraries per factory, so unnecessary Libraries waste a scarce resource", "isCorrect": false, "rationale": "ODC does not enforce a limit of 10 Libraries. The concern with premature extraction is architectural quality and coupling, not hitting a platform cap." },
+      { "text": "Consumer Apps cannot reference Libraries that were created after the consumer was deployed", "isCorrect": false, "rationale": "ODC has no such ordering constraint. Consumers simply need to take a dependency on the Library version — when that happens is not restricted by deployment order." }
+    ]
+  },
+  {
+    "id": 190, "category": "design",
+    "question": "A senior architect states: 'Our goal is to eliminate all dependencies between Apps — maximum independence means each App has zero references to any other App or Library.' Why is this position architecturally incorrect?",
+    "answerOptions": [
+      { "text": "ODC requires at least one cross-app dependency in every factory for licensing reasons", "isCorrect": false, "rationale": "There is no ODC licensing or platform rule that mandates cross-app dependencies. The problem with 'zero dependencies' is architectural, not a platform constraint." },
+      { "text": "Zero dependencies would force every App to duplicate all shared logic and UI — duplication is more harmful than well-managed dependencies", "isCorrect": true, "rationale": "Dependencies are a normal and necessary part of a well-designed landscape. The goal is not to eliminate them, but to make them intentional, controlled, and minimal — through stable contracts (Service Actions, public Server Actions in Libraries, Structures). Eliminating dependencies entirely means each App must duplicate every shared capability, which creates inconsistency, maintenance overhead, and invisible drift over time." },
+      { "text": "ODC's dependency engine requires at least 3 cross-app references to function correctly", "isCorrect": false, "rationale": "There is no such requirement. A factory with fully isolated Apps would compile and run. The problem is the architecture quality that results — not a platform error." },
+      { "text": "Apps without dependencies cannot be deployed to the Production stage", "isCorrect": false, "rationale": "Deployment to Production has no dependency count requirement. A standalone App with zero external dependencies deploys normally." }
+    ]
+  },
+  {
+    "id": 191, "category": "design",
+    "question": "An architect consolidates 12 ODC components into just 3, reasoning: 'Fewer components means simpler architecture.' A reviewer flags this as a potential problem. What is the main risk of over-consolidation?",
+    "answerOptions": [
+      { "text": "ODC requires a minimum of 8 Apps per factory — fewer would fail validation", "isCorrect": false, "rationale": "ODC has no minimum component count requirement. The concern is not a platform constraint but an architectural consequence of merging too many responsibilities." },
+      { "text": "Merging unrelated responsibilities into the same component creates a monolith with unclear ownership, harder independent releases, and mixed business concerns", "isCorrect": true, "rationale": "Fewer components is not inherently better. Architecture is about finding the RIGHT boundaries — those that match natural business domains, support independent team ownership, and enable autonomous deployments. Consolidating 12 well-scoped components into 3 oversized ones likely means each surviving component now owns multiple unrelated domains, requires coordination across several teams to release, and becomes progressively harder to reason about. Balance matters in both directions: neither too fragmented nor too consolidated." },
+      { "text": "Three components always compile more slowly than twelve because ODC optimises multi-component builds", "isCorrect": false, "rationale": "Compilation performance is not the concern. ODC does not inherently compile fewer components more slowly. The cost of over-consolidation is in team autonomy, release independence, and clarity of ownership — not in build time." },
+      { "text": "Consolidated Apps cannot expose Service Actions to other Apps", "isCorrect": false, "rationale": "There is no restriction on Service Actions based on how many domains an App covers. The architectural problem is ownership and cohesion, not a platform capability limitation." }
+    ]
+  },
+  {
+    "id": 192, "category": "patterns",
+    "question": "An App exposes a GetCustomer Service Action that returns a CustomerDTO Structure. The team later refactors the internal Customer Entity — renaming internal fields and restructuring the database model. Consumer Apps are not notified. What happens?",
+    "answerOptions": [
+      { "text": "All consumer Apps break immediately — entity field renames are automatically propagated through Service Action contracts", "isCorrect": false, "rationale": "Service Action contracts are defined by their input/output Structures, not by the internal Entity. If the internal entity changes but the CustomerDTO Structure and the Service Action signature remain the same, consumers are not affected — and they would not even know the change happened." },
+      { "text": "Consumer Apps are unaffected — the Service Action contract (its inputs and outputs) isolates them from internal implementation changes", "isCorrect": true, "rationale": "This is the core value of encapsulation via Service Actions. The consumer depends on the contract — the CustomerDTO structure and the action's parameters — not on how the producer implements it internally. The producer team can freely rename database fields, restructure the entity, or even migrate to a different storage mechanism, as long as the Service Action continues to return a valid CustomerDTO. This is why Service Actions are preferred over direct Entity exposure." },
+      { "text": "ODC automatically notifies consumers of internal entity changes via Impact Analysis, requiring immediate recompilation", "isCorrect": false, "rationale": "ODC Impact Analysis detects changes in PUBLIC elements that consumers reference. Internal Entity changes do not propagate to consumers of Service Actions because the entity is not the contract. Consumers have no visibility into the producer's internal model." },
+      { "text": "The refactoring is blocked — ODC prevents renaming Entity fields if any Service Actions exist in the same App", "isCorrect": false, "rationale": "ODC does not block internal Entity refactoring because of existing Service Actions. Internal changes to the data model are within the producer App's autonomous control. Only changes to the Service Action signature itself would be detected by consumer Impact Analysis." }
+    ]
+  },
+  {
+    "id": 193, "category": "design",
+    "question": "A team needs to add complex checkout validation logic that is currently only needed in their single Checkout App. A colleague immediately proposes creating a Library. What is the most appropriate architectural decision?",
+    "answerOptions": [
+      { "text": "Create the Library immediately — all validation logic must always live in Libraries to ensure future reusability", "isCorrect": false, "rationale": "There is no rule that all validation logic must be in Libraries. Libraries are for business-agnostic logic that is genuinely shared across multiple Apps. Domain-specific logic (like checkout validation) that is only needed in one App belongs in that App — extracting it to a Library prematurely creates governance overhead without benefit." },
+      { "text": "Keep the logic inside the Checkout App for now — extract it to a Library only when it is needed by other Apps and has proven stable enough to be a shared contract", "isCorrect": true, "rationale": "The correct approach is to let reuse emerge from real need, not speculation. Checkout-specific validation is domain logic owned by the Checkout App. If in the future the Returns or Order App needs the same validation, that is the moment to extract it to a Library. Premature extraction creates a dependency on something that may still be evolving, making the Library a liability rather than an asset." },
+      { "text": "Create a Timer inside the Checkout App to run the validation asynchronously — this avoids synchronous coupling", "isCorrect": false, "rationale": "Timers are for scheduled background jobs, not for inline validation logic in a user flow. Validation in a checkout process must run synchronously so the user gets immediate feedback. A Timer would be architecturally wrong for this use case." },
+      { "text": "Create a dedicated Validation App that exposes the logic via Service Actions so all future Apps can call it", "isCorrect": false, "rationale": "Building a dedicated App for logic that only one App needs creates unnecessary infrastructure and a weak dependency (cross-app Service Action call) for no current benefit. A dedicated service makes sense when multiple Apps have a genuine runtime need for it — not as a preemptive design for hypothetical future consumers." }
+    ]
+  },
+  {
+    "id": 194, "category": "patterns",
+    "question": "A producer App exposes a GetOrder Service Action that returns an OrderSummaryDTO Structure. The team renames the output field 'ordAmt' to 'orderAmount' in the Structure to improve readability. What is the impact on consumer Apps?",
+    "answerOptions": [
+      { "text": "No impact — field names inside Structures are transparent to consumers at runtime", "isCorrect": false, "rationale": "Field names inside Structures are part of the contract that consumers reference in their code (Aggregates, assignments, screen bindings). Renaming a field breaks every reference to the old name in all consumer Apps." },
+      { "text": "All consumer Apps that reference 'ordAmt' will break — renaming a Structure field is a breaking change to the public contract", "isCorrect": true, "rationale": "A Service Action contract includes both its action signature (parameters) AND the Structures used in those parameters. Renaming a field in OrderSummaryDTO is a breaking change for every consumer that reads 'ordAmt'. This is why Structure design requires care: once a field name is published and consumed, changing it is a coordinated migration. Semantic versioning MAJOR bump would be required. This question shows that encapsulation through Service Actions protects consumers from *internal* changes, but the *contract itself* must remain stable." },
+      { "text": "Only the UI layer is affected — Server Action logic that reads 'ordAmt' continues to work since server-side references are resolved at deploy time", "isCorrect": false, "rationale": "The field name change affects ALL references to 'ordAmt' across all layers of consumer Apps — Server Actions, Client Actions, Aggregates, screen bindings, and variables. There is no special runtime resolution that maps old field names to new ones." },
+      { "text": "ODC automatically migrates consumer references from 'ordAmt' to 'orderAmount' during the next consumer App publish", "isCorrect": false, "rationale": "ODC does not perform automatic field-name migration across app boundaries. Impact Analysis will flag the broken references, but the developer must manually update every consumer reference. This is precisely why breaking changes to public contracts require coordinated versioning." }
+    ]
+  },
+  {
+    "id": 195, "category": "design",
+    "question": "A 'Customer Domain' App exposes: 5 public Service Actions, 2 public Roles, and 4 public Entities. An architect reviewing the design flags only the public Entities as a concern. Why are the Service Actions and Roles acceptable, but the public Entities are not?",
+    "answerOptions": [
+      { "text": "Roles and Service Actions are free to expose; Entities cost extra ODC licensing per public element", "isCorrect": false, "rationale": "ODC licensing is not based on the number or type of public elements. The concern is architectural coupling, not cost." },
+      { "text": "Service Actions and Roles provide controlled contracts; public Entities expose the internal data model directly — coupling consumers to schema details they should not depend on", "isCorrect": true, "rationale": "Service Actions give consumers a controlled interface (defined inputs/outputs) without revealing how data is stored. Roles give consumers a permission boundary without revealing business logic. Public Entities, however, give consumers direct access to the producer's internal data schema — field names, data types, relationships. Any schema evolution (renaming fields, adding columns, restructuring) becomes a breaking change for every consumer. The principle: expose capabilities through contracts, not data structures through direct access." },
+      { "text": "Entities can only be public in Libraries — an App cannot expose public Entities", "isCorrect": false, "rationale": "Apps CAN expose public Entities in ODC (it is a platform feature, not a restriction). The point is not that it is forbidden, but that it is architecturally undesirable because it creates tight coupling to the producer's internal data model." },
+      { "text": "Public Entities require consumers to be in the same ODC Stage, which breaks multi-stage deployments", "isCorrect": false, "rationale": "ODC Stages relate to deployment environments (Dev, QA, Prod), not to cross-app element visibility. Public Entity access is not restricted by Stage. The concern with public Entities is coupling, not Stage compatibility." }
+    ]
+  },
+  {
+    "id": 196, "category": "cloud",
+    "question": "A Library contains: (1) a public Block for a customer search UI component, (2) a public Server Action for address validation, and (3) a Structure defining an AddressDTO. An architect reviewing this says 'this is a well-designed Library.' Is the architect correct, and why?",
+    "answerOptions": [
+      { "text": "No — Structures cannot be defined in Libraries; they must live in the App that uses them", "isCorrect": false, "rationale": "Structures are valid Library elements. In fact, placing Structures (data contracts) in a Library is a recommended pattern — it ensures that all producer and consumer Apps use the same data shape without duplicating the Structure definition." },
+      { "text": "No — a Block and a Server Action serving different purposes should never be in the same Library; each Library must contain a single type of element", "isCorrect": false, "rationale": "ODC has no rule that a Library must contain only one type of element. A Library that groups related reusable assets (a UI component, its validation logic, and its data structure) is cohesive and well-designed — it provides a complete, usable set of elements around a shared concern." },
+      { "text": "Yes — all three elements (Block, Server Action, Structure) are valid Library assets that together form a cohesive, reusable address-handling component", "isCorrect": true, "rationale": "This is an example of a well-scoped Library: (1) the Block handles the reusable UI for customer search, (2) the Server Action provides reusable server-side logic for address validation, (3) the Structure provides a stable data contract (AddressDTO) shared between producers and consumers. All three are valid Library elements, they are cohesive (all address/customer related), and they are business-agnostic enough to be genuinely reusable." },
+      { "text": "No — the public Server Action is invalid because Libraries can only expose Client Actions, not Server Actions", "isCorrect": false, "rationale": "Libraries CAN expose public Server Actions. In fact, Server Actions in Libraries are one of the primary mechanisms for sharing reusable server-side logic in ODC. Client Actions can also be public in Libraries, but Server Actions are explicitly supported and commonly used." }
+    ]
+  },
+
   // ── ADDITIONAL SCENARIO QUESTIONS (AI-confirmed ODC patterns) ────────────
   {
     "id": 177, "category": "cloud",
