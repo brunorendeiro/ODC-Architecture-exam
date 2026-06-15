@@ -2925,6 +2925,228 @@ const RAW_QUESTIONS = [
     ]
   },
 
+  // ── PRACTICE EXAMS (Architecture Specialization ODC — Exam 1 & 2) ──────────
+  {
+    "id": 221, "category": "design",
+    "question": "Which of the following criteria is NOT key when choosing between a simple (single app) or distributed (multiple apps) approach during the Assemble step?",
+    "documentationUrl": "https://success.outsystems.com/documentation/outsystems_developer_cloud/app_architecture/architecture_design_process/",
+    "answerOptions": [
+      { "text": "Business Owner", "isCorrect": false, "rationale": "Business Owner IS a key criterion. If a bounded context has a single owner, a single app may suffice. If different parts need different owners, splitting into separate apps is required to give each owner clear accountability." },
+      { "text": "Business Sponsor", "isCorrect": false, "rationale": "Business Sponsor IS a key criterion. Multiple sponsors with conflicting priorities for the same scope is a strong signal to split into separate apps, each with one sponsor." },
+      { "text": "Users' expectations (same or different look & feel)", "isCorrect": false, "rationale": "User expectations ARE a key criterion. If different user groups expect a distinctly different experience, splitting allows each app to evolve its UX independently without interference." },
+      { "text": "Number of product teams", "isCorrect": true, "rationale": "The number of product teams is NOT one of the listed assembly criteria. The key criteria are: Business Owner (one per app), Business Sponsor (one per app), and Users' expectations (same or differentiated UX). Team count may influence organizational decisions, but it is not itself a direct architectural criterion for choosing simple vs. distributed architecture." }
+    ]
+  },
+  {
+    "id": 222, "category": "design",
+    "question": "What is the MAIN objective of using a black-box approach — encapsulating business data and exposing it through Service Actions — in a producer app?",
+    "documentationUrl": "https://success.outsystems.com/documentation/outsystems_developer_cloud/app_architecture/reuse_elements_across_apps/",
+    "answerOptions": [
+      { "text": "To reduce the development effort for functionalities that require data mashup across multiple entities.", "isCorrect": false, "rationale": "The black-box approach does not primarily target development effort reduction for data mashup. Consumers still need to call the Service Action to get the data — the effort trade-off can go either way." },
+      { "text": "To ensure business rules associated with the data model are centralized in the producer.", "isCorrect": false, "rationale": "Centralizing business rules is an important benefit, but it is a means, not the primary objective. The reason you centralize them is to protect consumers from having to know (and re-implement) those rules." },
+      { "text": "To easily expose the business data model and its rules to consumer apps.", "isCorrect": false, "rationale": "The opposite is true — the black-box approach intentionally HIDES the data model from consumers. Consumers only see the Service Action interface, not the internal Entities." },
+      { "text": "To mitigate the impact of breaking changes caused by the evolution of business rules and data model in the producer.", "isCorrect": true, "rationale": "The core objective of the black-box approach is to shield consumers from internal changes. When the producer's Entities or business rules evolve, consumers are insulated — they only depend on the Service Action contract. If you expose Entities directly, every consumer breaks when a field is renamed, a calculation changes, or the entity is restructured. Service Actions decouple the interface from the implementation." }
+    ]
+  },
+  {
+    "id": 223, "category": "patterns",
+    "question": "An app connects to an external ERP system using a Timer that periodically synchronizes data into a local Entity. Which statement about this approach is correct?",
+    "documentationUrl": "https://success.outsystems.com/documentation/outsystems_developer_cloud/app_architecture/integration_patterns/",
+    "answerOptions": [
+      { "text": "This approach is recommended when integrating with external APIs that have high response times.", "isCorrect": true, "rationale": "This is the Cold Cache pattern. A Timer-based local Entity copy is ideal when the external system is slow (high latency), unavailable at times, or the data does not need to be real-time. The app reads from the local Entity (fast), and the Timer handles the slow sync in the background. This decouples the app's runtime performance from the external API's performance." },
+      { "text": "This approach triggers a data sync to the local Entity whenever a record is updated in the ERP system.", "isCorrect": false, "rationale": "A Timer-based approach runs on a schedule (e.g., every 5 minutes), not in reaction to ERP changes. Triggering sync on ERP updates requires the Near Real-Time pattern using a Callback endpoint — the ERP calls your app when data changes." },
+      { "text": "This approach supports real-time data integration with the external API.", "isCorrect": false, "rationale": "Timer-based Cold Cache is explicitly NOT real-time. There is always a data freshness delay equal to the Timer interval. Use the Near Real-Time or Direct Integration patterns when real-time data is required." },
+      { "text": "This approach requires the external system to be able to call a REST endpoint on the ODC application.", "isCorrect": false, "rationale": "Requiring the external system to call a REST endpoint is the Near Real-Time (Callback) pattern. The Cold Cache pattern is a PULL approach — the ODC app's Timer polls the external system on schedule; the external system is never required to initiate contact." }
+    ]
+  },
+  {
+    "id": 224, "category": "libraries",
+    "question": "Two apps share a common Theme. They also share UI Patterns (Blocks) that may be reused in future apps. What is the recommended way to organize the Theme and Patterns Libraries?",
+    "documentationUrl": "https://success.outsystems.com/documentation/outsystems_developer_cloud/building_apps/ui/themes/",
+    "answerOptions": [
+      { "text": "Create one Library containing both the Theme and the Patterns. Both consumer apps reference this single Library.", "isCorrect": false, "rationale": "Mixing Theme and Patterns in a single Library creates a large, less cohesive Library. It also prevents evolving them independently — a Theme change forces redeployment even when only Patterns changed, and vice versa. Separate Libraries keep responsibilities clean." },
+      { "text": "Create a Theme Library and an Application for the Patterns. Consumer apps reference both.", "isCorrect": false, "rationale": "Patterns implemented as Blocks belong in a Library, not an Application. Applications are for runtime features, business logic with state, or screens. Blocks and reusable UI patterns are exactly the use case Libraries are designed for." },
+      { "text": "Create two separate Libraries (Theme and Patterns). Consumer apps reference both Libraries directly.", "isCorrect": false, "rationale": "This is close, but not ideal. If the Patterns Library already references and uses the Theme internally, consumers do not need to reference the Theme Library separately — they get the Theme transitively through the Patterns Library." },
+      { "text": "Create a Theme Library and a Patterns Library. The Patterns Library references the Theme Library directly. Consumer apps only need to reference the Patterns Library.", "isCorrect": true, "rationale": "The best practice: separate Libraries for Theme and Patterns, with the Patterns Library depending on the Theme Library (strong Library-to-Library reference). Consumer apps only reference the Patterns Library — they inherit the Theme transitively. This minimizes coupling for consumers and allows Theme and Patterns to evolve independently while maintaining a clean dependency structure." }
+    ]
+  },
+  {
+    "id": 225, "category": "design",
+    "question": "An app exposes a public Supplier Entity shared with two consumer apps (Orders and Shipping). The supplier data has thousands of records, a low rate of change, stable business rules, and consumers use Aggregates to fetch and calculate with it. What improvement should be made?",
+    "documentationUrl": "https://success.outsystems.com/documentation/outsystems_developer_cloud/app_architecture/reuse_elements_across_apps/",
+    "answerOptions": [
+      { "text": "Encapsulate the data and logic in Service Actions and make the Entity private — consumers then use the Service Actions.", "isCorrect": false, "rationale": "Service Actions are recommended when business rules associated with the data must be centralized — to prevent consumers from duplicating or bypassing those rules. When the data is stable with no complex evolving business rules, and consumers simply read and aggregate it, the overhead of Service Actions is not justified here." },
+      { "text": "Encapsulate the data and logic in Server Actions and make the Entity private — consumers reference those Server Actions.", "isCorrect": false, "rationale": "Server Actions in an App cannot be directly consumed by other Apps in ODC (they are not public elements). Cross-app sharing of logic requires Service Actions. But more importantly, for stable reference data with no complex business rules, this overhead is unnecessary." },
+      { "text": "Split the Supplier Entity into multiple Entities by supplier type to reduce calculation complexity.", "isCorrect": false, "rationale": "Splitting by type would increase complexity without solving any stated problem. The scenario describes 'thousands of records' and 'complex calculations' — this is a normal use case for Aggregates, not a signal to denormalize the entity model." },
+      { "text": "No further improvements are needed — the current approach already follows best practices for this scenario.", "isCorrect": true, "rationale": "For data that is: stable, low rate of change, no complex evolving business rules, and consumers use it for read-only Aggregates — sharing the public Entity directly is the recommended best practice. The Service Action encapsulation overhead is only warranted when data has associated business rules that must be protected from consumers. Stable reference data accessed via Aggregates is the textbook case for direct Entity sharing." }
+    ]
+  },
+  {
+    "id": 226, "category": "patterns",
+    "question": "Which of the following does NOT qualify as a compensation mechanism in the context of a distributed transaction failure?",
+    "documentationUrl": "https://success.outsystems.com/documentation/outsystems_developer_cloud/app_architecture/data_consistency/",
+    "answerOptions": [
+      { "text": "Creating a reverse operation, such as a debit to compensate for a wrongful credit.", "isCorrect": false, "rationale": "A reverse operation is a classic compensation — it creates an equal-and-opposite business operation to undo the effect of a previously completed step. This is a valid and common compensation technique." },
+      { "text": "Reverting the application state back to a consistent one before the failed transaction.", "isCorrect": false, "rationale": "Reverting state is compensation — it actively undoes the effects of completed steps so the system returns to a known-good, consistent state." },
+      { "text": "Retrying the failed operation to recover the transaction.", "isCorrect": true, "rationale": "Retry is a RECOVERY mechanism, not a compensation mechanism. Retry attempts to complete the failed operation again. Compensation, on the other hand, UNDOES what has already been done. These are distinct: retry first (try to succeed); only if retry exhausted, then compensate (undo completed steps). Conflating them is a common mistake." },
+      { "text": "Rolling back or soft-deleting data that was created as part of the failed transaction.", "isCorrect": false, "rationale": "Rolling back or soft-deleting records is compensation — it removes or marks as invalid the data created by steps that must be undone because a later step failed." }
+    ]
+  },
+  {
+    "id": 227, "category": "design",
+    "question": "Having clear ownership during the architecture assembly brings several benefits. Which of the following describes one of those benefits?",
+    "documentationUrl": "https://success.outsystems.com/documentation/outsystems_developer_cloud/app_architecture/architecture_design_process/",
+    "answerOptions": [
+      { "text": "It decreases the overall complexity of the architecture.", "isCorrect": false, "rationale": "Clear ownership clarifies responsibility but does not inherently reduce architectural complexity. A complex domain remains complex — ownership just makes it clearer who manages each part." },
+      { "text": "It reduces cognitive load for developers and teams.", "isCorrect": true, "rationale": "When every app and bounded context has a clearly assigned owner, teams always know who to contact, who decides, and who is responsible. This reduces the mental effort (cognitive load) of navigating the architecture — teams do not waste energy figuring out ownership boundaries or waiting for decisions from unclear stakeholders." },
+      { "text": "It increases communication flow between all development teams.", "isCorrect": false, "rationale": "Clear ownership can actually REDUCE the need for constant cross-team communication — each team acts autonomously within their domain without needing to coordinate with others for every decision." },
+      { "text": "It helps stakeholders understand the overall organization chart.", "isCorrect": false, "rationale": "Ownership assignment is an architectural principle for enabling independent release cycles and clear accountability — not an org chart tool. Stakeholder org clarity is a consequence, not the primary architectural benefit." }
+    ]
+  },
+  {
+    "id": 228, "category": "design",
+    "question": "What is the recommended way to share business data that evolves frequently with changing business requirements?",
+    "documentationUrl": "https://success.outsystems.com/documentation/outsystems_developer_cloud/app_architecture/reuse_elements_across_apps/",
+    "answerOptions": [
+      { "text": "Encapsulate the data and business rules in Service Actions and expose them to consumer apps.", "isCorrect": true, "rationale": "When business data evolves frequently, exposing it via Service Actions is the best practice. Consumers depend only on the Service Action contract (interface), not on the internal Entity structure. When the data model or business rules change, you update the Service Action implementation — consumers are unaffected as long as the contract is stable. Direct Entity sharing would force all consumers to adapt whenever fields are added, renamed, or restructured." },
+      { "text": "Reference Static Entities directly from consumer apps.", "isCorrect": false, "rationale": "Static Entities are for read-only reference data that almost never changes (e.g., country codes, status enumerations). They are not suitable for data that evolves frequently with business requirements." },
+      { "text": "Encapsulate the data in Server Actions in the producer app — consumer apps reference those Server Actions.", "isCorrect": false, "rationale": "Server Actions in an App cannot be made public and referenced by other Apps in ODC. Cross-app sharing of logic requires Service Actions, not Server Actions. Server Actions in Libraries (strong references) serve a different purpose." },
+      { "text": "Reference public Entities directly from consumer apps.", "isCorrect": false, "rationale": "Exposing Entities directly creates coupling between the producer's data model and all consumers. When the Entity evolves (fields change, relationships restructure), all consumers must adapt. For frequently evolving data, this is an anti-pattern that creates cascading breaking changes." }
+    ]
+  },
+  {
+    "id": 229, "category": "libraries",
+    "question": "A mobile app and a web app share a common Base Theme Library. Each app requires specific look & feel customizations that may also be reused by other apps in the future. What is the best approach?",
+    "documentationUrl": "https://success.outsystems.com/documentation/outsystems_developer_cloud/building_apps/ui/themes/",
+    "answerOptions": [
+      { "text": "Create two new Libraries (Web Theme and Mobile Theme) that replace the Base Theme and define all CSS from scratch.", "isCorrect": false, "rationale": "Replacing the Base Theme means losing the shared branding and duplicating all common CSS in both new Libraries. Any future change to the common look & feel must be made in two places. The correct approach reuses the Base Theme via inheritance." },
+      { "text": "Create the Web Theme and Mobile Theme inside the same Library that already holds the Base Theme — each new Theme references the Base Theme.", "isCorrect": false, "rationale": "Keeping all three Themes in one Library is less maintainable and violates single responsibility. A Theme change forces a new version of the entire Library, even if only one Theme changed. Separate Libraries allow each Theme to evolve independently." },
+      { "text": "Create two new Libraries — one for the Web Theme and one for the Mobile Theme. Each new Theme references the Base Theme Library, inheriting the common CSS and adding platform-specific styles.", "isCorrect": true, "rationale": "Best practice: one Library per Theme variant. Each new Theme Library references the Base Theme (strong Library-to-Library dependency), inheriting common styles and only adding platform-specific customizations. Consumer apps then reference only the Theme Library they need. Future apps can also reuse either Theme Library. This keeps each Theme independently versioned and deployable." },
+      { "text": "Create the Web Theme inside the web app and the Mobile Theme inside the mobile app — each references the Base Theme.", "isCorrect": false, "rationale": "Themes defined inside an App cannot be shared with other apps. If another app needs the same Web Theme in the future, it would have to duplicate it. Themes intended for reuse must always live in Libraries." }
+    ]
+  },
+  {
+    "id": 230, "category": "patterns",
+    "question": "In which scenario should a Direct Integration be used instead of a Cold Cache pattern?",
+    "documentationUrl": "https://success.outsystems.com/documentation/outsystems_developer_cloud/app_architecture/integration_patterns/",
+    "answerOptions": [
+      { "text": "When the external API frequently updates data (high change rate).", "isCorrect": false, "rationale": "High change rate alone does not determine the pattern choice. Cold Cache can handle frequent updates by reducing the Timer interval. The deciding factor is whether the app can tolerate any data freshness delay at all, not just the change rate." },
+      { "text": "When the external API does not support differential synchronization.", "isCorrect": false, "rationale": "Lack of differential sync affects Cold Cache efficiency (you may need to sync all records instead of just changes), but it does not force a switch to Direct Integration. Cold Cache can still work with full syncs if latency is acceptable." },
+      { "text": "When the app cannot tolerate any data update delay — it needs always-current data.", "isCorrect": true, "rationale": "Cold Cache always has an inherent data freshness delay (the Timer interval). If the business requirement demands always-current data (e.g., a stock price that must be live, a payment status that cannot be stale), only Direct Integration provides truly real-time data from the external system at the moment of the request." },
+      { "text": "When app performance is not a concern.", "isCorrect": false, "rationale": "Direct Integration queries the external system on every request, making performance more dependent on the external API's response time. It would be counterproductive to choose Direct Integration when performance is not a concern — Cold Cache would actually offer better performance in that case." }
+    ]
+  },
+  {
+    "id": 231, "category": "design",
+    "question": "In ODC, Structures are automatically made public in some scenarios. Which of the following does NOT trigger a Structure being automatically made public?",
+    "documentationUrl": "https://success.outsystems.com/documentation/outsystems_developer_cloud/app_architecture/reuse_elements_across_apps/",
+    "answerOptions": [
+      { "text": "Using a Structure as a parameter in a public Server Action defined in a Library.", "isCorrect": false, "rationale": "When a Library's Server Action is public, any Structures used in its input/output parameters are automatically made public too — so consumers can use them to call the action. This is a well-defined auto-public scenario." },
+      { "text": "Using a Structure as a parameter in a public Client Action defined in a Library.", "isCorrect": false, "rationale": "Same rule applies to Library Client Actions: any Structures in input/output parameters of a public Client Action are automatically made public so consumer apps can work with those types." },
+      { "text": "Using a Structure as a parameter in a public Service Action defined in an App.", "isCorrect": false, "rationale": "Service Actions in Apps are the cross-app communication mechanism. Any Structures they use as parameters are automatically made public so consumer apps can serialize/deserialize those types when calling the Service Action." },
+      { "text": "Using a Structure as a parameter in a public Server Action defined in an App.", "isCorrect": true, "rationale": "Server Actions in Apps CANNOT be made public. In ODC, Apps share logic across apps exclusively through Service Actions (weak reference) — not Server Actions. Because you cannot have a 'public Server Action in an App' (the concept is architecturally invalid), this scenario cannot trigger the auto-public rule. This is a critical distinction: Libraries expose public Server Actions (strong bond); Apps expose public Service Actions (weak bond)." }
+    ]
+  },
+  {
+    "id": 232, "category": "design",
+    "question": "What is the recommended way to share reference data — such as country codes or currency types — between apps in ODC?",
+    "documentationUrl": "https://success.outsystems.com/documentation/outsystems_developer_cloud/app_architecture/reuse_elements_across_apps/",
+    "answerOptions": [
+      { "text": "Encapsulate the reference data in Service Actions and expose them to consumers.", "isCorrect": false, "rationale": "Service Actions are recommended for data with complex, evolving business rules that must be centralized. Reference data (countries, currencies) is read-only and stable — wrapping it in Service Actions adds unnecessary complexity with no architectural benefit." },
+      { "text": "Encapsulate the reference data in Server Actions in the producer app.", "isCorrect": false, "rationale": "Server Actions in Apps cannot be made public in ODC. Cross-app logic sharing requires Service Actions. Moreover, for stable reference data with no business rules, this overhead is unnecessary." },
+      { "text": "Reference Static Entities from the producer app directly in consumer apps.", "isCorrect": true, "rationale": "Static Entities are ODC's mechanism for read-only reference data that rarely (or never) changes — exactly like country codes, currency types, status values, or ISO codes. They are safe to share directly: there are no evolving business rules to protect, the data model is stable, and direct references allow consumers to use them efficiently without indirection." },
+      { "text": "Reference public Entities (regular, non-static) from the producer app directly.", "isCorrect": false, "rationale": "Regular (non-static) Entities are for mutable data with full CRUD lifecycle. For read-only reference data that almost never changes, Static Entities are the appropriate element type. Regular public Entities are more appropriate for business data with a lifecycle (create, update, delete)." }
+    ]
+  },
+  {
+    "id": 233, "category": "libraries",
+    "question": "A common Menu Block is defined in a Library and shared across multiple apps. The menu must contain links that navigate to Screens in each of those apps. What is the best implementation approach?",
+    "documentationUrl": "https://success.outsystems.com/documentation/outsystems_developer_cloud/app_architecture/reuse_elements_across_apps/",
+    "answerOptions": [
+      { "text": "Hardcode the external URLs of each app's screens as static links inside the Library Block.", "isCorrect": false, "rationale": "Hardcoded URLs in a Library create fragile coupling. If any app's URL changes (e.g., different subdomain per stage), the Library must be updated and all consumers redeployed. Libraries must be business-agnostic and not rely on specific app URLs." },
+      { "text": "Create an Input Parameter of type List in the Block. Each consumer app passes its menu entries (with URLs) via Service Actions, and the Block uses the list to render the links.", "isCorrect": true, "rationale": "The correct approach: keep the Library Block business-agnostic by accepting menu entries via an Input Parameter. Each consumer app is responsible for providing its own navigation data (screen URLs obtained via a Service Action or built at runtime). The Library Block simply renders whatever it receives — it has no knowledge of specific apps or screens. This respects the Library→App dependency rule (Libraries cannot reference App Screens)." },
+      { "text": "Directly reference each app's Screens inside the Library Block to create the menu links.", "isCorrect": false, "rationale": "Libraries CANNOT reference Screens from Apps. Creating a Library→App dependency is architecturally forbidden in ODC — the dependency direction must always be App→Library, never Library→App. A Library that references App Screens would create a circular or inverted dependency." },
+      { "text": "Create one Service Action per app to return URL information, store it in a Database Entity inside the Library, then use the Entity records to build menu links.", "isCorrect": false, "rationale": "Libraries cannot have Entities (no data persistence in Libraries). Storing URLs in a Library Entity is impossible. Additionally, this creates tight coupling between the Library and specific apps, making the Library impossible to reuse independently." }
+    ]
+  },
+  {
+    "id": 234, "category": "libraries",
+    "question": "Two apps (Orders and Shipping) need to share a Header Block displaying business data calculated in the Orders app. Which of the following is NOT part of the recommended implementation?",
+    "documentationUrl": "https://success.outsystems.com/documentation/outsystems_developer_cloud/app_architecture/reuse_elements_across_apps/",
+    "answerOptions": [
+      { "text": "Add an Input Parameter to the Block to receive the necessary business data.", "isCorrect": false, "rationale": "Adding an Input Parameter IS the recommended approach. The Block becomes business-agnostic — it receives data from outside rather than fetching it internally. This allows the same Block to be reused by any app that can supply the data." },
+      { "text": "Design the Block with the business-specific logic and data source embedded directly inside it.", "isCorrect": true, "rationale": "Embedding business-specific logic or data access inside a Library Block is an anti-pattern. Libraries must be business-agnostic. A Block that internally knows about Orders business rules cannot be reused in a different domain. The correct pattern: Block receives data via Input Parameters; business data is fetched outside the Block (by the consuming app via a Service Action)." },
+      { "text": "Create a Service Action in the Orders app to fetch and calculate the required header data — the Shipping app references this Service Action to get the data.", "isCorrect": false, "rationale": "This IS the recommended approach. The Shipping app calls the Orders app's Service Action to get the calculated data, then passes it to the shared Block via the Input Parameter. Orders owns the business logic; the Block is a pure UI renderer." },
+      { "text": "Create the Block in a new Library and make both apps reference it.", "isCorrect": false, "rationale": "Moving the Block to a Library IS the recommended approach for sharing it between apps. Libraries are the mechanism for sharing UI components (Blocks) with strong references across multiple consuming apps." }
+    ]
+  },
+  {
+    "id": 235, "category": "design",
+    "question": "Which of the following is NOT a benefit of defining bounded contexts during the Architecture Design Process?",
+    "documentationUrl": "https://success.outsystems.com/documentation/outsystems_developer_cloud/app_architecture/architecture_design_process/",
+    "answerOptions": [
+      { "text": "Clear definition of domain expert boundaries and business ownership.", "isCorrect": false, "rationale": "Boundary clarity IS a primary benefit of bounded contexts — they establish who owns what domain, enabling clear accountability and preventing overlapping responsibilities." },
+      { "text": "Enhanced scalability and runtime performance of the system.", "isCorrect": true, "rationale": "Bounded contexts are an architectural/organizational design concept. They improve team autonomy, ownership clarity, and release independence. Runtime scalability and performance are determined by the platform's container infrastructure and NFR decisions — not by how you define bounded contexts. Confusing architectural organization with runtime performance is a common misconception." },
+      { "text": "Improved collaboration between teams through clear domain ownership.", "isCorrect": false, "rationale": "Improved team collaboration IS a benefit. When each team owns a well-defined bounded context, they work more autonomously and interact with other teams only through well-defined interfaces." },
+      { "text": "Simplified app data model definition by grouping related concepts together.", "isCorrect": false, "rationale": "A simplified data model IS a benefit. When concepts are grouped by bounded context, each app's data model only contains what belongs to that domain — avoiding the complexity of a shared God-entity that tries to satisfy everyone." }
+    ]
+  },
+  {
+    "id": 236, "category": "design",
+    "question": "The Directory app holds Country and City Entities used by two new apps (Vacations and Travel Portal). This reference data changes infrequently. To promote the greatest independence between all three apps, what is the recommended approach?",
+    "documentationUrl": "https://success.outsystems.com/documentation/outsystems_developer_cloud/app_architecture/reuse_elements_across_apps/",
+    "answerOptions": [
+      { "text": "Set the Country and City Entities as Public in Directory — consumer apps reference them directly and use Aggregates to fetch data.", "isCorrect": false, "rationale": "Direct Entity sharing creates coupling between the producer's data model and all consumers. If the Entity structure changes (fields added, renamed, or restructured), all consumer apps break. This reduces independence between the apps." },
+      { "text": "Create Service Actions in Directory to expose the data — keep Entities private. Consumer apps call the Service Actions.", "isCorrect": false, "rationale": "This encapsulates the Entities in the existing Directory app. However, it keeps the reference data tied to the Directory domain, which is about directory/employee data — not geography. Country and City are cross-cutting concerns that deserve their own independently manageable domain." },
+      { "text": "Create a new Location app with the Country and City Entities as Public — all three apps reference them directly.", "isCorrect": false, "rationale": "Creating a dedicated Location domain is the right direction, but exposing the Entities directly again creates the same coupling problem: any structural change to the Entities forces updates in all consumer apps." },
+      { "text": "Create a new Location app with the Country and City Entities kept private — expose the data via Service Actions. All apps (Directory, Vacations, Travel Portal) consume the Service Actions.", "isCorrect": true, "rationale": "Maximum independence is achieved by: (1) extracting the data into its own app (Location) — each app is fully independent from Directory; (2) keeping Entities private and exposing only via Service Actions — the internal data model can change without breaking consumers; (3) all apps consume the same contract. This is the recommended pattern for cross-cutting reference data used by multiple domains." }
+    ]
+  },
+  {
+    "id": 237, "category": "design",
+    "question": "Three architecture scenarios are reviewed. Scenario 1: A single 'Claims & Billing' app with one Business Sponsor managing both Claims and Billing teams. Scenario 2: Two apps each with one Business Owner and two Business Sponsors with different priorities. Scenario 3: One app with one Business Owner and one Business Sponsor. Which scenario does NOT guarantee release cycle independence, and how should it be fixed?",
+    "documentationUrl": "https://success.outsystems.com/documentation/outsystems_developer_cloud/app_architecture/architecture_design_process/",
+    "answerOptions": [
+      { "text": "All three scenarios follow best practices and guarantee release cycle independence.", "isCorrect": false, "rationale": "Scenario 1 violates the principle of one Business Owner per app. Claims and Billing are distinct business domains — merging them under one sponsor creates implicit coupling and prevents each domain from being released independently." },
+      { "text": "Scenario 2 does not guarantee independence — fix it by removing one of the Business Sponsors.", "isCorrect": false, "rationale": "Scenario 2 has the wrong problem: two apps each with one Business Owner is correct structure. The issue is each of those apps has two Business Sponsors with conflicting priorities — that should be fixed by splitting those apps further, not removing a sponsor." },
+      { "text": "Scenario 1 does not guarantee release cycle independence — fix it by splitting the 'Claims & Billing' app into two separate apps, each with its own Business Sponsor and Business Owner.", "isCorrect": true, "rationale": "Claims and Billing are separate business domains that should be independently deployable. When merged into a single app, the two teams must coordinate deployments and any change by one team impacts the other's release cadence. The fix: split into a Claims app and a Billing app, each with one Business Sponsor and one Business Owner — restoring independent lifecycle management." },
+      { "text": "Scenario 3 does not guarantee independence — one Business Owner and one Business Sponsor for one app compromises autonomy.", "isCorrect": false, "rationale": "Scenario 3 is the IDEAL structure: one app, one Business Owner, one Business Sponsor. This is exactly the recommendation from the Assemble step. There is no problem to fix here." }
+    ]
+  },
+  {
+    "id": 238, "category": "design",
+    "question": "What is the main difference between a Non-Functional Requirement (NFR) and a Business Concept in the context of the Architecture Design Process?",
+    "documentationUrl": "https://success.outsystems.com/documentation/outsystems_developer_cloud/app_architecture/architecture_design_process/",
+    "answerOptions": [
+      { "text": "There is no meaningful difference — both are types of requirements coming from stakeholders and can be used interchangeably.", "isCorrect": false, "rationale": "There is a fundamental difference. Conflating them leads to poor architecture — business concepts drive what the system does, while NFRs constrain how it does it." },
+      { "text": "NFRs focus on the technical and operational aspects of a system (performance, scalability, security); Business Concepts relate to the domain and what the system does.", "isCorrect": true, "rationale": "During the Disclose step, both types are gathered but serve different purposes. Business Concepts (Orders, Claims, Policies, Customers) define the domain vocabulary and drive bounded context grouping. NFRs (response time < 2s, 99.9% availability, data encrypted at rest) define operational constraints that influence architectural decisions — how the system must behave, not what it does." },
+      { "text": "NFRs focus on integration with external systems; Business Concepts relate to the broader business domain.", "isCorrect": false, "rationale": "External integrations are a separate area discovered in Disclose alongside NFRs and Business Concepts. NFRs are not about integrations — they are about system qualities like performance, availability, and security." },
+      { "text": "NFRs focus on identifying business owners and sponsors; Business Concepts relate to the broader business domain.", "isCorrect": false, "rationale": "Business owners and sponsors are identified during the Assemble step, not as part of NFRs. NFRs are operational quality attributes — performance, scalability, availability, security — not organizational governance elements." }
+    ]
+  },
+  {
+    "id": 239, "category": "events",
+    "question": "Which of the following accurately describes what happens when an Event is triggered in OutSystems Developer Cloud?",
+    "documentationUrl": "https://success.outsystems.com/documentation/outsystems_developer_cloud/building_apps/about_event_driven_architecture/events_reference/",
+    "answerOptions": [
+      { "text": "The Event can be handled by any subscribing app, but NOT by the app where the Event was triggered.", "isCorrect": false, "rationale": "There is no rule preventing the triggering app from also subscribing to its own Events. Any app — including the producer — can define an Event Handler for the Events it publishes." },
+      { "text": "When the Event Handler execution fails, ODC retries it as many times as needed until it succeeds.", "isCorrect": false, "rationale": "Retries are bounded — ODC retries failed Event Handlers up to 10 times with exponential backoff (2, 4, 8, 16, 32-minute intervals). Retries are NOT unlimited. After 10 attempts, the event is no longer retried and the failure must be investigated." },
+      { "text": "The app that triggers the Event waits for all Handlers to complete before continuing its execution.", "isCorrect": false, "rationale": "Events are asynchronous — the triggering app fires the event and immediately continues its own execution. It does NOT wait for Handlers to finish. This fire-and-forget behaviour is the core of Event-Driven Architecture's decoupling." },
+      { "text": "Each Event Handler that subscribes to the triggered Event executes exactly once per event delivery.", "isCorrect": true, "rationale": "ODC guarantees exactly-once delivery per subscriber. Each subscribing app's Handler executes once per event. If the handler fails, ODC retries it (up to 10 times) — but the intent and design is one successful execution per subscriber per event, not multiple. Multiple subscribers each get their own independent execution." }
+    ]
+  },
+  {
+    "id": 240, "category": "design",
+    "question": "Which of the following topics is NOT covered during the Disclose step of the Architecture Design Process?",
+    "documentationUrl": "https://success.outsystems.com/documentation/outsystems_developer_cloud/app_architecture/architecture_design_process/",
+    "answerOptions": [
+      { "text": "Non-Functional Requirements (performance, scalability, security).", "isCorrect": false, "rationale": "NFRs ARE covered in the Disclose step. They are one of the four areas: business requirements, information architecture, NFRs and integrations, and user experience expectations. Identifying NFRs early shapes architectural decisions about how apps must behave." },
+      { "text": "Each app's Business Owners and Business Sponsors.", "isCorrect": true, "rationale": "Business Owners and Business Sponsors are assigned during the ASSEMBLE step — not Disclose. Disclose is about discovering WHAT the business does (concepts, processes, personas, NFRs, integrations, UX expectations). WHO owns each app is an organizational assignment that happens later, once the bounded contexts and app boundaries are defined in Organize and Assemble." },
+      { "text": "Information Architecture (data flows and domain concepts).", "isCorrect": false, "rationale": "Information Architecture IS covered in Disclose. Understanding data flows, entity relationships, and domain concepts is essential at the Disclose phase to identify the vocabulary of the business and later group concepts into bounded contexts." },
+      { "text": "User Stories describing desired system behaviour.", "isCorrect": false, "rationale": "User Stories ARE part of Disclose. The step involves gathering business requirements through user stories, stakeholder interviews, and process analysis — this raw material then drives concept identification and bounded context grouping." }
+    ]
+  },
+
   // ── TRUSTED SCHOOL LIVE EP.2 (Fundamentals deep-dive) ────────────────────
   {
     "id": 153, "category": "cloud",
