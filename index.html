@@ -2879,6 +2879,52 @@ const RAW_QUESTIONS = [
     ]
   },
 
+  // ── UDEMY COURSE — NEW ANGLES ────────────────────────────────────────────
+  {
+    "id": 217, "category": "design",
+    "question": "During impact analysis for a deployment to QA, the following warning appears: 'App references a missing producer application.' What does this warning mean?",
+    "documentationUrl": "https://success.outsystems.com/documentation/outsystems_developer_cloud/deploying_apps/deploy_an_app/",
+    "answerOptions": [
+      { "text": "The deployed app is outdated and needs to be updated before promotion.", "isCorrect": false, "rationale": "An outdated consumer app would appear as an 'incompatible element' warning, not a 'missing producer' warning. Missing producer specifically means a dependency is absent from the target stage." },
+      { "text": "An application this app depends on (the producer) is not deployed in the target stage.", "isCorrect": true, "rationale": "A 'missing producer' warning during impact analysis means that the consumer app references a producer app that has not yet been deployed to the target stage. You must first deploy the producer app to that stage before successfully deploying the consumer." },
+      { "text": "The impact analysis tool itself is malfunctioning and should be re-run.", "isCorrect": false, "rationale": "Impact analysis warnings are generated from the real dependency graph. A 'missing producer' warning is a valid architectural issue, not a tool malfunction." },
+      { "text": "There are security vulnerabilities in the app that must be resolved before deployment.", "isCorrect": false, "rationale": "Security scanning and dependency analysis are different processes. A 'missing producer' warning is a structural dependency issue, not a security finding." }
+    ]
+  },
+  {
+    "id": 218, "category": "design",
+    "question": "Which of the following is NOT a typical use case for a Service Action in ODC?",
+    "documentationUrl": "https://success.outsystems.com/documentation/outsystems_developer_cloud/app_architecture/reuse_elements_across_apps/",
+    "answerOptions": [
+      { "text": "Integrating with a database to perform CRUD operations on behalf of consumer apps.", "isCorrect": false, "rationale": "Service Actions are commonly used to encapsulate data operations and expose them to consumer apps via a weak dependency — making CRUD abstraction a valid and typical use case." },
+      { "text": "Sending email notifications from one application to be triggered by another.", "isCorrect": false, "rationale": "A Service Action that wraps notification logic is a valid cross-app service contract. The consumer calls the Service Action; the producer handles the notification sending — a standard pattern." },
+      { "text": "Defining the visual layout and UI structure of an application screen.", "isCorrect": true, "rationale": "Service Actions are server-side callable operations for cross-app logic — they have no UI capability. Visual layout and screens are defined using Screens, Blocks, and Themes, not Service Actions." },
+      { "text": "Performing complex business calculations and returning results to a consumer app.", "isCorrect": false, "rationale": "Encapsulating complex business logic and exposing it as a Service Action is one of the primary use cases — it protects the internal implementation while providing a clean contract for consumers." }
+    ]
+  },
+  {
+    "id": 219, "category": "cloud",
+    "question": "Consider this statement: 'Deploying an app to Production in ODC does not affect the app running in Development.' What concept does this describe?",
+    "documentationUrl": "https://success.outsystems.com/documentation/outsystems_developer_cloud/deploying_apps/",
+    "answerOptions": [
+      { "text": "All stages share the same runtime resources and database.", "isCorrect": false, "rationale": "This is the opposite of the correct answer. In ODC, each stage has its own isolated runtime resources and data — sharing them would cause exactly the cross-stage interference described." },
+      { "text": "Automatic rollback to the previous stage version in case of deployment errors.", "isCorrect": false, "rationale": "Automatic rollback is a different feature. The statement is about stage isolation — environments operating independently — not about error recovery behaviour." },
+      { "text": "Tight integration and dependency between deployment stages.", "isCorrect": false, "rationale": "ODC stages are intentionally decoupled. Tight integration between stages would mean a Production deployment could break Development — which is the anti-pattern ODC stage isolation prevents." },
+      { "text": "Stage isolation — each stage is an independent runtime environment with its own data and configuration.", "isCorrect": true, "rationale": "In ODC, each stage (Development, QA, Production) is an isolated environment with its own resources, database and configuration. Deploying to Production creates an independent container copy in that stage, leaving the Development stage completely unaffected." }
+    ]
+  },
+  {
+    "id": 220, "category": "patterns",
+    "question": "In a Near Real-Time Integration Pattern in ODC, what is the purpose of the Callback endpoint?",
+    "documentationUrl": "https://success.outsystems.com/documentation/outsystems_developer_cloud/app_architecture/integration_patterns/",
+    "answerOptions": [
+      { "text": "To support the creation of audit logs specific to the integration.", "isCorrect": false, "rationale": "Audit logging is a cross-cutting concern managed separately. The Callback endpoint's purpose is not audit logging — it is to receive push notifications from the external system." },
+      { "text": "To pull data from the API connector to populate a local cache.", "isCorrect": false, "rationale": "Pulling data is the polling (batch) pattern. Near real-time integration uses a push model: the external system calls your Callback endpoint whenever data changes, eliminating the need for periodic polling." },
+      { "text": "To have the external system notify the ODC app whenever there are data updates.", "isCorrect": true, "rationale": "In the Near Real-Time Integration Pattern, the ODC app exposes a Callback endpoint (a REST service) that the external system calls whenever relevant data changes. This push model allows the app to react immediately to external events without polling — enabling near real-time synchronisation." },
+      { "text": "To increase performance by pulling data directly from the external system on demand.", "isCorrect": false, "rationale": "On-demand pulls are the synchronous (direct integration) pattern. A Callback endpoint is a push mechanism — the external system initiates the communication, not the ODC app." }
+    ]
+  },
+
   // ── TRUSTED SCHOOL LIVE EP.2 (Fundamentals deep-dive) ────────────────────
   {
     "id": 153, "category": "cloud",
