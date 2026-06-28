@@ -1943,7 +1943,7 @@ const RAW_QUESTIONS = [
     "id": 124, "category": "libraries",
     "question": "Which of the following can be made Public in Libraries?",
     "answerOptions": [
-      { "text": "Blocks", "isCorrect": true, "rationale": "In ODC Libraries, Blocks (UI components) can be made Public so consumer apps and other libraries can use them. Other publicly exposable elements include Structures, Client Actions, and Server Actions (exposed as Service Actions)." },
+      { "text": "Blocks", "isCorrect": true, "rationale": "In ODC Libraries, Blocks (UI components) can be made Public so consumer apps and other libraries can use them. Other publicly exposable elements include Structures, Client Actions, and Server Actions." },
       { "text": "Roles", "isCorrect": false, "rationale": "Roles cannot be made Public in Libraries. Roles are defined per-app and shared across apps only through the Identity Provider, not through Library public elements." },
       { "text": "Screens", "isCorrect": false, "rationale": "Screens are application-level elements and cannot be made Public in Libraries. Libraries expose reusable building blocks like Blocks, not full Screens." },
       { "text": "Local storage Entities", "isCorrect": false, "rationale": "Local Storage Entities are device-specific (mobile only) and cannot be exposed as Public elements in Libraries." }
@@ -1983,7 +1983,7 @@ const RAW_QUESTIONS = [
     "id": 128, "category": "libraries",
     "question": "What is a consumer app in the context of ODC libraries?",
     "answerOptions": [
-      { "text": "An app that uses the public elements of a library", "isCorrect": true, "rationale": "A consumer app is any ODC app or library that references and uses Public elements (Blocks, Structures, Client Actions, Service Actions) exposed by a library. It consumes the library's public API." },
+      { "text": "An app that uses the public elements of a library", "isCorrect": true, "rationale": "A consumer app is any ODC app or library that references and uses Public elements (Blocks, Structures, Client Actions, Server Actions) exposed by a library. It consumes the library's public API." },
       { "text": "An app that modifies existing library code", "isCorrect": false, "rationale": "Consumer apps cannot modify library code. Only the library owner can change the library. Consumers use what the library exposes publicly." },
       { "text": "An app that creates new library versions", "isCorrect": false, "rationale": "New library versions are created by the library's development team through the Publish → Release workflow, not by consumer apps." },
       { "text": "An app used exclusively for testing libraries", "isCorrect": false, "rationale": "A test app is a specific type of consumer app used for validation purposes. The term 'consumer app' broadly refers to any app that uses a library's public elements." }
@@ -2027,6 +2027,138 @@ const RAW_QUESTIONS = [
       { "text": "The notification disappears permanently", "isCorrect": false, "rationale": "Dismissing the popup does not permanently hide the update. ODC Studio preserves the ability to review and apply the update later." },
       { "text": "The update is applied automatically at a later time", "isCorrect": false, "rationale": "ODC does not automatically apply library updates. The developer must explicitly accept and publish with the new version." },
       { "text": "The library version reverts to an older one", "isCorrect": false, "rationale": "Dismissing the notification leaves the current library version unchanged — it does not revert to any prior version." }
+    ]
+  },
+  {
+    "id": 241, "category": "libraries",
+    "question": "How are Libraries positioned in the ODC asset model?",
+    "documentationUrl": "https://learn.outsystems.com/training/journeys/odc-architecture-exam-957/libraries/odc/4374",
+    "answerOptions": [
+      { "text": "They are top-level assets with an independent lifecycle, at the same level as web and mobile apps.", "isCorrect": true, "rationale": "ODC treats Libraries as first-class assets. They are not hidden inside an app: they can be developed, tested, released, and versioned independently before consumers decide whether to update." },
+      { "text": "They are internal folders inside a web or mobile app and inherit the app's lifecycle.", "isCorrect": false, "rationale": "Libraries have their own lifecycle. Consumers reference released versions instead of editing a folder inside the consuming app." },
+      { "text": "They are deployment stages used to promote apps from development to production.", "isCorrect": false, "rationale": "Stages are environments in the deployment pipeline. Libraries are reusable assets that expose UI and logic elements." },
+      { "text": "They are runtime databases shared by multiple apps.", "isCorrect": false, "rationale": "Libraries are stateless and cannot persist data. Business data belongs in applications." }
+    ]
+  },
+  {
+    "id": 242, "category": "libraries",
+    "question": "Which scenario is a common use case for an ODC Library?",
+    "documentationUrl": "https://learn.outsystems.com/training/journeys/odc-architecture-exam-957/libraries/odc/4374",
+    "answerOptions": [
+      { "text": "Wrapping an external REST service so multiple apps consume a centralized integration layer.", "isCorrect": true, "rationale": "A Library can hide the details of an external system behind reusable actions and structures. This keeps the integration contract centralized and avoids duplicating API calls across apps." },
+      { "text": "Persisting shared customer records so all apps can write to the same tables.", "isCorrect": false, "rationale": "Libraries cannot persist data. Shared business data must be owned by an application and exposed through appropriate app-level contracts." },
+      { "text": "Replacing all consumer apps with one reusable navigation shell.", "isCorrect": false, "rationale": "Libraries can share Blocks and themes, but they do not provide full app screens, navigation ownership, roles, or runtime data." },
+      { "text": "Running scheduled jobs independently from all apps.", "isCorrect": false, "rationale": "Timers and background jobs belong to applications, not Libraries." }
+    ]
+  },
+  {
+    "id": 243, "category": "libraries",
+    "question": "What is the main purpose of Mobile Libraries in ODC?",
+    "documentationUrl": "https://learn.outsystems.com/training/journeys/odc-architecture-exam-957/libraries/odc/4374",
+    "answerOptions": [
+      { "text": "To package reusable mobile-specific assets, native plugin wrappers, and mobile extensibility configurations.", "isCorrect": true, "rationale": "Mobile Libraries specialize in reusable functionality for mobile apps, including Cordova or Capacitor plugin wrappers, native capabilities, mobile UI components, and extensibility configuration JSON." },
+      { "text": "To store offline mobile data that all apps can share.", "isCorrect": false, "rationale": "Mobile Libraries are still stateless. Offline data belongs to mobile apps, not to reusable Libraries." },
+      { "text": "To make web-only UI Blocks available to desktop browsers.", "isCorrect": false, "rationale": "That is the domain of general reusable UI Libraries. Mobile Libraries focus on mobile-specific capabilities and constraints." },
+      { "text": "To expose Service Actions between mobile apps.", "isCorrect": false, "rationale": "Service Actions are exposed by apps for weak cross-app communication. Libraries use strong references and do not expose Service Actions." }
+    ]
+  },
+  {
+    "id": 244, "category": "libraries",
+    "question": "Which statement correctly compares general-purpose Libraries and Mobile Libraries?",
+    "documentationUrl": "https://learn.outsystems.com/training/journeys/odc-architecture-exam-957/libraries/odc/4374",
+    "answerOptions": [
+      { "text": "Mobile Libraries can consume general-purpose Libraries, but general-purpose Libraries cannot consume Mobile Libraries.", "isCorrect": true, "rationale": "The dependency direction is intentionally one-way. Mobile Libraries may reuse general-purpose logic, but a general-purpose Library must remain usable outside the mobile-specific layer." },
+      { "text": "General-purpose Libraries can consume Mobile Libraries whenever they need native device capabilities.", "isCorrect": false, "rationale": "That would make the general-purpose Library mobile-specific. Native device capabilities belong in Mobile Libraries." },
+      { "text": "Mobile Libraries can be consumed by web apps as long as they expose only Server Actions.", "isCorrect": false, "rationale": "Mobile Libraries can only be consumed by mobile apps and other Mobile Libraries." },
+      { "text": "Only general-purpose Libraries support versioning.", "isCorrect": false, "rationale": "Both Library types use the same revision and versioning mechanism." }
+    ]
+  },
+  {
+    "id": 245, "category": "libraries",
+    "question": "What happens in ODC Studio if an existing general-purpose Library includes extensibility configurations?",
+    "documentationUrl": "https://learn.outsystems.com/training/journeys/odc-architecture-exam-957/libraries/odc/4374",
+    "answerOptions": [
+      { "text": "It is automatically converted to a Mobile Library, and then it must be republished.", "isCorrect": true, "rationale": "Extensibility configurations are mobile-specific. ODC Studio converts the asset to the appropriate Library type; if it was published in Forge, it must also be resubmitted." },
+      { "text": "The extensibility configurations are ignored until a mobile app consumes the Library.", "isCorrect": false, "rationale": "ODC does not leave a general-purpose Library carrying mobile extensibility configurations as if nothing changed." },
+      { "text": "It becomes a web app because extensibility configurations require screens.", "isCorrect": false, "rationale": "Extensibility configurations are about mobile plugin setup, not app screens." },
+      { "text": "It can no longer be versioned or released.", "isCorrect": false, "rationale": "After conversion and republishing, it continues to use the normal Library versioning lifecycle." }
+    ]
+  },
+  {
+    "id": 246, "category": "libraries",
+    "question": "What happens when you choose to test a Library revision inside an app after publishing it?",
+    "documentationUrl": "https://learn.outsystems.com/training/journeys/odc-architecture-exam-957/libraries/odc/4374",
+    "answerOptions": [
+      { "text": "The test app can use all public elements from the Library, and while it remains open it is updated to the latest Library revision after each publish.", "isCorrect": true, "rationale": "Testing a revision lets developers validate unpublished Library changes in a controlled app. New publishes update the open test app to the latest revision so the test loop stays fast." },
+      { "text": "The Library version is released automatically so every consumer app can update.", "isCorrect": false, "rationale": "Testing a revision is not the same as releasing a version. Other consumers only see released versions." },
+      { "text": "Only private Library elements are available to the test app.", "isCorrect": false, "rationale": "The test app consumes public elements from the Library, just like a normal consumer would." },
+      { "text": "The test app becomes the permanent owner of the Library.", "isCorrect": false, "rationale": "The test app is only a validation target. Ownership and release control stay with the Library team." }
+    ]
+  },
+  {
+    "id": 247, "category": "libraries",
+    "question": "Which limitation applies when testing Library revisions in ODC Studio?",
+    "documentationUrl": "https://learn.outsystems.com/training/journeys/odc-architecture-exam-957/libraries/odc/4374",
+    "answerOptions": [
+      { "text": "A Library can be tested in only one test app at a time; Mobile Libraries can only be tested in mobile apps.", "isCorrect": true, "rationale": "ODC keeps Library revision testing focused on one test app at a time. Mobile Libraries are restricted to mobile test apps because their reusable elements are mobile-specific." },
+      { "text": "A Library must be tested in every consumer app before it can be released.", "isCorrect": false, "rationale": "Regression testing is recommended, but ODC does not require every consumer app to be opened as a test app before release." },
+      { "text": "Mobile Libraries can only be tested in web apps because mobile apps require a released version.", "isCorrect": false, "rationale": "The opposite is true: Mobile Libraries can only be tested in mobile apps." },
+      { "text": "A test app can only consume private elements from the Library.", "isCorrect": false, "rationale": "The test app consumes the Library's public elements." }
+    ]
+  },
+  {
+    "id": 248, "category": "libraries",
+    "question": "What must happen before a new Library's elements become accessible to apps and libraries across the organization?",
+    "documentationUrl": "https://learn.outsystems.com/training/journeys/odc-architecture-exam-957/libraries/odc/4374",
+    "answerOptions": [
+      { "text": "The first version of the Library must be released.", "isCorrect": true, "rationale": "Publishing creates revisions for development and testing. A released version is the stable, consumable state that makes the Library available to new consumers across the organization." },
+      { "text": "The Library must be referenced by at least three apps.", "isCorrect": false, "rationale": "Consumer count does not make a Library available. Availability begins when a version is released." },
+      { "text": "The Library must be promoted directly to Production without testing.", "isCorrect": false, "rationale": "Testing is recommended before release. Promotion to a stage is separate from making a Library version consumable." },
+      { "text": "The Library must contain at least one Screen.", "isCorrect": false, "rationale": "Libraries cannot contain Screens. They expose reusable elements such as Blocks, actions, themes, and structures." }
+    ]
+  },
+  {
+    "id": 249, "category": "libraries",
+    "question": "Which Libraries use the ODC Library versioning mechanism?",
+    "documentationUrl": "https://learn.outsystems.com/training/journeys/odc-architecture-exam-957/libraries/odc/4374",
+    "answerOptions": [
+      { "text": "All Library types: custom Libraries, OutSystems system Libraries, and external logic Libraries.", "isCorrect": true, "rationale": "Versioning is not limited to the Libraries you create. It applies across the ODC organization to system-provided Libraries and external logic Libraries as well." },
+      { "text": "Only Libraries created by developers inside the organization.", "isCorrect": false, "rationale": "System Libraries and external logic Libraries also participate in the versioning model." },
+      { "text": "Only Mobile Libraries, because they include native plugins.", "isCorrect": false, "rationale": "Mobile Libraries use versioning, but so do general-purpose, system, and external logic Libraries." },
+      { "text": "Only Libraries that have already been consumed by production apps.", "isCorrect": false, "rationale": "Versioning is part of the Library lifecycle regardless of whether production consumers already exist." }
+    ]
+  },
+  {
+    "id": 250, "category": "libraries",
+    "question": "A Library release adds new functionality without breaking existing consumers. Which semantic version number should usually be incremented?",
+    "documentationUrl": "https://learn.outsystems.com/training/journeys/odc-architecture-exam-957/libraries/odc/4374",
+    "answerOptions": [
+      { "text": "Minor", "isCorrect": true, "rationale": "In semantic versioning, MINOR signals backward-compatible new functionality. MAJOR is for breaking changes, and PATCH is for bug fixes or small non-breaking changes." },
+      { "text": "Major", "isCorrect": false, "rationale": "MAJOR should be reserved for breaking changes that may require consumers to adapt." },
+      { "text": "Patch", "isCorrect": false, "rationale": "PATCH is usually for bug fixes or minor non-breaking corrections, not meaningful new capabilities." },
+      { "text": "Revision", "isCorrect": false, "rationale": "Revision is the development snapshot number created by publishing in Studio. It is not one of the semantic version components chosen during release." }
+    ]
+  },
+  {
+    "id": 251, "category": "libraries",
+    "question": "After accepting a Library update in a consumer app, how can the team roll it back if needed?",
+    "documentationUrl": "https://learn.outsystems.com/training/journeys/odc-architecture-exam-957/libraries/odc/4374",
+    "answerOptions": [
+      { "text": "Publish the previous revision of the consumer app or merge with a previous version while selecting the older Library version.", "isCorrect": true, "rationale": "Rollback is done in the consumer app, not by changing the producer Library. The Library remains untouched and other consumers are unaffected." },
+      { "text": "Delete the new Library version from the Portal so all consumers revert automatically.", "isCorrect": false, "rationale": "Consumer apps control their own referenced versions. Rolling back one consumer should not force changes on the Library or on other consumers." },
+      { "text": "Republish the Library with the same version number and older code.", "isCorrect": false, "rationale": "Released versions represent stable identifiers. The rollback path is through the consumer app's dependency selection, not rewriting the producer release." },
+      { "text": "Wait for ODC Studio to undo the update automatically after the next publish.", "isCorrect": false, "rationale": "ODC does not automatically undo accepted updates. The team must intentionally revert the consumer app revision or choose the older Library version during merge." }
+    ]
+  },
+  {
+    "id": 252, "category": "libraries",
+    "question": "Which ODC Studio version is required for the Library update notification mechanism?",
+    "documentationUrl": "https://learn.outsystems.com/training/journeys/odc-architecture-exam-957/libraries/odc/4374",
+    "answerOptions": [
+      { "text": "ODC Studio 1.3.0 or higher.", "isCorrect": true, "rationale": "The popup and toolbar notification mechanism for available Library updates requires ODC Studio version 1.3.0 or later." },
+      { "text": "ODC Studio 1.0.0 only.", "isCorrect": false, "rationale": "The notification mechanism requires a later version, not only the initial 1.0.0 release." },
+      { "text": "Any version of ODC Studio, because notifications are handled only by the Portal.", "isCorrect": false, "rationale": "The update notifications appear in ODC Studio, so the Studio version matters." },
+      { "text": "ODC Studio 2.0.0 or higher.", "isCorrect": false, "rationale": "The stated requirement is 1.3.0 or higher, not 2.0.0." }
     ]
   },
 
@@ -3194,7 +3326,7 @@ const CAT_TIPS = {
   design:   'Review: The 3-step process (Disclose → Organize → Assemble), outputs of each step, bounded contexts, Assemble rules (one owner/sponsor/team per app), Simplified vs Distributed approach, Naming Best Practices (App name = URL, element naming pattern), and why architecture matters (6 benefits, 3 problems, ISO standards).',
   patterns: 'Review: Library Reusability patterns (business agnostic blocks, theme inheritance), Integration patterns (Direct, Cold Cache, Transparency Service/Microservice), Sharing Data patterns (Public Entities vs Service Actions), Distributed Transactions (Orchestration vs Choreography, Compensation, idempotency, retry-first approach).',
   events:    'Review: Event limits (10 KB payload, 10,000 queue, 100 parallel, 2 min execution), retry mechanism (up to 10 times, exponential backoff), where Events can be created (Apps only, NOT Libraries), allowed payload types (basic types only — no Structures, Lists, Entity Records), and delivery guarantees (exactly once, order NOT guaranteed).',
-  libraries: 'Review: Revision vs Version (revision = snapshot during dev, version = stable/consumable release), semantic versioning (major = breaking, minor = new feature, patch = bug fix), 3-step library update flow in ODC Studio, what can be made Public in Libraries (Blocks, Structures, Client Actions, Server Actions as Service Actions — NOT Screens, Roles, Entities), consumer app concept, testing in test apps before production, and the popup notification mechanism for library updates.'
+  libraries: 'Review: Revision vs Version (revision = snapshot during dev, version = stable/consumable release), semantic versioning (major = breaking, minor = new feature, patch = bug fix), 3-step library update flow in ODC Studio, what can be made Public in Libraries (Blocks, Structures, Client Actions, Server Actions — NOT Service Actions, Screens, Roles, Entities), Mobile Libraries, consumer app concept, testing in test apps before production, and the popup notification mechanism for library updates.'
 };
 
 const DOC_SOURCES = {
