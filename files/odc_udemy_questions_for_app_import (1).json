@@ -1,0 +1,1947 @@
+[
+  {
+    "id": 1,
+    "category": "odc-udemy",
+    "question": "Which of the following options is NOT an element considered when identifying the app’s concepts? User stories O Business requirements O",
+    "answerOptions": [
+      {
+        "text": "o Non-functional requirements Ownership",
+        "isCorrect": false,
+        "rationale": ""
+      }
+    ],
+    "sourcePage": 1,
+    "sourceQuestionNumber": 1,
+    "needsManualReview": true,
+    "documentationUrl": "",
+    "verified": false,
+    "lastReviewed": ""
+  },
+  {
+    "id": 2,
+    "category": "odc-udemy",
+    "question": "Based on the best practices, which of the following scenarios would be considered ideal for application ownership and sponsorship in ODC?",
+    "answerOptions": [
+      {
+        "text": "Two business owners and one sponsor for a single complex application",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "A single business owner and sponsor managing all applications within a deployment",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "One business owner and two sponsors with conflicting priorities for the same app",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "One business owner and one sponsor for each independent application",
+        "isCorrect": true,
+        "rationale": ""
+      }
+    ],
+    "sourcePage": 2,
+    "sourceQuestionNumber": 2,
+    "needsManualReview": false,
+    "documentationUrl": "",
+    "verified": false,
+    "lastReviewed": ""
+  },
+  {
+    "id": 3,
+    "category": "odc-udemy",
+    "question": "How are libraries incorporated into applications in ODC?",
+    "answerOptions": [
+      {
+        "text": "Libraries are not supported in the ODC architecture",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "By referencing them in code without including them in the deployment package",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "As strong dependencies that are packaged with the application",
+        "isCorrect": true,
+        "rationale": ""
+      },
+      {
+        "text": "Through weak dependencies that are resolved at runtime",
+        "isCorrect": false,
+        "rationale": ""
+      }
+    ],
+    "sourcePage": 2,
+    "sourceQuestionNumber": 3,
+    "needsManualReview": false,
+    "documentationUrl": "",
+    "verified": false,
+    "lastReviewed": ""
+  },
+  {
+    "id": 4,
+    "category": "odc-udemy",
+    "question": "A single team can own multiple applications in ODC. What is the crucial factor to consider when assigning application ownership to a team?",
+    "answerOptions": [
+      {
+        "text": "The size of the development team",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Abalance between code ownership and developer understanding",
+        "isCorrect": true,
+        "rationale": ""
+      },
+      {
+        "text": "The team's experience with specific technologies",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "The complexity of the individual applications",
+        "isCorrect": false,
+        "rationale": ""
+      }
+    ],
+    "sourcePage": 3,
+    "sourceQuestionNumber": 4,
+    "needsManualReview": false,
+    "documentationUrl": "",
+    "verified": false,
+    "lastReviewed": ""
+  },
+  {
+    "id": 5,
+    "category": "odc-udemy",
+    "question": "The image below shows the Order Management bounded context and the application concepts (Customer, Order, Product, and Salesforce), defined during the Architecture Design Process. Considering the naming best practices, which of the following options is correct? gt Order Management --+-++-+-+-+04, The app’s elements, such as Actions, Screens, or Entities, should be prefixed with the application concept name, followed by a clear name stating its purpose. For rv) instance, an Action to update the product stock could be called ProductUpdateStock. The applications should be named after the bounded context they represent, while the Libraries’ naming should consider the context where they are being used,",
+    "answerOptions": [
+      {
+        "text": "meaning that this example would lead to an OrderManagement App and OMSalesforce Library. Apps’ and Libraries’ names should include business terms whenever possible, such as OrderManagement or Salesforce, since these names will be part of the",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Application and Library URLs. Folders are a good way to organize code by grouping elements by bounded context, meaning that in this example we would have the elements, such as Actions, Screens,",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "or Entities, all represented inside folders named OrderManagement.",
+        "isCorrect": false,
+        "rationale": ""
+      }
+    ],
+    "sourcePage": 4,
+    "sourceQuestionNumber": 5,
+    "needsManualReview": true,
+    "documentationUrl": "",
+    "verified": false,
+    "lastReviewed": ""
+  },
+  {
+    "id": 6,
+    "category": "odc-udemy",
+    "question": "What is the key principle for managing dependencies between apps in ODC?",
+    "answerOptions": [
+      {
+        "text": "Tight coupling through shared code libraries",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "All communication must happen through a central message queue",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Weak coupling achieved by consuming services or data",
+        "isCorrect": true,
+        "rationale": ""
+      },
+      {
+        "text": "No dependencies allowed between apps in ODC",
+        "isCorrect": false,
+        "rationale": ""
+      }
+    ],
+    "sourcePage": 5,
+    "sourceQuestionNumber": 6,
+    "needsManualReview": false,
+    "documentationUrl": "",
+    "verified": false,
+    "lastReviewed": ""
+  },
+  {
+    "id": 7,
+    "category": "odc-udemy",
+    "question": "When an ODC application is published, what happens to the libraries it depends on?",
+    "answerOptions": [
+      {
+        "text": "The libraries are downloaded and included during deployment",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Libraries are not included in the container and must be available separately",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Only references to the libraries are included in the container",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "The packaged libraries are included in the generated container",
+        "isCorrect": false,
+        "rationale": ""
+      }
+    ],
+    "sourcePage": 5,
+    "sourceQuestionNumber": 7,
+    "needsManualReview": true,
+    "documentationUrl": "",
+    "verified": false,
+    "lastReviewed": ""
+  },
+  {
+    "id": 8,
+    "category": "odc-udemy",
+    "question": "Considering the Architecture Design Process, which of the following options is correct? The main goal of the Assemble step is to identify the bounded context while (e) ensuring that dependencies between these contexts are as few as possible. During the Organize step, the previously identified bounded contexts are mapped into ODC apps while promoting independence between the development teams and",
+    "answerOptions": [
+      {
+        "text": "autonomy in release cycles. The bounded contexts group related business concepts, also taking into account Qo domain expert boundaries, business processes, data flows, and ownerships. Missing major concepts at the beginning of the Disclose step does not compromise the architecture blueprint, as multiple iterations between the Disclose and Organize",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "are expected along the way.",
+        "isCorrect": false,
+        "rationale": ""
+      }
+    ],
+    "sourcePage": 6,
+    "sourceQuestionNumber": 8,
+    "needsManualReview": true,
+    "documentationUrl": "",
+    "verified": false,
+    "lastReviewed": ""
+  },
+  {
+    "id": 9,
+    "category": "odc-udemy",
+    "question": "Starting with a simple application architecture and increasing complexity as needed. What is the main benefit of this approach?",
+    "answerOptions": [
+      {
+        "text": "Enhanced security posture of the application",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Improved scalability for future growth",
+        "isCorrect": true,
+        "rationale": ""
+      },
+      {
+        "text": "Reduced development effort for initial functionalities",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Easier integration with third-party systems",
+        "isCorrect": false,
+        "rationale": ""
+      }
+    ],
+    "sourcePage": 7,
+    "sourceQuestionNumber": 9,
+    "needsManualReview": false,
+    "documentationUrl": "",
+    "verified": false,
+    "lastReviewed": ""
+  },
+  {
+    "id": 10,
+    "category": "odc-udemy",
+    "question": "What is the purpose of the Callback endpoint in a near real-time Integration Pattern? To support the creation of audit logs specific for the integration, to facilitate the",
+    "answerOptions": [
+      {
+        "text": "monitoring of the external data availability and synchronization logic. To pull data from the API connector to populate the local cache, retrieving data from",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "the server. ° To have the external system notify the app whenever there are data updates. To increase the integration’s performance by pulling the data directly from the (eo) external system.",
+        "isCorrect": false,
+        "rationale": ""
+      }
+    ],
+    "sourcePage": 8,
+    "sourceQuestionNumber": 10,
+    "needsManualReview": true,
+    "documentationUrl": "",
+    "verified": false,
+    "lastReviewed": ""
+  },
+  {
+    "id": 11,
+    "category": "odc-udemy",
+    "question": "When working with a single development team and a simple application architecture, what advantage is gained by keeping all functionalities within one application?",
+    "answerOptions": [
+      {
+        "text": "Improved scalability for future application growth",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Reduced development and architecture effort",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Easier integration with third-party systems",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Enhanced security for sensitive data within the application",
+        "isCorrect": false,
+        "rationale": ""
+      }
+    ],
+    "sourcePage": 9,
+    "sourceQuestionNumber": 11,
+    "needsManualReview": true,
+    "documentationUrl": "",
+    "verified": false,
+    "lastReviewed": ""
+  },
+  {
+    "id": 12,
+    "category": "odc-udemy",
+    "question": "What is a key benefit of ensuring independent release cycles for development teams in ODC?",
+    "answerOptions": [
+      {
+        "text": "Improved communication and collaboration among development teams",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Ability to scale development efforts for large application portfolios",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Reduced overall development costs",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Increased code reusability across applications",
+        "isCorrect": false,
+        "rationale": ""
+      }
+    ],
+    "sourcePage": 9,
+    "sourceQuestionNumber": 12,
+    "needsManualReview": true,
+    "documentationUrl": "",
+    "verified": false,
+    "lastReviewed": ""
+  },
+  {
+    "id": 13,
+    "category": "odc-udemy",
+    "question": "shared with the Orders and Shipping apps. The consumer apps use Aggregates to fetch the data and perform calculations with it based on complex business rules. According to the OutSystems best practices, what could be improved in this salution, if anything? = a Sere on one rk — oe [ J I oe | a | — — This solution is the best approach since it is the only one that helps consumer apps and their teams manage best any change or evolution of the business rules and",
+    "answerOptions": [
+      {
+        "text": "corresponding breaking changes. The business data and required functionality should be encapsulated in Server Actions. ° The consumer apps can then reference and use these Server Actions. | Yewmewerts conrect The business data and required functionality should be encapsulated in Service Actions. bd The consumer apps can then reference and use these Service Actions. This solution is the best approach. The teams of the consumer apps must be aware of the business rules and",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "calculations inherent to the consumed data so they can better use it as needed in their apps.",
+        "isCorrect": false,
+        "rationale": ""
+      }
+    ],
+    "sourcePage": 11,
+    "sourceQuestionNumber": 13,
+    "needsManualReview": true,
+    "documentationUrl": "",
+    "verified": false,
+    "lastReviewed": ""
+  },
+  {
+    "id": 14,
+    "category": "odc-udemy",
+    "question": "In ODC, what role is typically responsible for prioritizing application change requests based on budget?",
+    "answerOptions": [
+      {
+        "text": "Development team lead",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Business sponsor",
+        "isCorrect": true,
+        "rationale": ""
+      },
+      {
+        "text": "System administrator",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Application security officer",
+        "isCorrect": false,
+        "rationale": ""
+      }
+    ],
+    "sourcePage": 12,
+    "sourceQuestionNumber": 14,
+    "needsManualReview": false,
+    "documentationUrl": "",
+    "verified": false,
+    "lastReviewed": ""
+  },
+  {
+    "id": 15,
+    "category": "odc-udemy",
+    "question": "What is the primary benefit of containerizing apps in ODC deployments?",
+    "answerOptions": [
+      {
+        "text": "Faster and more reliable application deployments",
+        "isCorrect": true,
+        "rationale": ""
+      },
+      {
+        "text": "Improved security isolation between apps",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Reduced storage requirements for application data",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Automatic database scaling based on user load",
+        "isCorrect": false,
+        "rationale": ""
+      }
+    ],
+    "sourcePage": 12,
+    "sourceQuestionNumber": 15,
+    "needsManualReview": false,
+    "documentationUrl": "",
+    "verified": false,
+    "lastReviewed": ""
+  },
+  {
+    "id": 16,
+    "category": "odc-udemy",
+    "question": "In ODC, how can an app access data from another app? (Choose TWO)",
+    "answerOptions": [
+      {
+        "text": "Embedding code snippets from the other app",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Calling a service action provided by the other app 0_ Directly modifying the database tables of the other app @_ Consuming a public entity exposed by the other app",
+        "isCorrect": true,
+        "rationale": ""
+      }
+    ],
+    "sourcePage": 13,
+    "sourceQuestionNumber": 16,
+    "needsManualReview": false,
+    "documentationUrl": "",
+    "verified": false,
+    "lastReviewed": ""
+  },
+  {
+    "id": 17,
+    "category": "odc-udemy",
+    "question": "In ODC, a single app can be used for all of the following EXCEPT:",
+    "answerOptions": [
+      {
+        "text": "Providing a user interface for a specific business need (web or mobile)",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Asynchronously processing high-volume data for independent scaling",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Exposing APIs for consumption by other applications or teams",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Managing user authentication and authorization logic",
+        "isCorrect": false,
+        "rationale": ""
+      }
+    ],
+    "sourcePage": 13,
+    "sourceQuestionNumber": 17,
+    "needsManualReview": true,
+    "documentationUrl": "",
+    "verified": false,
+    "lastReviewed": ""
+  },
+  {
+    "id": 18,
+    "category": "odc-udemy",
+    "question": "Considering the ownership of apps, which of the following options describes a best practice that should be followed during the Architecture Design process? A business owner should own a single app, as owning multiple apps would lead to",
+    "answerOptions": [
+      {
+        "text": "unclear responsibility. Establishing clear ownership must happen at the beginning of the Architecture",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Design Process during the Disclose stage. A business owner can own multiple apps, but only if all apps have the same Business (e) Sponsor. An app should not have multiple business owners, as this could lead to collisions and Qo conflicting priorities.",
+        "isCorrect": false,
+        "rationale": ""
+      }
+    ],
+    "sourcePage": 14,
+    "sourceQuestionNumber": 18,
+    "needsManualReview": true,
+    "documentationUrl": "",
+    "verified": false,
+    "lastReviewed": ""
+  },
+  {
+    "id": 19,
+    "category": "odc-udemy",
+    "question": "How does containerization contribute to the scalability of ODC applications?",
+    "answerOptions": [
+      {
+        "text": "Containers enable automated and transparent scaling based on demand",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Containerization simplifies manual scaling of applications",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Containers enforce strict resource limitations for each app",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Containers allow applications to share resources freely",
+        "isCorrect": false,
+        "rationale": ""
+      }
+    ],
+    "sourcePage": 15,
+    "sourceQuestionNumber": 19,
+    "needsManualReview": true,
+    "documentationUrl": "",
+    "verified": false,
+    "lastReviewed": ""
+  },
+  {
+    "id": 20,
+    "category": "odc-udemy",
+    "question": "In the context of a single application managing all business concepts, how does feature toggling help manage independent delivery of features? jows for selectively enabling or di: ing res for users or ry It all for selectir abli disabling features for different deployment stages.",
+    "answerOptions": [
+      {
+        "text": "It eliminates the need for separate permissions management for different functionalities.",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Itsimplifies the process of exposing services to other applications.",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "_Itreduces the cognitive load on developers by separating authentication logic.",
+        "isCorrect": false,
+        "rationale": ""
+      }
+    ],
+    "sourcePage": 15,
+    "sourceQuestionNumber": 20,
+    "needsManualReview": true,
+    "documentationUrl": "",
+    "verified": false,
+    "lastReviewed": ""
+  },
+  {
+    "id": 21,
+    "category": "odc-udemy",
+    "question": "Considering the reusability between ODC apps and Libraries, which of the following options is correct?",
+    "answerOptions": [
+      {
+        "text": "Only weak references are allowed when consuming Libraries. ° Libraries can only consume elements from other Libraries.",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "o Only strong references are allowed when consuming Applications.",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Applications can only consume elements from other Libraries.",
+        "isCorrect": false,
+        "rationale": ""
+      }
+    ],
+    "sourcePage": 16,
+    "sourceQuestionNumber": 21,
+    "needsManualReview": true,
+    "documentationUrl": "",
+    "verified": false,
+    "lastReviewed": ""
+  },
+  {
+    "id": 22,
+    "category": "odc-udemy",
+    "question": "It's reccomended to split a complex application into separate applications primarily to achieve:",
+    "answerOptions": [
+      {
+        "text": "Reduced development costs",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Independent release cycles for different functionalities",
+        "isCorrect": true,
+        "rationale": ""
+      },
+      {
+        "text": "Enhanced security for sensitive data",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Improved code reusability",
+        "isCorrect": false,
+        "rationale": ""
+      }
+    ],
+    "sourcePage": 17,
+    "sourceQuestionNumber": 22,
+    "needsManualReview": false,
+    "documentationUrl": "",
+    "verified": false,
+    "lastReviewed": ""
+  },
+  {
+    "id": 23,
+    "category": "odc-udemy",
+    "question": "What is the main drawback of having two business owners for a single application?",
+    "answerOptions": [
+      {
+        "text": "Limited budget for application changes",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Unclear ownership and accountability",
+        "isCorrect": true,
+        "rationale": ""
+      },
+      {
+        "text": "Increased development time",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Difficulty integrating with other applications",
+        "isCorrect": false,
+        "rationale": ""
+      }
+    ],
+    "sourcePage": 17,
+    "sourceQuestionNumber": 23,
+    "needsManualReview": false,
+    "documentationUrl": "",
+    "verified": false,
+    "lastReviewed": ""
+  },
+  {
+    "id": 24,
+    "category": "odc-udemy",
+    "question": "What is the MAIN benefit of independent app scaling in a cloud-native architecture with ODC?",
+    "answerOptions": [
+      {
+        "text": "Enforced life-cycle management for all development teams.",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Improved security posture of the application.",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Reduced overall application complexity.",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Faster and more cost-effective scaling for specific features with high load.",
+        "isCorrect": false,
+        "rationale": ""
+      }
+    ],
+    "sourcePage": 18,
+    "sourceQuestionNumber": 24,
+    "needsManualReview": true,
+    "documentationUrl": "",
+    "verified": false,
+    "lastReviewed": ""
+  },
+  {
+    "id": 25,
+    "category": "odc-udemy",
+    "question": "When is it acceptable to have two business sponsors involved with an ODC application deployment?",
+    "answerOptions": [
+      {
+        "text": "Never, a single sponsor is always preferred ©. When the application requires a large budget re) When both sponsors are responsible for different sub-applications within the deployment",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Only if the sponsors have identical priorities for the application",
+        "isCorrect": false,
+        "rationale": ""
+      }
+    ],
+    "sourcePage": 18,
+    "sourceQuestionNumber": 25,
+    "needsManualReview": true,
+    "documentationUrl": "",
+    "verified": false,
+    "lastReviewed": ""
+  },
+  {
+    "id": 26,
+    "category": "odc-udemy",
+    "question": "Consider the following scenario where a client uses the Home Insurance app to subscribe to an Insurance Policy. Knowing that step 4 can sometimes fail due to network connectivity issues, what is the best a oye we rae at ASL, Teens mre ttt Chee —_ o 2 > > 2 2 9g. ee a oe",
+    "answerOptions": [
+      {
+        "text": "if it fails, deletes all records generated by the transactions. eo) and deletes all records generated by the Create Payment operation. Create a retry mechanism that tries to create the payment again, and if it fails,",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "cancels the policy subscription.",
+        "isCorrect": true,
+        "rationale": ""
+      },
+      {
+        "text": "ask the end-user to subscribe to the policy again.",
+        "isCorrect": false,
+        "rationale": ""
+      }
+    ],
+    "sourcePage": 19,
+    "sourceQuestionNumber": 26,
+    "needsManualReview": false,
+    "documentationUrl": "",
+    "verified": false,
+    "lastReviewed": ""
+  },
+  {
+    "id": 27,
+    "category": "odc-udemy",
+    "question": "How does independent life-cycle independence among teams benefit development in ODC? | Your answers correct",
+    "answerOptions": [
+      {
+        "text": "Unit testing becomes more complex due to inter-app dependencies.",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "All teams must deploy updates simultaneously.",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "A central team controls all deployments across the application.",
+        "isCorrect": false,
+        "rationale": ""
+      }
+    ],
+    "sourcePage": 20,
+    "sourceQuestionNumber": 27,
+    "needsManualReview": true,
+    "documentationUrl": "",
+    "verified": false,
+    "lastReviewed": ""
+  },
+  {
+    "id": 28,
+    "category": "odc-udemy",
+    "question": "Consider you have the Role of HR Manager in the Directory app. The HR Manager Role will also be important in the Vacations app since some functionalities are only accessible or available to users with that Role. How should we define the Roles and assign them to the respective users to make sure we can implement the desired functionalities on both apps? | Oectory, Yneatiora iManage Set the Role as Public in the Directory app and reference the Role in the Vacations",
+    "answerOptions": [
+      {
+        "text": "app. Then, assign the role to the respective users in the ODC Portal. Create the HR Manager Role in the Vacations app while keeping the existing HR Manager Role in the Directory app. Then, assign both roles to the respective users in",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "the oDC Portal. Add the Role to a Library, set the Role as Public, and reference the Role in both",
+        "isCorrect": true,
+        "rationale": ""
+      },
+      {
+        "text": "Directory and Vacations app. Then, assign the role to the respective users in the ODC Portal. functionality relative to the HR Manager app. Set the Actions as Public and reference",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "the necessary Actions in the Vacations App. Then, assign the role to the respective users in the ODC Portal.",
+        "isCorrect": false,
+        "rationale": ""
+      }
+    ],
+    "sourcePage": 21,
+    "sourceQuestionNumber": 28,
+    "needsManualReview": false,
+    "documentationUrl": "",
+    "verified": false,
+    "lastReviewed": ""
+  },
+  {
+    "id": 29,
+    "category": "odc-udemy",
+    "question": "Which of the following best describes the core concept behind a cloud-native application architecture in ODC?",
+    "answerOptions": [
+      {
+        "text": "Loosely coupled and independently deployable services",
+        "isCorrect": true,
+        "rationale": ""
+      },
+      {
+        "text": "Tightly coupled components with complex dependencies",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "A single monolithic application for all functionalities",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Amix of on-premise and cloud-based components",
+        "isCorrect": false,
+        "rationale": ""
+      }
+    ],
+    "sourcePage": 22,
+    "sourceQuestionNumber": 29,
+    "needsManualReview": false,
+    "documentationUrl": "",
+    "verified": false,
+    "lastReviewed": ""
+  },
+  {
+    "id": 30,
+    "category": "odc-udemy",
+    "question": "Consider two applications that will share the same Theme, resulting in the following blueprint. Besides the Theme, these apps will also have UI patterns implemented using Blocks that will also be shared between these apps, and other UI patterns that will be added in the future. What is the best approach to implementing the UI patterns? oat i=] | — { Weosdons Theme = Theme Create one application to implement the UI patterns. This new application and its patterns can then reference the Theme. ° The consumer apps would then reference the Blocks that implement the UI patterns directly. | Your answeris correct Create one Library to implement the Patterns. ° Then, both consumer applications can reference the elements directly from the Theme and UI patterns Libraries. Create one application to implement the Patterns.",
+    "answerOptions": [
+      {
+        "text": "Then, both consumer applications can reference the elements directly from the Theme Library and UI patterns application. Add the Patterns to the existing Library that already holds the Theme. ie) Then, both consumer applications can reference the elements directly from the Library.",
+        "isCorrect": false,
+        "rationale": ""
+      }
+    ],
+    "sourcePage": 23,
+    "sourceQuestionNumber": 30,
+    "needsManualReview": true,
+    "documentationUrl": "",
+    "verified": false,
+    "lastReviewed": ""
+  },
+  {
+    "id": 31,
+    "category": "odc-udemy",
+    "question": "What is the role of libraries in OutSystems Developer Cloud?",
+    "answerOptions": [
+      {
+        "text": "To increase maintenance costs",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "To share code between apps and create strong dependencies",
+        "isCorrect": true,
+        "rationale": ""
+      },
+      {
+        "text": "To promote weak dependencies between apps",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "To prevent code sharing between apps",
+        "isCorrect": false,
+        "rationale": ""
+      }
+    ],
+    "sourcePage": 24,
+    "sourceQuestionNumber": 1,
+    "needsManualReview": false,
+    "documentationUrl": "",
+    "verified": false,
+    "lastReviewed": ""
+  },
+  {
+    "id": 32,
+    "category": "odc-udemy",
+    "question": "What happens when an app is published in OutSystems Developer Cloud? ps |",
+    "answerOptions": [
+      {
+        "text": "The runtime is loosely coupled and packaged into a container",
+        "isCorrect": true,
+        "rationale": ""
+      },
+      {
+        "text": "The runtime is packaged into a non-scalable container",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "The app is decomposed into independent services",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "No dependencies are included in the container",
+        "isCorrect": false,
+        "rationale": ""
+      }
+    ],
+    "sourcePage": 25,
+    "sourceQuestionNumber": 5,
+    "needsManualReview": false,
+    "documentationUrl": "",
+    "verified": false,
+    "lastReviewed": ""
+  },
+  {
+    "id": 33,
+    "category": "odc-udemy",
+    "question": "What is the first step in converting an O11 architecture blueprint to an ODC architecture blueprint?",
+    "answerOptions": [
+      {
+        "text": "Analyze cloud-native capabilities |",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "identify application concepts",
+        "isCorrect": true,
+        "rationale": ""
+      },
+      {
+        "text": "Outline integration strategies",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Define data flow diagrams",
+        "isCorrect": false,
+        "rationale": ""
+      }
+    ],
+    "sourcePage": 26,
+    "sourceQuestionNumber": 7,
+    "needsManualReview": false,
+    "documentationUrl": "",
+    "verified": false,
+    "lastReviewed": ""
+  },
+  {
+    "id": 34,
+    "category": "odc-udemy",
+    "question": "In the process of mapping O11 app architecture to ODC, what should be done if multiple bounded contexts are identified in a domain?",
+    "answerOptions": [
+      {
+        "text": "Merge them into a single context",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Ignore the less important contexts",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Consider breaking the domain into smaller ones",
+        "isCorrect": true,
+        "rationale": ""
+      },
+      {
+        "text": "Focus solely on external integrations",
+        "isCorrect": false,
+        "rationale": ""
+      }
+    ],
+    "sourcePage": 27,
+    "sourceQuestionNumber": 13,
+    "needsManualReview": false,
+    "documentationUrl": "",
+    "verified": false,
+    "lastReviewed": ""
+  },
+  {
+    "id": 35,
+    "category": "odc-udemy",
+    "question": "What indicates a need for further refining an app's architecture during the conversion process?",
+    "answerOptions": [
+      {
+        "text": "Multiple stakeholders with conflicting interests",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Anincrease in the app’s user base",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "A single bounded context in a domain",
+        "isCorrect": false,
+        "rationale": ""
+      }
+    ],
+    "sourcePage": 28,
+    "sourceQuestionNumber": 14,
+    "needsManualReview": true,
+    "documentationUrl": "",
+    "verified": false,
+    "lastReviewed": ""
+  },
+  {
+    "id": 36,
+    "category": "odc-udemy",
+    "question": "Which of the following is NOT a basis for grouping business concepts into bounded contexts?",
+    "answerOptions": [
+      {
+        "text": "Common language of concepts",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Domain expert boundaries",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Cost-effectiveness of the deployment",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Business process steps",
+        "isCorrect": false,
+        "rationale": ""
+      }
+    ],
+    "sourcePage": 29,
+    "sourceQuestionNumber": 20,
+    "needsManualReview": true,
+    "documentationUrl": "",
+    "verified": false,
+    "lastReviewed": ""
+  },
+  {
+    "id": 37,
+    "category": "odc-udemy",
+    "question": "What is suggested by the presence of multiple bounded contexts within a single domain?",
+    "answerOptions": [
+      {
+        "text": "Efficient application performance",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Lack of necessary stakeholder input ©. Optimal data security",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "High domain granularity",
+        "isCorrect": false,
+        "rationale": ""
+      }
+    ],
+    "sourcePage": 30,
+    "sourceQuestionNumber": 21,
+    "needsManualReview": true,
+    "documentationUrl": "",
+    "verified": false,
+    "lastReviewed": ""
+  },
+  {
+    "id": 38,
+    "category": "odc-udemy",
+    "question": "In what scenario might you choose to split a domain into smaller domains?",
+    "answerOptions": [
+      {
+        "text": "When the domain needs more granular control ©. When there is only one business owner",
+        "isCorrect": true,
+        "rationale": ""
+      },
+      {
+        "text": "To increase complexity deliberately",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Whenall apps have the same sponsor",
+        "isCorrect": false,
+        "rationale": ""
+      }
+    ],
+    "sourcePage": 31,
+    "sourceQuestionNumber": 24,
+    "needsManualReview": false,
+    "documentationUrl": "",
+    "verified": false,
+    "lastReviewed": ""
+  },
+  {
+    "id": 39,
+    "category": "odc-udemy",
+    "question": "In OutSystems Developer Cloud, how are dependencies between apps maintained?",
+    "answerOptions": [
+      {
+        "text": "Only through direct database access",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "No dependencies allowed",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Weak dependencies through services and data consumption ©. Strong dependencies with tight coupling",
+        "isCorrect": true,
+        "rationale": ""
+      }
+    ],
+    "sourcePage": 32,
+    "sourceQuestionNumber": 26,
+    "needsManualReview": false,
+    "documentationUrl": "",
+    "verified": false,
+    "lastReviewed": ""
+  },
+  {
+    "id": 40,
+    "category": "odc-udemy",
+    "question": "When mapping O11 architecture to ODC, what is a critical aspect to analyze for each bounded context?",
+    "answerOptions": [
+      {
+        "text": "The development languages used",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "The number of end-users",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Color schemes used in the interface",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "integration with external components",
+        "isCorrect": true,
+        "rationale": ""
+      }
+    ],
+    "sourcePage": 33,
+    "sourceQuestionNumber": 27,
+    "needsManualReview": false,
+    "documentationUrl": "",
+    "verified": false,
+    "lastReviewed": ""
+  },
+  {
+    "id": 41,
+    "category": "odc-udemy",
+    "question": "In ODC, what is the key difference between Libraries and traditional applications (Web/Mobile)?",
+    "answerOptions": [
+      {
+        "text": "Libraries exist at a higher level than Web/Mobile apps and have their own lifecycle.",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Thereis no significant difference; they are treated the same way in ODC.",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Libraries cannot be reused across applications.",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Libraries cannot have their own user interface.",
+        "isCorrect": false,
+        "rationale": ""
+      }
+    ],
+    "sourcePage": 34,
+    "sourceQuestionNumber": 1,
+    "needsManualReview": true,
+    "documentationUrl": "",
+    "verified": false,
+    "lastReviewed": ""
+  },
+  {
+    "id": 42,
+    "category": "odc-udemy",
+    "question": "Consider the following statement: \"Deploying an app to Production in ODC does not affect the app running in Development.” What concept does this describe?",
+    "answerOptions": [
+      {
+        "text": "Allstages share the same runtime resources",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Automatic rollback to the previous stage in case of deployment errors",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Tight integration and dependency between deployment stages",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Loose coupling and isolation between stages in ODC deployments.",
+        "isCorrect": false,
+        "rationale": ""
+      }
+    ],
+    "sourcePage": 35,
+    "sourceQuestionNumber": 2,
+    "needsManualReview": true,
+    "documentationUrl": "",
+    "verified": false,
+    "lastReviewed": ""
+  },
+  {
+    "id": 43,
+    "category": "odc-udemy",
+    "question": "Effective code reuse in ODC can help achieve: O._ Difficulty in managing application versions",
+    "answerOptions": [
+      {
+        "text": "Increased application size",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Limited functionality for individual apps",
+        "isCorrect": false,
+        "rationale": ""
+      }
+    ],
+    "sourcePage": 36,
+    "sourceQuestionNumber": 3,
+    "needsManualReview": true,
+    "documentationUrl": "",
+    "verified": false,
+    "lastReviewed": ""
+  },
+  {
+    "id": 44,
+    "category": "odc-udemy",
+    "question": "How can you achieve the functionality of a public Server Action in ODC?",
+    "answerOptions": [
+      {
+        "text": "Bycopying the Server Action code into each application that needs it.",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Byusing the \"Expose as Service Action\" option on the Server Action.",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Public Server Actions are not possible in ODC.",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Bycreating a separate Library specifically for this Server Action.",
+        "isCorrect": false,
+        "rationale": ""
+      }
+    ],
+    "sourcePage": 36,
+    "sourceQuestionNumber": 4,
+    "needsManualReview": true,
+    "documentationUrl": "",
+    "verified": false,
+    "lastReviewed": ""
+  },
+  {
+    "id": 45,
+    "category": "odc-udemy",
+    "question": "When following best practices for code reusability in ODC, it's recommended to: | Your answers correct",
+    "answerOptions": [
+      {
+        "text": "Begin with simple element sharing and increase complexity as needed.",
+        "isCorrect": true,
+        "rationale": ""
+      },
+      {
+        "text": "Avoid sharing elements altogether to maintain independent deployments.",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "There's no recommended approach; any sharing method is acceptable. ©. Start with complex element sharing and simplify later.",
+        "isCorrect": false,
+        "rationale": ""
+      }
+    ],
+    "sourcePage": 37,
+    "sourceQuestionNumber": 7,
+    "needsManualReview": false,
+    "documentationUrl": "",
+    "verified": false,
+    "lastReviewed": ""
+  },
+  {
+    "id": 46,
+    "category": "odc-udemy",
+    "question": "When sharing elements between apps in ODC, what kind of dependency is created?",
+    "answerOptions": [
+      {
+        "text": "Nodependency is created",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Depends on the type of element and app",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Alwaysa strong dependency",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "auestion9 Correct A In ODC, what is the role of a stage in the application deployment process? EEE",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Ailogical step in the delivery pipeline with runtime resources",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Acontainerized unit for packaging and deploying applications",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Atesting environment for individual app functionalities",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "A central repository for storing all application versions",
+        "isCorrect": false,
+        "rationale": ""
+      }
+    ],
+    "sourcePage": 38,
+    "sourceQuestionNumber": 8,
+    "needsManualReview": true,
+    "documentationUrl": "",
+    "verified": false,
+    "lastReviewed": ""
+  },
+  {
+    "id": 47,
+    "category": "odc-udemy",
+    "question": "Imagine a warning appears during the impact analysis stating that an app references a missing producer application.",
+    "answerOptions": [
+      {
+        "text": "The deployed app is outdated and requires an update. EE",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Anapplication this app relies on (producer) is not available in the target stage.",
+        "isCorrect": true,
+        "rationale": ""
+      },
+      {
+        "text": "Theimpact analysis tool itself is malfunctioning.",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "There are security vulnerabilities within the deployed application.",
+        "isCorrect": false,
+        "rationale": ""
+      }
+    ],
+    "sourcePage": 39,
+    "sourceQuestionNumber": 10,
+    "needsManualReview": false,
+    "documentationUrl": "",
+    "verified": false,
+    "lastReviewed": ""
+  },
+  {
+    "id": 48,
+    "category": "odc-udemy",
+    "question": "Which of the following is NOT a typical use case for a service action in ODC?",
+    "answerOptions": [
+      {
+        "text": "Integrating with a database to perform CRUD (Create, Read, Update, Delete) operations",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "nding email notifications from an ication 9 appl",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Defining the visual layout of an application screen",
+        "isCorrect": true,
+        "rationale": ""
+      },
+      {
+        "text": "Performing complex data calculations and manipulations",
+        "isCorrect": false,
+        "rationale": ""
+      }
+    ],
+    "sourcePage": 40,
+    "sourceQuestionNumber": 11,
+    "needsManualReview": false,
+    "documentationUrl": "",
+    "verified": false,
+    "lastReviewed": ""
+  },
+  {
+    "id": 49,
+    "category": "odc-udemy",
+    "question": "What kind of dependency is created when Web Apps or Mobile Apps share elements like Service Actions, Entities, Static Entities, and Screens?",
+    "answerOptions": [
+      {
+        "text": "Strong dependency",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Nodependency is created",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "This scenario is not possible in ODC",
+        "isCorrect": false,
+        "rationale": ""
+      }
+    ],
+    "sourcePage": 40,
+    "sourceQuestionNumber": 12,
+    "needsManualReview": true,
+    "documentationUrl": "",
+    "verified": false,
+    "lastReviewed": ""
+  },
+  {
+    "id": 50,
+    "category": "odc-udemy",
+    "question": "Consider the following statement: \"Client Actions and Server Actions can be shared from Libraries to Web or Mobile Apps.\" What type of dependency describes this scenario?",
+    "answerOptions": [
+      {
+        "text": "Nodependency is created",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Weak dependency =a",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Strong dependency",
+        "isCorrect": true,
+        "rationale": ""
+      },
+      {
+        "text": "This scenario is not possible in ODC",
+        "isCorrect": false,
+        "rationale": ""
+      }
+    ],
+    "sourcePage": 41,
+    "sourceQuestionNumber": 13,
+    "needsManualReview": false,
+    "documentationUrl": "",
+    "verified": false,
+    "lastReviewed": ""
+  },
+  {
+    "id": 51,
+    "category": "odc-udemy",
+    "question": "What type of elements can be included within libraries?",
+    "answerOptions": [
+      {
+        "text": "Authentication and authorization mechanisms for applications",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "User interface themes, patterns, and reusable blocks",
+        "isCorrect": true,
+        "rationale": ""
+      },
+      {
+        "text": "Business logic specific to a particular application ©. Data storage and manipulation functionalities",
+        "isCorrect": false,
+        "rationale": ""
+      }
+    ],
+    "sourcePage": 41,
+    "sourceQuestionNumber": 14,
+    "needsManualReview": false,
+    "documentationUrl": "",
+    "verified": false,
+    "lastReviewed": ""
+  },
+  {
+    "id": 52,
+    "category": "odc-udemy",
+    "question": "Compared to strong dependencies, weak dependencies between apps in ODC offer:",
+    "answerOptions": [
+      {
+        "text": "No difference in impact",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Tighter coupling and potential for cascading issues",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Increased development complexity",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Looser coupling and more isolated changes",
+        "isCorrect": true,
+        "rationale": ""
+      }
+    ],
+    "sourcePage": 42,
+    "sourceQuestionNumber": 16,
+    "needsManualReview": false,
+    "documentationUrl": "",
+    "verified": false,
+    "lastReviewed": ""
+  },
+  {
+    "id": 53,
+    "category": "odc-udemy",
+    "question": "Imagine you're building an application that displays weather information. How could a service action be helpful in this scenario?",
+    "answerOptions": [
+      {
+        "text": "Bycreating reusable logic to handle API calls to a weather service",
+        "isCorrect": true,
+        "rationale": ""
+      },
+      {
+        "text": "rvice actions are not applicable to weather-related functionalities in ODC.",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Bydirectly storing weather data within the service action code.",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "By defining the layout and visual elements for displaying weather data.",
+        "isCorrect": false,
+        "rationale": ""
+      }
+    ],
+    "sourcePage": 42,
+    "sourceQuestionNumber": 17,
+    "needsManualReview": false,
+    "documentationUrl": "",
+    "verified": false,
+    "lastReviewed": ""
+  },
+  {
+    "id": 54,
+    "category": "odc-udemy",
+    "question": "Imagine a scenario where you need to update a branding style across your applications in ODC. Which element type is most suitable for this change, considering reusability?",
+    "answerOptions": [
+      {
+        "text": "AMobile App element as it can be easily shared with other mobile apps.",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Youcannot achieve consistent branding changes across apps in ODC. SE",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Apublic element stored within a Library ©. AServer Action within a specific web application",
+        "isCorrect": true,
+        "rationale": ""
+      }
+    ],
+    "sourcePage": 43,
+    "sourceQuestionNumber": 18,
+    "needsManualReview": false,
+    "documentationUrl": "",
+    "verified": false,
+    "lastReviewed": ""
+  },
+  {
+    "id": 55,
+    "category": "odc-udemy",
+    "question": "In ODC, what is the main benefit of sharing public elements between applications?",
+    "answerOptions": [
+      {
+        "text": "Automatic scaling of applications",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Improved application security",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Reduced storage requirements",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Faster development and consistency",
+        "isCorrect": true,
+        "rationale": ""
+      }
+    ],
+    "sourcePage": 43,
+    "sourceQuestionNumber": 19,
+    "needsManualReview": false,
+    "documentationUrl": "",
+    "verified": false,
+    "lastReviewed": ""
+  },
+  {
+    "id": 56,
+    "category": "odc-udemy",
+    "question": "When deploying an app to Production in ODC, what does the \"Impact analysis\" feature do?",
+    "answerOptions": [
+      {
+        "text": "_Itcompares the app to previous versions to identify changes.",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "_Itautomatically fixes any errors identified within the application code. [Weeransweris comect]",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "itanalyzes potential dependency issues that might cause deployment problems.",
+        "isCorrect": true,
+        "rationale": ""
+      },
+      {
+        "text": "It provides user feedback on the application's functionality.",
+        "isCorrect": false,
+        "rationale": ""
+      }
+    ],
+    "sourcePage": 44,
+    "sourceQuestionNumber": 20,
+    "needsManualReview": false,
+    "documentationUrl": "",
+    "verified": false,
+    "lastReviewed": ""
+  },
+  {
+    "id": 57,
+    "category": "odc-udemy",
+    "question": "Imagine an app reuses a static entity from another app. This scenario represents a:",
+    "answerOptions": [
+      {
+        "text": "Strong dependency",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "This scenario is not possible in ODC",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Nodependency is created",
+        "isCorrect": false,
+        "rationale": ""
+      }
+    ],
+    "sourcePage": 44,
+    "sourceQuestionNumber": 21,
+    "needsManualReview": true,
+    "documentationUrl": "",
+    "verified": false,
+    "lastReviewed": ""
+  },
+  {
+    "id": 58,
+    "category": "odc-udemy",
+    "question": "In ODC, which type of app can act as both producer and consumer when sharing elements?",
+    "answerOptions": [
+      {
+        "text": "None of the above",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Mobile App",
+        "isCorrect": false,
+        "rationale": ""
+      }
+    ],
+    "sourcePage": 45,
+    "sourceQuestionNumber": 22,
+    "needsManualReview": true,
+    "documentationUrl": "",
+    "verified": false,
+    "lastReviewed": ""
+  },
+  {
+    "id": 59,
+    "category": "odc-udemy",
+    "question": "Which of the following statements is true about sharing Client Actions and Server Actions in ODC?",
+    "answerOptions": [
+      {
+        "text": "Client and Server Actions cannot be shared across applications. ©. Both Libraries and Web/Mobile Apps can be producers of Client and Server Actions. ©. Web Apps and Mobile Apps can be producers of Client and Server Actions. [Youransweris correct",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Only Libraries can be producers of Client and Server Actions.",
+        "isCorrect": true,
+        "rationale": ""
+      }
+    ],
+    "sourcePage": 45,
+    "sourceQuestionNumber": 23,
+    "needsManualReview": false,
+    "documentationUrl": "",
+    "verified": false,
+    "lastReviewed": ""
+  },
+  {
+    "id": 60,
+    "category": "odc-udemy",
+    "question": "Consider the following statement: \"The ODC Portal displays the stage on which an app is deployed.” What does \"stage\" refer to in this context?",
+    "answerOptions": [
+      {
+        "text": "The physical server where the application is running",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "The application's development phase (e.g., Development, Testing, Production)",
+        "isCorrect": true,
+        "rationale": ""
+      },
+      {
+        "text": "The application's target operating system (e.g., Windows, Linux)",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Theuser interface framework used to build the application (e.g., React, Angular)",
+        "isCorrect": false,
+        "rationale": ""
+      }
+    ],
+    "sourcePage": 46,
+    "sourceQuestionNumber": 24,
+    "needsManualReview": false,
+    "documentationUrl": "",
+    "verified": false,
+    "lastReviewed": ""
+  },
+  {
+    "id": 61,
+    "category": "odc-udemy",
+    "question": "Why can't you directly set a Server Action to Public within an app in ODC?",
+    "answerOptions": [
+      {
+        "text": "Thereis no limitation; you can set Server Actions to Public directly. ©. Setting Server Actions to Public creates security vulnerabilities. ©. Server Actions are not designed for sharing and reuse.",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "ODC requires a separate Service Action element for public exposure.",
+        "isCorrect": true,
+        "rationale": ""
+      }
+    ],
+    "sourcePage": 46,
+    "sourceQuestionNumber": 27,
+    "needsManualReview": false,
+    "documentationUrl": "",
+    "verified": false,
+    "lastReviewed": ""
+  },
+  {
+    "id": 62,
+    "category": "odc-udemy",
+    "question": "What is the primary purpose of setting an element's Public property to Yes in ODC?",
+    "answerOptions": [
+      {
+        "text": "ODC automatically sets the Public property for all elements. ©. Tomark the element as mandatory for inclusion in all apps",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Togrant user permissions for accessing the element [Youransweris correct]",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Toenable sharing and reuse of the element across applications",
+        "isCorrect": true,
+        "rationale": ""
+      }
+    ],
+    "sourcePage": 47,
+    "sourceQuestionNumber": 28,
+    "needsManualReview": false,
+    "documentationUrl": "",
+    "verified": false,
+    "lastReviewed": ""
+  },
+  {
+    "id": 63,
+    "category": "odc-udemy",
+    "question": "When should you consider splitting a bounded context implementation into separate applications? ©. Toreduce the overall development effort for the application ©. Toimprove the scalability of the application for future growth ©. Tosimplify the process of managing user authentication",
+    "answerOptions": [
+      {
+        "text": "Toachieve independent ownership and release cycles for different functionalities",
+        "isCorrect": true,
+        "rationale": ""
+      }
+    ],
+    "sourcePage": 47,
+    "sourceQuestionNumber": 29,
+    "needsManualReview": true,
+    "documentationUrl": "",
+    "verified": false,
+    "lastReviewed": ""
+  },
+  {
+    "id": 64,
+    "category": "odc-udemy",
+    "question": "What should be done if different bounded contexts have different business owners?",
+    "answerOptions": [
+      {
+        "text": "Assigna single owner to all contexts",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Merge all contexts into one",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Decouple the architecture to reflect different ownership",
+        "isCorrect": true,
+        "rationale": ""
+      },
+      {
+        "text": "Ignore the differences",
+        "isCorrect": false,
+        "rationale": ""
+      }
+    ],
+    "sourcePage": 48,
+    "sourceQuestionNumber": 1,
+    "needsManualReview": false,
+    "documentationUrl": "",
+    "verified": false,
+    "lastReviewed": ""
+  },
+  {
+    "id": 65,
+    "category": "odc-udemy",
+    "question": "What is the main benefit of mapping bounded contexts to ODC apps and libraries?",
+    "answerOptions": [
+      {
+        "text": "To better align architectural components with business needs",
+        "isCorrect": true,
+        "rationale": ""
+      },
+      {
+        "text": "Todecrease clarity in app management",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "To increase dependency between domains",
+        "isCorrect": false,
+        "rationale": ""
+      },
+      {
+        "text": "Tocreate a more complex release process",
+        "isCorrect": false,
+        "rationale": ""
+      }
+    ],
+    "sourcePage": 50,
+    "sourceQuestionNumber": 3,
+    "needsManualReview": false,
+    "documentationUrl": "",
+    "verified": false,
+    "lastReviewed": ""
+  }
+]
