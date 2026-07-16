@@ -1073,9 +1073,9 @@ const RAW_QUESTIONS = [
     "question": "What is the recommended element naming pattern inside ODC Applications?",
     "answerOptions": [
       { "text": "[AppName][TeamName][ElementType]", "isCorrect": false, "rationale": "This is not the recommended pattern. Team names are not part of element naming." },
-      { "text": "[BoundedContext][ApplicationConcept][Action/Description]", "isCorrect": true, "rationale": "The recommended pattern is [BoundedContext][ApplicationConcept][Action]. Example: BillingPaymentCreate (Bounded Context: Billing, Application Concept: Payment, Action: Create). This lowers cognitive load and increases code maintainability." },
+      { "text": "[ApplicationConcept][Action/Description]", "isCorrect": true, "rationale": "Inside an App, the bounded context is already conveyed by the App itself. Elements should combine the relevant application concept with their purpose, for example RiskGetAssessment or PaymentCreate, avoiding a redundant bounded-context prefix." },
       { "text": "[ElementType][BoundedContext][Number]", "isCorrect": false, "rationale": "Numbering elements is not a recommended naming practice in ODC." },
-      { "text": "Elements should use generic names (Create, Get, Update, Delete) without any prefix.", "isCorrect": false, "rationale": "Generic names without context create ambiguity. The pattern adds bounded context and concept prefixes for clarity." }
+      { "text": "Elements should use generic names (Create, Get, Update, Delete) without any prefix.", "isCorrect": false, "rationale": "Generic names without an application concept create ambiguity. Include the concept, for example PaymentCreate rather than only Create." }
     ]
   },
   {
@@ -1242,9 +1242,9 @@ const RAW_QUESTIONS = [
   },
   {
     "id": 105, "category": "design",
-    "question": "Which type of integration does ODC use for connecting to external systems?",
+    "question": "Which is the primary built-in mechanism commonly used by ODC Apps to consume functionality from external systems?",
     "answerOptions": [
-      { "text": "REST API", "isCorrect": true, "rationale": "ODC uses REST APIs as the primary integration mechanism for external systems. Integration libraries (connectors) wrap REST API calls to provide a clean abstraction for consumer apps." },
+      { "text": "REST API", "isCorrect": true, "rationale": "Consuming REST APIs is the primary built-in integration mechanism for many external systems. It is not the only possible integration route: SOAP and external SDKs can be wrapped through external code, and other ODC integration capabilities may also apply." },
       { "text": "Proprietary connectors unique to each system", "isCorrect": false, "rationale": "ODC uses standard REST APIs, not proprietary connectors. The External Libraries SDK allows C# wrappers for non-REST systems like SOAP." },
       { "text": "SDKs installed directly in the app", "isCorrect": false, "rationale": "External SDKs are wrapped inside External Logic libraries, not installed directly in apps. REST API remains the primary integration approach." },
       { "text": "SOAP services natively in ODC Studio", "isCorrect": false, "rationale": "ODC Studio does not have native SOAP support (unlike OutSystems 11). SOAP integrations require the External Libraries SDK with C# code." }
@@ -1546,9 +1546,9 @@ const RAW_QUESTIONS = [
   },
   {
     "id": 65, "category": "cloud",
-    "question": "What ensures secure communication between the Platform and Runtime clusters in ODC?",
+    "question": "Which message-oriented middleware is used for internal communication between Platform and Runtime components in ODC?",
     "answerOptions": [
-      { "text": "NATS message-oriented middleware", "isCorrect": true, "rationale": "NATS is the message-oriented middleware (MOM) used in ODC for internal communication between Platform and Runtime cluster components. It provides a high-performance, reliable messaging channel. Note: NATS handles the messaging channel; all communication in ODC is secured at the transport layer using TLS (Transport Layer Security). The question asks about the communication mechanism, not the encryption protocol." },
+      { "text": "NATS message-oriented middleware", "isCorrect": true, "rationale": "NATS is the message-oriented middleware used for internal communication between Platform and Runtime components. Transport security is provided by TLS; NATS itself is the messaging technology asked for here." },
       { "text": "DynamoDB", "isCorrect": false, "rationale": "DynamoDB is a NoSQL database used by the Platform Build Service for configuration and operational data — it is not a communication or messaging channel." },
       { "text": "REST APIs", "isCorrect": false, "rationale": "REST APIs are used for external integrations (e.g., consuming external systems from ODC apps). They are not the internal messaging channel between Platform and Runtime clusters." },
       { "text": "CDN (Content Delivery Network)", "isCorrect": false, "rationale": "CDNs distribute static content to end users geographically. They play no role in internal cluster-to-cluster communication within ODC infrastructure." }
@@ -1853,7 +1853,7 @@ const RAW_QUESTIONS = [
     "question": "How many times is a failed Event retried in ODC, and with what interval pattern?",
     "answerOptions": [
       { "text": "3 times, with a fixed 1-minute interval.", "isCorrect": false, "rationale": "The number of retries in ODC is higher and the interval is not fixed." },
-      { "text": "Up to 10 times, with exponential backoff at 2, 4, 8, 16, and 32-minute intervals.", "isCorrect": true, "rationale": "ODC retries failed Events up to 10 times using an exponential backoff policy. The backoff intervals are 2, 4, 8, 16, and 32 minutes. This gives consumer handlers time to recover before the next attempt, while ensuring persistent failures are not retried indefinitely." },
+      { "text": "Up to 10 times, with backoff intervals of 5s, 10s, 20s, 30s, 1m, 2m, 4m, 8m, 16m and 32m.", "isCorrect": true, "rationale": "The supplied official Boot Camp material lists 10 retry intervals: 5 seconds, 10 seconds, 20 seconds, 30 seconds, 1 minute, 2 minutes, 4 minutes, 8 minutes, 16 minutes and 32 minutes." },
       { "text": "5 times, with a fixed 30-second interval.", "isCorrect": false, "rationale": "It is up to 10 retries, not 5, and the interval is exponential, not fixed." },
       { "text": "Never — if the Event fails, it is discarded.", "isCorrect": false, "rationale": "ODC has a robust retry mechanism for failed Events — up to 10 attempts with exponential backoff." }
     ]
@@ -1864,7 +1864,7 @@ const RAW_QUESTIONS = [
     "answerOptions": [
       { "text": "Libraries, Web Apps and Mobile Apps.", "isCorrect": false, "rationale": "Libraries CANNOT have Events. Events are exclusive to Apps." },
       { "text": "Only in Web Apps (responsive).", "isCorrect": false, "rationale": "Events can be created in both Web Apps and Mobile Apps — they are not exclusive to Web Apps." },
-      { "text": "In Apps (Web, Mobile, and Agentic) — NOT in Libraries.", "isCorrect": true, "rationale": "Events in ODC can only be created in App types: Web Apps, Mobile Apps, and Agentic Apps. Libraries do not support Events (nor Timers, Screens, Service Actions, REST Expose, Roles, or Entities). With the introduction of Agentic Apps as a first-class application type, Events are available across all App types." },
+      { "text": "In Web Apps and Mobile Apps — not in Libraries.", "isCorrect": true, "rationale": "According to the supplied official Boot Camp material, Events can be created in Web Apps and Mobile Apps. Libraries do not support Events." },
       { "text": "In any asset type, including Libraries and External Logic.", "isCorrect": false, "rationale": "Neither Libraries nor External Logic (External Libraries SDK) support Events. Events are exclusive to Apps." }
     ]
   },
@@ -2412,11 +2412,11 @@ const RAW_QUESTIONS = [
   },
   {
     "id": 160, "category": "libraries",
-    "question": "Your team maintains a 'Payments' Library currently at version 2.3.1. You need to rename the public Service Action 'ProcessPayment' to 'ExecutePayment' and remove its deprecated 'CurrencyCode' parameter. What version should you release?",
+    "question": "Your team maintains a 'Payments' Library currently at version 2.3.1. You need to rename the public Server Action 'ProcessPayment' to 'ExecutePayment' and remove its deprecated 'CurrencyCode' parameter. What version should you release?",
     "answerOptions": [
-      { "text": "2.3.2 — a patch version because it is just a rename", "isCorrect": false, "rationale": "Renaming a public Service Action and removing a parameter are breaking changes: any consumer calling 'ProcessPayment' with a 'CurrencyCode' parameter will break after updating. Patch versions (x.x.PATCH) are exclusively for non-breaking bug fixes." },
+      { "text": "2.3.2 — a patch version because it is just a rename", "isCorrect": false, "rationale": "Renaming a public Server Action and removing a parameter are breaking changes: any consumer calling 'ProcessPayment' with a 'CurrencyCode' parameter will break after updating. Patch versions are for backward-compatible fixes." },
       { "text": "2.4.0 — a minor version because new functionality was added", "isCorrect": false, "rationale": "Minor versions (x.MINOR.0) are for backward-compatible new features. Removing a parameter and renaming an action break existing consumers — this is not backward-compatible." },
-      { "text": "3.0.0 — a major version because the public interface has breaking changes", "isCorrect": true, "rationale": "Semantic versioning (SemVer) mandates a MAJOR version bump (x.0.0) whenever the public interface changes in a way that breaks existing consumers. Renaming a Service Action and removing a parameter are both breaking changes. Consumer teams will receive an update notification and must adapt their calls before upgrading to v3.0.0." },
+      { "text": "3.0.0 — a major version because the public interface has breaking changes", "isCorrect": true, "rationale": "Renaming a public Server Action and removing one of its parameters both break the Library's public contract, so semantic versioning requires a major release. Consumers must adapt before upgrading to 3.0.0." },
       { "text": "2.3.1-beta — a pre-release tag to signal instability", "isCorrect": false, "rationale": "ODC Library versioning follows MAJOR.MINOR.PATCH semantic versioning. Pre-release tags are not part of ODC's versioning system." }
     ]
   },
@@ -3067,8 +3067,8 @@ const RAW_QUESTIONS = [
     "answerOptions": [
       { "text": "Business Owner", "isCorrect": false, "rationale": "Business Owner IS a key criterion. If a bounded context has a single owner, a single app may suffice. If different parts need different owners, splitting into separate apps is required to give each owner clear accountability." },
       { "text": "Business Sponsor", "isCorrect": false, "rationale": "Business Sponsor IS a key criterion. Multiple sponsors with conflicting priorities for the same scope is a strong signal to split into separate apps, each with one sponsor." },
-      { "text": "Users' expectations (same or different look & feel)", "isCorrect": false, "rationale": "User expectations ARE a key criterion. If different user groups expect a distinctly different experience, splitting allows each app to evolve its UX independently without interference." },
-      { "text": "Number of product teams", "isCorrect": true, "rationale": "The number of product teams is NOT one of the listed assembly criteria. The key criteria are: Business Owner (one per app), Business Sponsor (one per app), and Users' expectations (same or differentiated UX). Team count may influence organizational decisions, but it is not itself a direct architectural criterion for choosing simple vs. distributed architecture." }
+      { "text": "Users' expectations (same or different look & feel)", "isCorrect": true, "rationale": "Users' expectations are not one of the Assemble criteria listed in the supplied Architecture Design Process material. The criteria are the Business Owner, Business Sponsor and Product Teams associated with the application." },
+      { "text": "Number of product teams", "isCorrect": false, "rationale": "Product teams are a key Assemble criterion. Different teams or independent release needs can indicate that the bounded context should be implemented as multiple Apps." }
     ]
   },
   {
@@ -3132,9 +3132,9 @@ const RAW_QUESTIONS = [
     "documentationUrl": "https://success.outsystems.com/documentation/outsystems_developer_cloud/app_architecture/architecture_design_process/",
     "answerOptions": [
       { "text": "It decreases the overall complexity of the architecture.", "isCorrect": false, "rationale": "Clear ownership clarifies responsibility but does not inherently reduce architectural complexity. A complex domain remains complex — ownership just makes it clearer who manages each part." },
-      { "text": "It reduces cognitive load for developers and teams.", "isCorrect": true, "rationale": "When every app and bounded context has a clearly assigned owner, teams always know who to contact, who decides, and who is responsible. This reduces the mental effort (cognitive load) of navigating the architecture — teams do not waste energy figuring out ownership boundaries or waiting for decisions from unclear stakeholders." },
+      { "text": "It reduces cognitive load for developers and teams.", "isCorrect": false, "rationale": "Reduced cognitive load can be a broader benefit of good architecture, but it is not the ownership benefit identified by this source question." },
       { "text": "It increases communication flow between all development teams.", "isCorrect": false, "rationale": "Clear ownership can actually REDUCE the need for constant cross-team communication — each team acts autonomously within their domain without needing to coordinate with others for every decision." },
-      { "text": "It helps stakeholders understand the overall organization chart.", "isCorrect": false, "rationale": "Ownership assignment is an architectural principle for enabling independent release cycles and clear accountability — not an org chart tool. Stakeholder org clarity is a consequence, not the primary architectural benefit." }
+      { "text": "It helps to understand the organization.", "isCorrect": true, "rationale": "Clear ownership makes the relationship between business responsibilities, stakeholders, teams and application boundaries easier to understand." }
     ]
   },
   {
@@ -3197,8 +3197,8 @@ const RAW_QUESTIONS = [
     "question": "A common Menu Block is defined in a Library and shared across multiple apps. The menu must contain links that navigate to Screens in each of those apps. What is the best implementation approach?",
     "documentationUrl": "https://success.outsystems.com/documentation/outsystems_developer_cloud/app_architecture/reuse_elements_across_apps/",
     "answerOptions": [
-      { "text": "Hardcode the external URLs of each app's screens as static links inside the Library Block.", "isCorrect": false, "rationale": "Hardcoded URLs in a Library create fragile coupling. If any app's URL changes (e.g., different subdomain per stage), the Library must be updated and all consumers redeployed. Libraries must be business-agnostic and not rely on specific app URLs." },
-      { "text": "Create an Input Parameter of type List in the Block. Each consumer app passes its menu entries (with URLs) via Service Actions, and the Block uses the list to render the links.", "isCorrect": true, "rationale": "The correct approach: keep the Library Block business-agnostic by accepting menu entries via an Input Parameter. Each consumer app is responsible for providing its own navigation data (screen URLs obtained via a Service Action or built at runtime). The Library Block simply renders whatever it receives — it has no knowledge of specific apps or screens. This respects the Library→App dependency rule (Libraries cannot reference App Screens)." },
+      { "text": "Use external URLs with static links pointing to the App Screens inside the Library Block.", "isCorrect": true, "rationale": "A Library cannot reference an App Screen directly, but its Block can use external URLs in static links to navigate to Screens exposed by Apps. This is the approach expected by the supplied practice exam." },
+      { "text": "Create an Input Parameter of type List in the Block. Each consumer app passes its menu entries (with URLs) via Service Actions, and the Block uses the list to render the links.", "isCorrect": false, "rationale": "Although parameterising a generic menu may be useful in another design, it is not the answer expected for this question. Static links using the Apps' external Screen URLs are supported without creating a Library-to-App reference." },
       { "text": "Directly reference each app's Screens inside the Library Block to create the menu links.", "isCorrect": false, "rationale": "Libraries CANNOT reference Screens from Apps. Creating a Library→App dependency is architecturally forbidden in ODC — the dependency direction must always be App→Library, never Library→App. A Library that references App Screens would create a circular or inverted dependency." },
       { "text": "Create one Service Action per app to return URL information, store it in a Database Entity inside the Library, then use the Entity records to build menu links.", "isCorrect": false, "rationale": "Libraries cannot have Entities (no data persistence in Libraries). Storing URLs in a Library Entity is impossible. Additionally, this creates tight coupling between the Library and specific apps, making the Library impossible to reuse independently." }
     ]
@@ -3310,6 +3310,470 @@ const RAW_QUESTIONS = [
       { "text": "Because ODC limits each factory to a maximum of 10 applications, reducing deployment complexity", "isCorrect": false, "rationale": "ODC does not impose a 10-application limit. Speed comes from containerisation and the image-based deployment model, not from any application count restriction." },
       { "text": "Because ODC compiles all applications simultaneously in parallel during deployment", "isCorrect": false, "rationale": "The speed gain is not from parallel compilation but from eliminating compilation altogether at deployment time. The image is built once and promoted without recompiling." },
       { "text": "Because ODC skips impact analysis and dependency checks during deployment", "isCorrect": false, "rationale": "ODC includes Impact Analysis during deployment to warn about breaking changes. Speed comes from the container image model (build once, deploy anywhere), not from skipping validation steps." }
+    ]
+  },
+
+  // ── ADDITIONAL PRACTICE — GENERATED FROM OFFICIAL BOOT CAMP MATERIAL ────────
+  {
+    "id": 253, "category": "design",
+    "question": "A team is naming a new App that covers a single bounded context called 'Invoicing'. According to ODC naming best practices, what should the App be named, and why does this matter?",
+    "answerOptions": [
+      { "text": "The App should be named 'Invoicing', because the App name should follow the bounded context name and clearly communicate its business responsibility.", "isCorrect": true, "rationale": "Best practice is to align the App name with its bounded context. This makes its purpose, ownership and architectural boundary clear. URL behaviour can depend on domain and routing configuration, so it is not used as an absolute rule here." },
+      { "text": "The App should be named after the development team that owns it, e.g. 'TeamAlpha'.", "isCorrect": false, "rationale": "Team names are not a naming criterion. Ownership is tracked separately (one owner/sponsor per app); the App name itself must reflect the bounded context or business terms." },
+      { "text": "The App should be named 'Library_Invoicing' to signal it is a strong dependency.", "isCorrect": false, "rationale": "Dependency type (strong/weak) is not encoded in the name, and this is an App, not a Library. Mixing asset-type prefixes into names is not a recommended practice." },
+      { "text": "The App name is irrelevant because it never appears outside ODC Studio.", "isCorrect": false, "rationale": "The App name is relevant because it communicates the bounded context and helps teams understand the architecture, regardless of the domain-routing configuration in use." }
+    ]
+  },
+  {
+    "id": 254, "category": "design",
+    "question": "You are naming a new Library that wraps calls to an external SAP system. Which naming approach follows ODC best practices?",
+    "answerOptions": [
+      { "text": "Name it something that reflects its purpose, such as 'SAP Connector', since Library names do not affect any URL or endpoint.", "isCorrect": true, "rationale": "Library names have no impact on URLs/endpoints (unlike App names), so the guidance is to pick a name that helps other developers immediately identify the Library's purpose — e.g. 'SAP Connector' for an integration wrapper, or 'Mobile Theme' for a shared theme." },
+      { "text": "Name it to match the bounded context of the App that will first consume it.", "isCorrect": false, "rationale": "Bounded-context naming applies to Apps, not Libraries. A Library may be consumed by many Apps across different bounded contexts, so tying its name to one consumer's context defeats reusability and clarity." },
+      { "text": "Name it with a random codename to avoid coupling the name to functionality.", "isCorrect": false, "rationale": "The opposite is recommended: the name should clearly communicate the Library's purpose/classification (e.g., integration wrapper, theme) to reduce cognitive load for anyone browsing the factory." },
+      { "text": "Name it identically to the external system's internal database name.", "isCorrect": false, "rationale": "The Library name should reflect its role from the consumer's perspective (e.g., 'SAP Connector'), not an internal implementation detail of the external system." }
+    ]
+  },
+  {
+    "id": 255, "category": "design",
+    "question": "Inside the 'Billing' bounded context, an App named 'Billing' contains two application concepts: 'Payment' and 'Ledger'. Following ODC element naming best practices, how should a Server Action that creates a payment be named?",
+    "answerOptions": [
+      { "text": "PaymentCreate — combining the application concept ('Payment') with an action verb, without repeating the bounded context prefix on every element.", "isCorrect": true, "rationale": "The Boot Camp naming guidance groups elements by application concept (e.g., a 'Payment' folder inside Server Actions) and names the action after that concept plus its purpose (PaymentCreate, PaymentGetDetails). The 'Billing' bounded-context/App name is already implied by the App itself; repeating it on the Screen/Flow level (e.g., BillingPayment for the UI Flow) is used at the flow/module grouping level, while individual actions inside are named by concept + verb." },
+      { "text": "CreatePaymentActionForBillingApp — a long descriptive name that repeats the App name for absolute clarity.", "isCorrect": false, "rationale": "Verbose, redundant names increase cognitive load rather than reducing it. Naming best practices favor concise, consistent names built from bounded context/concept + verb, not restating the App name in every identifier." },
+      { "text": "SA_001 — a sequential code, since Server Action names do not need to be descriptive.", "isCorrect": false, "rationale": "Sequential/coded names defeat the purpose of naming best practices, which exist specifically so code is understandable without needing to open and inspect every action." },
+      { "text": "It does not matter, since Server Actions are never visible to other developers.", "isCorrect": false, "rationale": "Server Actions are visible in ODC Studio to anyone working on or maintaining the App (and, if made public, to consumers), so clear naming still matters." }
+    ]
+  },
+  {
+    "id": 256, "category": "design",
+    "question": "During the 'Disclose' step of the ODC Architecture Design Process, a team lists all business concepts and requirements for a new Logistics initiative but has not yet grouped them into apps. What should happen next, and in what order?",
+    "answerOptions": [
+      { "text": "Organize the concepts into bounded contexts first, then Assemble them into concrete Apps/Libraries with a single owner, sponsor and team each.", "isCorrect": true, "rationale": "The process is Disclose → Organize → Assemble. Disclose surfaces all concepts/requirements; Organize groups them into bounded contexts (cohesive business domains); Assemble turns each bounded context into one or more concrete Apps or Libraries, each with a single business owner, sponsor and team." },
+      { "text": "Assemble the Apps immediately, then Organize the bounded contexts afterward to match what was built.", "isCorrect": false, "rationale": "This reverses the process. Organizing into bounded contexts must happen before Assemble, otherwise Apps are built without a clear domain boundary, leading to overlapping responsibilities." },
+      { "text": "Skip straight to development, since Disclose already captured every requirement.", "isCorrect": false, "rationale": "Disclose only gathers concepts; without Organize and Assemble, there is no defined app boundary, ownership, or team structure, which is exactly what causes uncontrolled architecture growth." },
+      { "text": "Repeat Disclose with a different team to validate the requirements before doing anything else.", "isCorrect": false, "rationale": "The process moves forward through Organize and Assemble; it does not loop back to repeat Disclose as the next step." }
+    ]
+  },
+  {
+    "id": 257, "category": "design",
+    "question": "A proposed 'Fleet Management' App would be jointly owned by two different business stakeholders from two separate departments, each with conflicting priorities. What does the ODC Assemble step recommend in this situation?",
+    "answerOptions": [
+      { "text": "Split the App so that each independent application has exactly one business owner and one sponsor, aligned to its own bounded context.", "isCorrect": true, "rationale": "One of the Assemble rules is that each App should have a single owner, a single sponsor and a single team. Two stakeholders with conflicting priorities over one App is a sign the bounded context should be split so each resulting App maps to one clear owner/sponsor." },
+      { "text": "Keep a single App and let the two stakeholders alternate approval on each release.", "isCorrect": false, "rationale": "Alternating ownership does not resolve the underlying problem and violates the single-owner/single-sponsor principle; it also creates unpredictable, conflicting direction for the same codebase." },
+      { "text": "Assign one stakeholder as owner and completely ignore the other's requirements.", "isCorrect": false, "rationale": "Ignoring a legitimate stakeholder does not follow the recommended practice; the correct response is to re-Organize the bounded context so each App has one clear, unconflicted owner." },
+      { "text": "Escalate to IT to become the sole owner and sponsor of the App.", "isCorrect": false, "rationale": "Ownership belongs to the business side that needs the capability, not to IT by default; the fix is proper bounded-context separation, not reassigning ownership away from the business." }
+    ]
+  },
+  {
+    "id": 258, "category": "cloud",
+    "question": "A developer wants to place a Timer and an Entity inside a shared Library so multiple Apps can reuse them. Is this possible in ODC?",
+    "answerOptions": [
+      { "text": "No — Timers and Entities are exclusive to Apps and cannot exist inside a Library.", "isCorrect": true, "rationale": "Libraries are business-agnostic and stateless by design. Timers, Screens, Roles, Entities, Service Actions, Events and REST Expose are exclusive to Apps and cannot be created inside a Library." },
+      { "text": "Yes — both Timers and Entities can be created inside a Library and shared freely.", "isCorrect": false, "rationale": "Neither can be created inside a Library. Both are on the list of elements exclusive to Apps." },
+      { "text": "Only the Entity can be placed in the Library; the Timer must stay in an App.", "isCorrect": false, "rationale": "Entities also cannot exist in Libraries — Libraries do not store data. Both elements are App-exclusive." },
+      { "text": "Only the Timer can be placed in the Library; the Entity must stay in an App.", "isCorrect": false, "rationale": "Timers also cannot exist in Libraries. Both elements are on the App-exclusive list." }
+    ]
+  },
+  {
+    "id": 259, "category": "cloud",
+    "question": "The 'Payments' App needs to call functionality owned by the 'Invoicing' App at runtime. What type of reference does ODC create between them, and what does that imply for deployments?",
+    "answerOptions": [
+      { "text": "A weak reference — each App keeps deploying independently, and 'Invoicing' can change without forcing 'Payments' to be redeployed, as long as the public contract is preserved.", "isCorrect": true, "rationale": "All App-to-App references in ODC are weak. This preserves independent deployability: the producer App can release new versions on its own schedule, and the consumer only needs to update if it wants to adopt a change that breaks the existing contract." },
+      { "text": "A strong reference — 'Invoicing' gets compiled inside 'Payments' container, so both must always be redeployed together.", "isCorrect": false, "rationale": "Strong references only occur between an App and a Library, never between two Apps. App-to-App calls are always weak references." },
+      { "text": "No reference is created — Apps cannot call each other's functionality in ODC.", "isCorrect": false, "rationale": "Apps can reference each other's public elements (e.g., Service Actions, public Entities, Roles) — this is a core part of ODC's distributed architecture." },
+      { "text": "It depends on whether the two Apps are deployed to the same Stage.", "isCorrect": false, "rationale": "The reference type (weak, for App-to-App) is determined by the nature of the relationship, not by which Stage the Apps are deployed to." }
+    ]
+  },
+  {
+    "id": 260, "category": "cloud",
+    "question": "An App exposes a public Role named 'Regional Manager'. How should another App reuse that authorization concept?",
+    "answerOptions": [
+      { "text": "Reference the public Role from the producer App and use its generated Check<Role> action directly.", "isCorrect": true, "rationale": "Public Roles can be shared between Apps through a weak reference. A consumer can use the generated Check<Role> action directly. Service Actions are recommended when another App needs to grant or revoke that Role." },
+      { "text": "Put a single shared Role inside a common Library so every App references the exact same Role object.", "isCorrect": false, "rationale": "This is not possible — Roles are exclusive to Apps and cannot be created inside a Library." },
+      { "text": "Duplicate the entire user database into every App so each App can independently manage its own authorization from scratch.", "isCorrect": false, "rationale": "This creates data duplication and consistency problems; it is not the recommended pattern and ignores the option of centralising the decision logic via a Service Action." },
+      { "text": "Authorization cannot be shared across Apps in ODC; each App must implement it in complete isolation with no coordination.", "isCorrect": false, "rationale": "A public Role can be referenced by another App, so authorization does not need to be implemented in complete isolation." }
+    ]
+  },
+  {
+    "id": 261, "category": "cloud",
+    "question": "An App has been fully tested in the Development stage and now needs to move to the Production stage. What happens to its build during this promotion in ODC?",
+    "answerOptions": [
+      { "text": "The container image built and validated in Development is promoted as-is to Production — it is not rebuilt or recompiled at the destination stage.", "isCorrect": true, "rationale": "ODC's CI/CD model follows a 'build once, deploy anywhere' approach: the App (with its Libraries) is compiled into a container image once, and that same image is promoted across stages. This removes recompilation risk and is a major speed/reliability improvement over OutSystems 11." },
+      { "text": "The App source code is recompiled fresh in the Production stage to make sure it matches the target environment.", "isCorrect": false, "rationale": "This was the OutSystems 11 model. ODC deliberately avoids recompiling at the destination — the same validated image is reused." },
+      { "text": "A new container image is generated for each stage using different source code per environment.", "isCorrect": false, "rationale": "The source and the resulting image are the same across stages; only environment-specific Configuration values change per stage, not the code or the image." },
+      { "text": "Promotion is only possible if the App has no dependencies on any Library.", "isCorrect": false, "rationale": "Apps with Library dependencies are promoted the same way — the Library is already packaged inside the App's image at build time, so dependencies do not block promotion." }
+    ]
+  },
+  {
+    "id": 262, "category": "cloud",
+    "question": "The same App needs to call a different external API endpoint depending on whether it is running in the Test stage or the Production stage. What is the ODC-recommended way to handle this without changing code between stages?",
+    "answerOptions": [
+      { "text": "Use Configuration segregation — store the endpoint as a stage-specific configuration value that is swapped automatically as the same build is promoted.", "isCorrect": true, "rationale": "ODC supports Configuration segregation so that environment-specific values (API URLs, credentials, feature flags) are kept out of the code and swapped per stage, letting the exact same container image behave correctly in Test and Production without any rebuild." },
+      { "text": "Maintain two separate copies of the App, one hardcoded for Test and one hardcoded for Production.", "isCorrect": false, "rationale": "Hardcoding environment-specific values into separate App copies defeats the build-once model and creates maintenance overhead; Configuration segregation solves this without duplicating the App." },
+      { "text": "Use an If/Else condition in the code that checks the Stage name and branches to the correct URL.", "isCorrect": false, "rationale": "Baking environment checks into business logic mixes concerns and does not scale; the platform's Configuration mechanism is the intended solution." },
+      { "text": "This is not possible — the same App cannot behave differently across stages in ODC.", "isCorrect": false, "rationale": "It is possible, and it is a common requirement — that is precisely what Configuration segregation is designed to solve." }
+    ]
+  },
+  {
+    "id": 263, "category": "patterns",
+    "question": "Two Apps, 'Storefront' and 'Fulfillment', both need access to a 'Currency' reference list (code, symbol, name) that rarely changes and requires no business logic to use. Which Sharing Data pattern is most appropriate?",
+    "answerOptions": [
+      { "text": "Expose 'Currency' as a Public Entity from whichever App owns it, and let 'Storefront' and 'Fulfillment' reference it directly.", "isCorrect": true, "rationale": "Public Entities are the recommended pattern for stable, simple reference/master data that consumers can read directly without needing derived calculations or enforced business rules. This avoids the overhead of a Service Action call for something as simple as a lookup list." },
+      { "text": "Create a Service Action that recalculates the full Currency list on every single call, even though the data never changes.", "isCorrect": false, "rationale": "Adding a Service Action (and the coupling/runtime call it implies) is unnecessary overhead for stable reference data with no business logic — a Public Entity is simpler and sufficient." },
+      { "text": "Duplicate the Currency table manually inside each consumer App and update it by hand whenever it changes.", "isCorrect": false, "rationale": "Manual duplication creates data drift and maintenance burden; ODC's Sharing Data patterns exist precisely to avoid this via Public Entities or Service Actions." },
+      { "text": "This cannot be shared between Apps because Entities are always private in ODC.", "isCorrect": false, "rationale": "Entities can be exposed as Public in ODC (subject to the app owning the data), which is exactly the mechanism used here." }
+    ]
+  },
+  {
+    "id": 264, "category": "patterns",
+    "question": "An App needs product prices from an external pricing engine. The data changes frequently, must always reflect the latest value, and there is no requirement to work offline. Which Integration pattern fits best?",
+    "answerOptions": [
+      { "text": "Direct integration pattern — call the external pricing engine synchronously on every request, since freshness matters more than resilience to the source being unavailable.", "isCorrect": true, "rationale": "The Direct pattern calls the external system in real time on each request, giving the most up-to-date data. It fits scenarios where freshness is critical and there's no strong need to keep working when the source is down — the tradeoff being no caching or fallback." },
+      { "text": "Cold Cache pattern — periodically sync the data into a local copy and always read from that copy.", "isCorrect": false, "rationale": "Cold Cache is suited for data that can tolerate being slightly stale, since it relies on periodic synchronization rather than real-time calls. It would not reflect prices that must always be current." },
+      { "text": "Transparency Service/Microservice pattern only, since it is the sole valid pattern for external integrations.", "isCorrect": false, "rationale": "Transparency is one of several integration patterns (alongside Direct and Cold Cache) and is not automatically the right choice — the choice depends on data freshness and resilience requirements, which here point to Direct." },
+      { "text": "No integration pattern is needed since ODC Apps cannot call external systems.", "isCorrect": false, "rationale": "ODC Apps regularly integrate with external systems, typically wrapped in an integration Library; the question is which pattern to use, not whether integration is possible." }
+    ]
+  },
+  {
+    "id": 265, "category": "patterns",
+    "question": "An 'Order' process spans three independent Apps: Inventory, Payment and Shipping. A central 'Order Orchestrator' App calls each of them in sequence and decides what happens next based on each response. Which Distributed Transactions pattern is being used, and what is a key risk to manage?",
+    "answerOptions": [
+      { "text": "Orchestration — a central coordinator drives the sequence; the key risk is that if a later step fails, the coordinator must trigger compensation on the steps that already succeeded.", "isCorrect": true, "rationale": "Orchestration uses a central coordinator App that explicitly calls each participant and controls the flow. Because there is no distributed database transaction across Apps, if Shipping fails after Inventory and Payment already succeeded, the Orchestrator must invoke compensating actions (e.g., release inventory, refund payment) to undo the completed steps." },
+      { "text": "Choreography — each App reacts independently to events without any central control.", "isCorrect": false, "rationale": "Choreography has no central coordinator; participants react to events from each other. Here, a central 'Order Orchestrator' explicitly drives the sequence, which is the defining trait of Orchestration, not Choreography." },
+      { "text": "Two-phase commit — all three Apps lock their data until every App confirms, then commit together atomically.", "isCorrect": false, "rationale": "ODC's distributed model does not rely on a classic two-phase commit across independent Apps; instead it uses retries and compensation to handle partial failures, since Apps are independently deployed services." },
+      { "text": "None of these — cross-app business processes are not supported in ODC.", "isCorrect": false, "rationale": "Cross-app processes are explicitly supported and are one of the core Distributed Transactions topics in ODC architecture, using Orchestration or Choreography patterns." }
+    ]
+  },
+  {
+    "id": 266, "category": "patterns",
+    "question": "During a distributed transaction, the 'Payment' step times out and the Orchestrator retries the same charge request. What must be true about the Payment Service Action for this retry to be safe, and what should happen if the step ultimately cannot succeed after retries?",
+    "answerOptions": [
+      { "text": "The action must be idempotent so a retried request does not double-charge the customer; if it still fails after retrying, the Orchestrator should trigger a compensating action to undo any earlier completed steps.", "isCorrect": true, "rationale": "Retry-first is the recommended approach before compensating, but retries are only safe if the action is idempotent (repeating it with the same input has the same effect as calling it once) — otherwise a retried timeout could cause a duplicate charge. If retries are exhausted, compensation actions must reverse whatever earlier steps already succeeded." },
+      { "text": "No special handling is needed — Service Actions in ODC automatically prevent duplicate side effects on retry.", "isCorrect": false, "rationale": "ODC does not automatically guarantee idempotency for you; the developer must design the Payment Service Action itself to be idempotent (e.g., using an idempotency key) for retries to be safe." },
+      { "text": "The Orchestrator should simply ignore the timeout and proceed to Shipping regardless of whether Payment succeeded.", "isCorrect": false, "rationale": "Proceeding without confirming Payment succeeded risks shipping an order that was never paid for; the correct approach is retry, and compensation if retries fail — not ignoring the failure." },
+      { "text": "The transaction should be abandoned immediately without any retry attempt.", "isCorrect": false, "rationale": "The recommended approach is retry-first (handling transient failures like timeouts) before falling back to compensation, not abandoning immediately." }
+    ]
+  },
+  {
+    "id": 267, "category": "patterns",
+    "question": "A team wants to create a reusable 'Address Form' Block that several unrelated Apps (HR, Sales, Logistics) can use inside their own screens. Following Library Reusability best practices, how should the Block be designed?",
+    "answerOptions": [
+      { "text": "As a business-agnostic Block placed in a Library, exposing input parameters for any data it needs, with no direct dependency on any single App's specific business Entities.", "isCorrect": true, "rationale": "Reusable Blocks in Libraries should be business-agnostic — they should not hold or depend on business-specific data. Instead, they expose input parameters so each consumer App can pass in whatever address data it holds, keeping the Block reusable across unrelated bounded contexts like HR, Sales and Logistics." },
+      { "text": "As a Block that directly queries the Sales App's Address Entity, since Sales was the first consumer.", "isCorrect": false, "rationale": "Tying the Block to one App's specific Entity breaks reusability for the other consumers (HR, Logistics) and violates the business-agnostic principle for Library content." },
+      { "text": "As a Screen inside the Sales App that other Apps deep-link into.", "isCorrect": false, "rationale": "This does not achieve reusable embedding inside each App's own screens, and Screens are exclusive to Apps and cannot be shared via a Library the way a Block can." },
+      { "text": "As three separate copies of the same Block, one hand-maintained inside each of HR, Sales and Logistics.", "isCorrect": false, "rationale": "Duplicating the Block across Apps is exactly what Library-based reuse is meant to avoid — changes would need to be replicated manually in three places instead of maintained once in a shared Library." }
+    ]
+  },
+  {
+    "id": 268, "category": "events",
+    "question": "A developer wants an Event to carry a full Order record, including a List of OrderLine Structures, as its payload. Is this allowed in ODC?",
+    "answerOptions": [
+      { "text": "No — Event payloads may only contain basic types; Structures, Lists and Entity Records cannot be used as the payload.", "isCorrect": true, "rationale": "ODC restricts Event payloads to basic data types (e.g., Text, Integer, Boolean, Date). Structures, Lists and Entity Records are not allowed directly in the payload, so the Order data would need to be flattened into basic-type fields or the Event would need to carry an identifier that subscribers use to fetch the full details separately." },
+      { "text": "Yes — any Structure or List can be sent as an Event payload as long as it stays under 10 KB.", "isCorrect": false, "rationale": "The 10 KB limit is a real constraint on Event payloads, but it does not override the more fundamental restriction that only basic types are allowed — Structures, Lists and Entity Records are not permitted regardless of size." },
+      { "text": "Yes, but only if the Event is created inside a Library instead of an App.", "isCorrect": false, "rationale": "Events cannot be created inside Libraries at all — they are exclusive to Apps. This does not change the basic-types-only restriction on payloads." },
+      { "text": "It depends on the subscriber, not on the Event definition.", "isCorrect": false, "rationale": "The allowed payload types are a constraint of the Event definition itself, enforced regardless of which subscriber consumes it." }
+    ]
+  },
+  {
+    "id": 269, "category": "events",
+    "question": "An App publishes an Event that two different subscriber Apps listen to. What delivery guarantee does ODC provide regarding how many times each subscriber receives the event, and regarding the order of multiple events?",
+    "answerOptions": [
+      { "text": "Each subscriber receives the event exactly once, but if multiple events are published, their processing order across subscribers is not guaranteed.", "isCorrect": true, "rationale": "ODC Events guarantee exactly-once delivery per subscriber, but do not guarantee the order in which multiple events are processed. Designs that depend on strict ordering need additional logic (e.g., sequence numbers in the payload) rather than relying on the platform." },
+      { "text": "Each subscriber may receive the event multiple times, and the platform guarantees strict processing order.", "isCorrect": false, "rationale": "This is the reverse of the actual guarantees: delivery is exactly-once (not at-least-once with duplicates), and order is explicitly NOT guaranteed." },
+      { "text": "Delivery is best-effort only — subscribers might never receive the event at all.", "isCorrect": false, "rationale": "ODC guarantees exactly-once delivery to each subscriber (with retries handling transient failures), so silent, permanent non-delivery is not the expected behavior." },
+      { "text": "Only one of the two subscribers will receive the event; Events cannot fan out to multiple subscribers.", "isCorrect": false, "rationale": "Events support fan-out to multiple subscribers — each configured subscriber independently receives its own exactly-once delivery of the event." }
+    ]
+  },
+  {
+    "id": 270, "category": "events",
+    "question": "A subscriber's event handler throws an error the first two times an Event is delivered, then succeeds on the third attempt. Does this match ODC's Event retry behaviour, and what governs the wait time between attempts?",
+    "answerOptions": [
+      { "text": "Yes — ODC retries a failed event handler automatically, up to 10 times, using exponential backoff between attempts.", "isCorrect": true, "rationale": "ODC automatically retries an Event delivery when the subscriber's handler fails, up to 10 attempts, with exponential backoff increasing the wait time between successive retries. Succeeding on the third attempt is well within this retry budget." },
+      { "text": "No — ODC never retries a failed Event handler; the event is lost the first time it fails.", "isCorrect": false, "rationale": "ODC does retry failed handlers automatically (up to 10 times with exponential backoff), so a single failure does not cause the event to be lost." },
+      { "text": "Yes, but retries happen at a fixed one-second interval regardless of how many attempts have been made.", "isCorrect": false, "rationale": "The wait time is not fixed — ODC uses exponential backoff, meaning the delay increases with each subsequent retry attempt, up to the 10-attempt limit." },
+      { "text": "Retries are unlimited until the handler succeeds, even if that takes days.", "isCorrect": false, "rationale": "Retries are capped at up to 10 attempts, not unlimited; if all retries are exhausted without success, the event delivery is ultimately treated as failed." }
+    ]
+  },
+  {
+    "id": 271, "category": "libraries",
+    "question": "A Library owner wants consumer Apps to be able to call a piece of server-side logic directly. Which of these can be marked Public in a Library, and which cannot?",
+    "answerOptions": [
+      { "text": "A Server Action can be made Public and called by consumers; a Service Action cannot exist in a Library at all, so it is never an option here.", "isCorrect": true, "rationale": "Server Actions are one of the element types that can be exposed as Public from a Library (along with Blocks, Structures and Client Actions). Service Actions, by contrast, are exclusive to Apps and cannot be created inside a Library, so they are never part of a Library's public interface." },
+      { "text": "Both Server Actions and Service Actions can be made Public in a Library.", "isCorrect": false, "rationale": "Service Actions cannot exist inside a Library at all — only Apps can define them — so this option is incorrect regardless of Public/Private status." },
+      { "text": "Neither can be exposed; Libraries cannot expose any server-side logic to consumers.", "isCorrect": false, "rationale": "Libraries routinely expose server-side logic via Public Server Actions — this is one of the main reasons to build a Library (auxiliary server/client actions use case)." },
+      { "text": "Only Service Actions can be made Public; Server Actions must always remain Private.", "isCorrect": false, "rationale": "This is backwards — Service Actions cannot exist in a Library, while Server Actions are a normal, supported Public element type in a Library." }
+    ]
+  },
+  {
+    "id": 272, "category": "libraries",
+    "question": "A Library at version 2.3.1 gets a change that fixes a bug without altering its public interface, followed later by a change that adds a brand-new optional Public Server Action. According to semantic versioning in ODC, what should the two resulting versions be?",
+    "answerOptions": [
+      { "text": "2.3.2 for the bug fix (patch), then 2.4.0 for the new Server Action (minor) — because a patch fixes behaviour without changing the interface, while adding new functionality without breaking existing consumers is a minor bump.", "isCorrect": true, "rationale": "ODC Library semantic versioning follows major.minor.patch: patch = bug fix with no interface change, minor = new backward-compatible functionality added, major = breaking change to the public interface. A bug fix bumps the patch number; adding a new optional Public element without breaking existing consumers bumps the minor number." },
+      { "text": "3.0.0 for the bug fix, then 3.1.0 for the new Server Action — both bumps should be major since any change to a Library requires a major version.", "isCorrect": false, "rationale": "Major version bumps are reserved for breaking changes to the public interface. A bug fix and a purely additive new Public element are not breaking changes, so neither should trigger a major bump." },
+      { "text": "2.3.1 stays the same for the bug fix since bugs don't count, then 2.3.2 for the new Server Action.", "isCorrect": false, "rationale": "A bug fix does count and should increment the patch number; adding new public functionality is a minor change, not another patch." },
+      { "text": "Version numbers in ODC Libraries are assigned automatically at random and cannot be inferred from the nature of the change.", "isCorrect": false, "rationale": "Version numbers follow the deliberate major.minor.patch semantic versioning scheme tied to the nature of the change (breaking, additive, or fix) — they are not random." }
+    ]
+  },
+
+  // ── ODC ARCHITECTURE SPECIALIST — EXAM PHOTOS (QUESTIONS 5–30) ───────────
+  {
+    "id": 273, "category": "design",
+    "question": "Which naming practice is NOT recommended when organizing elements inside an ODC App?",
+    "answerOptions": [
+      { "text": "Group all elements in a folder named after the bounded context, for example PolicyManagement.", "isCorrect": true, "rationale": "The App already supplies the bounded-context boundary. Folders should organize elements by application concepts rather than redundantly placing everything under a folder named after the bounded context." },
+      { "text": "Use a consistent naming convention based on the application's business concepts.", "isCorrect": false, "rationale": "Names based on business concepts reduce cognitive load and improve maintainability." },
+      { "text": "Use the application concept and purpose in element names, for example RiskGetAssessment.", "isCorrect": false, "rationale": "RiskGetAssessment combines the application concept with the action's purpose and follows the recommended naming practice." },
+      { "text": "Name the App after the bounded context it represents, for example PolicyManagement.", "isCorrect": false, "rationale": "Naming an App after its bounded context makes its purpose and ownership clearer." }
+    ]
+  },
+  {
+    "id": 274, "category": "patterns",
+    "question": "When should an App use Direct Integration instead of the Cold Cache pattern?",
+    "answerOptions": [
+      { "text": "When performance is not a concern.", "isCorrect": false, "rationale": "A direct call still depends on the external system's latency and availability, so this is not a sufficient decision criterion." },
+      { "text": "When the App cannot tolerate delays in data updates and needs the latest value.", "isCorrect": true, "rationale": "Direct Integration queries the source at the time of use, which is appropriate when data freshness is mandatory." },
+      { "text": "Whenever the source data changes frequently.", "isCorrect": false, "rationale": "Frequent changes alone do not require Direct Integration; a Cold Cache may still use regular or differential synchronization." },
+      { "text": "Whenever differential synchronization is unavailable.", "isCorrect": false, "rationale": "The absence of differential synchronization may make a cache less efficient, but it is not the main reason to choose Direct Integration." }
+    ]
+  },
+  {
+    "id": 275, "category": "cloud",
+    "question": "Which element can an ODC App reference or consume from another ODC App?",
+    "answerOptions": [
+      { "text": "Theme", "isCorrect": false, "rationale": "Reusable Themes are shared through Libraries; Theme is not the App-to-App element expected by this question." },
+      { "text": "Server Action", "isCorrect": false, "rationale": "Server-side logic owned by another App is consumed through a Service Action contract, not by directly referencing its Server Action." },
+      { "text": "Client Action", "isCorrect": false, "rationale": "Client Actions are part of an App's implementation and are not an App-to-App contract." },
+      { "text": "Screen", "isCorrect": true, "rationale": "An App can expose a public Screen that another App consumes through a weak App-to-App reference for cross-App navigation." }
+    ]
+  },
+  {
+    "id": 276, "category": "patterns",
+    "question": "What is a key purpose of the Cold Cache integration pattern?",
+    "answerOptions": [
+      { "text": "To eliminate all development and synchronization complexity.", "isCorrect": false, "rationale": "A cache introduces synchronization and maintenance concerns rather than eliminating them." },
+      { "text": "To guarantee real-time data from the external system.", "isCorrect": false, "rationale": "Cold Cache explicitly accepts that locally stored data may be slightly stale." },
+      { "text": "To abstract multiple implementations of the same external service.", "isCorrect": false, "rationale": "That responsibility belongs to an integration wrapper, not to the Cold Cache pattern itself." },
+      { "text": "To avoid overloading the external system's APIs.", "isCorrect": true, "rationale": "Reading a synchronized local copy reduces external requests, latency and dependency on the source system's availability." }
+    ]
+  },
+  {
+    "id": 277, "category": "events",
+    "question": "What does Event-Driven Architecture promote between ODC Apps?",
+    "answerOptions": [
+      { "text": "A globally consistent view of decentralized data.", "isCorrect": false, "rationale": "Decentralized event-driven systems commonly use eventual consistency; they do not automatically provide a single globally consistent view." },
+      { "text": "Low coupling and independent application lifecycles.", "isCorrect": true, "rationale": "A producer publishes an Event without depending on a consumer's implementation, allowing each App to evolve and deploy independently." },
+      { "text": "Automatic distributed transactions across every subscriber.", "isCorrect": false, "rationale": "Events do not automatically create an atomic distributed transaction; consistency and compensation must be designed explicitly." },
+      { "text": "Strong dependencies between producers and consumers.", "isCorrect": false, "rationale": "Event-driven designs aim to reduce direct dependencies rather than create strong coupling." }
+    ]
+  },
+  {
+    "id": 278, "category": "design",
+    "question": "Which factor is NOT a key criterion when deciding whether bounded contexts should use a simplified or distributed App approach?",
+    "answerOptions": [
+      { "text": "Business Sponsor", "isCorrect": false, "rationale": "A Business Sponsor is one of the key Assemble criteria; each resulting App should have a clear sponsor." },
+      { "text": "Business Owner", "isCorrect": false, "rationale": "Business ownership directly affects responsibility, priorities and the domain's release rhythm." },
+      { "text": "Number and organization of product teams", "isCorrect": false, "rationale": "Product teams are a key criterion because team autonomy and independent release needs influence whether the implementation should be split across Apps." },
+      { "text": "User expectations and experience", "isCorrect": true, "rationale": "Users' expectations are not one of the key Assemble criteria listed in the supplied Architecture Design Process material; Business Owner, Business Sponsor and Product Teams are." }
+    ]
+  },
+  {
+    "id": 279, "category": "libraries",
+    "question": "An App consumes a secret Setting exposed by a Library. How is the Setting's value managed?",
+    "answerOptions": [
+      { "text": "It must be hardcoded in the Library source code.", "isCorrect": false, "rationale": "Secrets must not be fixed in source code." },
+      { "text": "The same value is automatically transported unchanged through every stage.", "isCorrect": false, "rationale": "Configuration values can differ between Development, QA and Production." },
+      { "text": "It is configured by the consumer App and can have a different value in each stage.", "isCorrect": true, "rationale": "The consumer configures the Setting per stage, keeping environment-specific and secret values out of the code." },
+      { "text": "Changing the value always requires releasing a new version of the Library.", "isCorrect": false, "rationale": "An operational configuration change does not require a new code version." }
+    ]
+  },
+  {
+    "id": 280, "category": "cloud",
+    "question": "The Claims and Billing Apps need the same Administrator authorization, but the Role is currently defined in Claims. What is the recommended approach?",
+    "answerOptions": [
+      { "text": "Keep the current solution because directly exposing the Claims Role already follows the recommended practice.", "isCorrect": true, "rationale": "A public Role can be shared with Billing through a weak App-to-App reference, and Billing can use the generated Check<Role> action directly." },
+      { "text": "Keep the Role in Claims and expose Service Actions that wrap the role checks for Billing to consume.", "isCorrect": false, "rationale": "Wrapping Check<Role> is unnecessary. Service Actions are appropriate when another App needs to grant or revoke the public Role, not merely check it." },
+      { "text": "Create a second Administrator Role in Billing and assign both Roles to every relevant user.", "isCorrect": false, "rationale": "Duplicating the Role creates two distinct authorization identities and extra administration." },
+      { "text": "Move the Role to a Library and consume it directly from both Apps.", "isCorrect": false, "rationale": "Roles are App security concepts and cannot be placed in a Library." }
+    ]
+  },
+  {
+    "id": 281, "category": "events",
+    "question": "What happens when the number of triggered Events exceeds the consumer App's parallel-execution capacity?",
+    "answerOptions": [
+      { "text": "Events continue to be added to the runtime queue until the queue reaches its capacity.", "isCorrect": true, "rationale": "The runtime queue absorbs the peak and consumers process queued Events as execution capacity becomes available." },
+      { "text": "The App pauses all Event processing until capacity becomes available.", "isCorrect": false, "rationale": "Already executing Events continue; the queue holds pending work." },
+      { "text": "The runtime automatically shortens the processing time of executing Events.", "isCorrect": false, "rationale": "The platform does not accelerate handler logic to create capacity." },
+      { "text": "All excess Events are immediately discarded.", "isCorrect": false, "rationale": "Excess Events are queued rather than immediately dropped." }
+    ]
+  },
+  {
+    "id": 282, "category": "patterns",
+    "question": "Several Apps use a common menu Block from a Library. How should menu entries navigate to Screens in the different Apps?",
+    "answerOptions": [
+      { "text": "Create one Service Action per App, store every URL in an Entity and build the menu from those records.", "isCorrect": false, "rationale": "This adds unnecessary persistence and service calls for navigation metadata." },
+      { "text": "Directly reference each App's Screen from the shared Library Block.", "isCorrect": false, "rationale": "A Library Block should not directly depend on Screens owned by consumer Apps." },
+      { "text": "Have every App fetch all other URLs through Service Actions and pass a List into the Block.", "isCorrect": false, "rationale": "This creates unnecessary cross-App runtime dependencies for static navigation." },
+      { "text": "Use external URLs with static links pointing to the respective Apps' Screens.", "isCorrect": true, "rationale": "Static external URLs keep the shared menu agnostic while enabling cross-App navigation." }
+    ]
+  },
+  {
+    "id": 283, "category": "libraries",
+    "question": "Which element can an ODC App reference or consume from an ODC Library?",
+    "answerOptions": [
+      { "text": "Service Action", "isCorrect": false, "rationale": "Service Actions are App-to-App contracts and cannot exist in a Library." },
+      { "text": "Server Action", "isCorrect": true, "rationale": "A Library can expose a public Server Action as reusable logic packaged with the consumer App." },
+      { "text": "Entity", "isCorrect": false, "rationale": "Libraries cannot contain business Entities." },
+      { "text": "Role", "isCorrect": false, "rationale": "Roles are exclusive to Apps and cannot be provided by a Library." }
+    ]
+  },
+  {
+    "id": 284, "category": "patterns",
+    "question": "A Supplier public Entity contains stable, low-change data with no business logic, and its consumer needs to aggregate that data with its own Entities. What improvement follows ODC best practices?",
+    "answerOptions": [
+      { "text": "Make Supplier private and encapsulate access in Service Actions.", "isCorrect": false, "rationale": "A Service Action would add an unnecessary runtime call and would make consumer-side aggregation harder. The data is stable, simple and has no business logic that needs encapsulation." },
+      { "text": "Split Supplier into one Entity per supplier type to reduce the number of records in each table.", "isCorrect": false, "rationale": "Splitting tables does not solve ownership, duplicated calculations or exposure of the physical model." },
+      { "text": "Make Supplier private and expose its functionality through Server Actions to the other Apps.", "isCorrect": false, "rationale": "Server Actions are not the correct runtime contract between independent Apps; Service Actions are." },
+      { "text": "No further improvements are needed; keeping Supplier public is appropriate for this scenario.", "isCorrect": true, "rationale": "A public Entity is appropriate for stable, low-change data without business logic, particularly when consumers need to aggregate it efficiently with their own data." }
+    ]
+  },
+  {
+    "id": 285, "category": "design",
+    "question": "Three ownership scenarios are proposed for Claims, Billing and related Apps. Which statement correctly identifies the release-cycle problem?",
+    "answerOptions": [
+      { "text": "All three scenarios follow the best practices and guarantee independent release cycles.", "isCorrect": false, "rationale": "Scenario 1 combines independently owned bounded contexts in one App and therefore does not guarantee release independence." },
+      { "text": "Scenario 1 does not guarantee release-cycle independence; split Claims & Billing into two Apps, each with one Business Sponsor and one Business Owner.", "isCorrect": true, "rationale": "Separating the bounded contexts aligns each App with one ownership boundary and an independent delivery lifecycle." },
+      { "text": "Scenario 2 is invalid only because one Business Owner has more than one Business Sponsor.", "isCorrect": false, "rationale": "Multiple sponsorship is not, by itself, the technical cause of release coupling described here." },
+      { "text": "Scenario 3 is invalid because an App must never have both a Business Owner and a Business Sponsor.", "isCorrect": false, "rationale": "Having an owner and a sponsor is expected; the concern is conflicting ownership or mixed bounded contexts." }
+    ]
+  },
+  {
+    "id": 286, "category": "patterns",
+    "question": "What is the recommended way to share business data between Apps when access to that data includes business rules?",
+    "answerOptions": [
+      { "text": "Encapsulate the business rules in Service Actions and let consumer Apps reference those actions.", "isCorrect": true, "rationale": "Service Actions keep access rules and business logic with the data owner behind a stable contract." },
+      { "text": "Reference Static Entities directly.", "isCorrect": false, "rationale": "Static Entities are for fixed reference values and do not encapsulate changing business rules." },
+      { "text": "Encapsulate the rules in Server Actions and reference those actions across Apps.", "isCorrect": false, "rationale": "Server Actions are not the weak runtime contract used between independent Apps." },
+      { "text": "Reference public business Entities directly.", "isCorrect": false, "rationale": "Direct Entity access exposes the model and allows consumers to apply inconsistent rules." }
+    ]
+  },
+  {
+    "id": 287, "category": "design",
+    "question": "What is the main difference between a Non-Functional Requirement (NFR) and a Business Concept?",
+    "answerOptions": [
+      { "text": "NFRs only describe external integrations, while Business Concepts describe every other business concern.", "isCorrect": false, "rationale": "External integrations can be NFR inputs, but NFRs cover a much broader set of technical and operational qualities." },
+      { "text": "NFRs describe technical and operational qualities of a system, while Business Concepts describe the business domain and context.", "isCorrect": true, "rationale": "NFRs cover qualities such as performance, availability, security and scalability; Business Concepts model the domain itself." },
+      { "text": "NFRs identify owners, sponsors and teams, while Business Concepts describe the broader business context.", "isCorrect": false, "rationale": "Ownership is a separate architecture concern, not the definition of a non-functional requirement." },
+      { "text": "There is no difference because both are stakeholder business requirements.", "isCorrect": false, "rationale": "They answer different questions: how the system must behave versus what part of the business is being modeled." }
+    ]
+  },
+  {
+    "id": 288, "category": "cloud",
+    "question": "How is an application container deployed through pipeline stages such as Development, QA and Production?",
+    "answerOptions": [
+      { "text": "It is published in Development, manually deployed to any stage in any order, and may be changed and republished independently in each stage.", "isCorrect": false, "rationale": "Changing the artifact separately in each stage breaks build traceability and the build-once model." },
+      { "text": "The App is published in Development, then the same container is deployed separately and sequentially through the remaining stages.", "isCorrect": true, "rationale": "The same built artifact is promoted in a controlled sequence, preserving traceability across the pipeline." },
+      { "text": "Publishing in Development automatically deploys to all stages, after which the container can be changed in any stage.", "isCorrect": false, "rationale": "Promotion is controlled and the same artifact is not freely changed per stage." },
+      { "text": "Publishing in Development automatically deploys the container to every stage without a separate promotion step.", "isCorrect": false, "rationale": "Deployment to later stages is a separate controlled operation." }
+    ]
+  },
+  {
+    "id": 289, "category": "events",
+    "question": "What is guaranteed about the order of Event delivery in OutSystems Developer Cloud?",
+    "answerOptions": [
+      { "text": "Events are delivered in the order in which they are triggered.", "isCorrect": false, "rationale": "Parallel processing, retries and different delays mean trigger order is not a delivery guarantee." },
+      { "text": "Events are delivered according to developer-defined priority settings.", "isCorrect": false, "rationale": "ODC does not provide this general developer-defined priority ordering guarantee." },
+      { "text": "The delivery order of Events is not guaranteed.", "isCorrect": true, "rationale": "Consumers must be designed for possible out-of-order delivery and should use idempotent handling." },
+      { "text": "Events are always delivered in strict FIFO order within an Event queue.", "isCorrect": false, "rationale": "Strict FIFO processing is not guaranteed." }
+    ]
+  },
+  {
+    "id": 290, "category": "patterns",
+    "question": "Which option does NOT qualify as a compensation mechanism in a transaction failure?",
+    "answerOptions": [
+      { "text": "Rolling back or soft-deleting data that was created.", "isCorrect": false, "rationale": "Removing or invalidating data created by an earlier step is a valid semantic compensation." },
+      { "text": "Creating a reverse operation, such as a debit that compensates for a wrongful credit.", "isCorrect": false, "rationale": "A reverse business operation is a standard compensation technique." },
+      { "text": "Reverting the application state to a consistent state.", "isCorrect": false, "rationale": "Restoring a consistent state is the objective of compensation." },
+      { "text": "Retrying the failed operation to recover the transaction.", "isCorrect": true, "rationale": "Retry attempts to complete the original operation; it does not undo a step that already succeeded." }
+    ]
+  },
+  {
+    "id": 291, "category": "patterns",
+    "question": "Considering Integration Service Wrappers, which statement is FALSE?",
+    "answerOptions": [
+      { "text": "Integration Service Wrappers use weak dependencies between Apps and Libraries to avoid performance overhead.", "isCorrect": true, "rationale": "An App-to-Library dependency is strong and build-time, so describing it as a weak dependency is false." },
+      { "text": "Wrapper Libraries encapsulate API implementation details and are good candidates to become reusable components.", "isCorrect": false, "rationale": "Encapsulation and reuse are important benefits of an integration wrapper." },
+      { "text": "Integration Service Wrappers promote reuse of external-system integrations across Apps.", "isCorrect": false, "rationale": "A shared wrapper avoids repeating integration logic in multiple consumers." },
+      { "text": "Integration Service Wrappers mitigate the impact of changes in third-party APIs.", "isCorrect": false, "rationale": "Consumers depend on the wrapper contract instead of the third-party API details, limiting change impact." }
+    ]
+  },
+  {
+    "id": 292, "category": "cloud",
+    "question": "Which statement about Timers in ODC is correct?",
+    "answerOptions": [
+      { "text": "A Timer can only be created in an Application.", "isCorrect": true, "rationale": "Timers require an App's autonomous runtime lifecycle and cannot be created in a Library." },
+      { "text": "A Timer schedule can only be defined in the ODC Portal.", "isCorrect": false, "rationale": "This absolute statement is not correct; Timer configuration is not limited in that way." },
+      { "text": "A Timer must have the same schedule across all stages.", "isCorrect": false, "rationale": "Schedules can be managed per stage." },
+      { "text": "A Timer can only execute according to its defined schedule.", "isCorrect": false, "rationale": "A Timer may also be triggered outside its normal schedule." }
+    ]
+  },
+  {
+    "id": 293, "category": "design",
+    "question": "Clear ownership brings several benefits when assembling an Architecture Design. Which option describes one of those benefits?",
+    "answerOptions": [
+      { "text": "It always decreases technical complexity.", "isCorrect": false, "rationale": "Clear ownership improves accountability but does not automatically remove technical complexity." },
+      { "text": "It necessarily increases the communication flow between every team.", "isCorrect": false, "rationale": "Ownership clarifies communication paths; it does not require more communication between all parties." },
+      { "text": "It helps people understand the organization and who is responsible for each domain or App.", "isCorrect": true, "rationale": "Clear ownership identifies who decides, maintains, funds and responds for each part of the architecture." },
+      { "text": "It eliminates cognitive load for developers.", "isCorrect": false, "rationale": "It can reduce ambiguity, but cannot eliminate cognitive load altogether." }
+    ]
+  },
+  {
+    "id": 294, "category": "patterns",
+    "question": "In a Saga, Subscribe Policy succeeds but Create Payment later fails. What is the best course of action?",
+    "answerOptions": [
+      { "text": "Delete records generated by the Create Payment operation.", "isCorrect": false, "rationale": "The payment step failed, so there is no successfully completed payment operation to compensate." },
+      { "text": "Retry the whole transaction from the beginning.", "isCorrect": false, "rationale": "Blindly repeating the entire transaction can duplicate steps that already succeeded." },
+      { "text": "Ignore the failure and continue to the next operation.", "isCorrect": false, "rationale": "This would leave an active policy without a confirmed payment." },
+      { "text": "Compensate by undoing the completed Subscribe Policy operation.", "isCorrect": true, "rationale": "The Saga must semantically reverse the earlier successful step to restore a consistent state." }
+    ]
+  },
+  {
+    "id": 295, "category": "libraries",
+    "question": "Orders and Shipping need the same Header Block, which displays business data calculated in Orders. Which step is NOT part of the recommended reusable design?",
+    "answerOptions": [
+      { "text": "Create the Block in a new Library and have both Apps reference it.", "isCorrect": false, "rationale": "A shared Library is the correct home for a reusable, business-agnostic Block." },
+      { "text": "Add an Input Parameter to the Block for the required business data.", "isCorrect": false, "rationale": "Input parameters keep the Block independent of the consumer's business model." },
+      { "text": "Expose an Orders Service Action for Shipping to obtain the required data.", "isCorrect": false, "rationale": "A Service Action preserves ownership of the calculation while allowing Shipping to obtain the data." },
+      { "text": "Put the business-specific logic and data directly inside the shared Block.", "isCorrect": true, "rationale": "Library UI should remain business-agnostic; embedding Orders-specific logic would couple the Block to one bounded context." }
+    ]
+  },
+  {
+    "id": 296, "category": "patterns",
+    "question": "Directory owns Country and City reference data, while Vacations and Travel Portal also need it. What approach best promotes App independence?",
+    "answerOptions": [
+      { "text": "Create a Location App that owns private Country and City Entities and exposes the required functionality through Service Actions.", "isCorrect": true, "rationale": "A dedicated owner and Service Action contract provide one source of truth without exposing the physical data model." },
+      { "text": "Create a Location App but make Country and City public so every consumer can query them directly.", "isCorrect": false, "rationale": "Direct Entity access exposes the model and weakens encapsulation compared with the required Service Action contract." },
+      { "text": "Keep the Entities in Directory and expose them through Service Actions from that App.", "isCorrect": false, "rationale": "Directory should not retain ownership of cross-domain location reference data when Location is the clearer bounded context." },
+      { "text": "Keep Country and City public in Directory and let every App query them directly.", "isCorrect": false, "rationale": "This leaves transversal reference data under the wrong owner and couples consumers to its Entity model." }
+    ]
+  },
+  {
+    "id": 297, "category": "libraries",
+    "question": "What is the main architectural benefit of using Libraries in ODC?",
+    "answerOptions": [
+      { "text": "They can be strongly coupled to consumer Apps for faster code execution.", "isCorrect": false, "rationale": "Strong packaging is a characteristic and tradeoff, not the main architectural benefit." },
+      { "text": "They package code inside the consumer App's container.", "isCorrect": false, "rationale": "This describes how Libraries are delivered, not their primary architectural purpose." },
+      { "text": "They allow code to be shared with Apps or other Libraries.", "isCorrect": false, "rationale": "Sharing code is a broad capability, but by itself does not capture the design requirement that Library content remain reusable and domain-neutral." },
+      { "text": "They help implement reusable, business-agnostic components.", "isCorrect": true, "rationale": "Libraries are intended for reusable components that are not owned by a specific business bounded context." }
+    ]
+  },
+  {
+    "id": 298, "category": "design",
+    "question": "In the Architecture Design Process, what should be the first step when identifying bounded contexts?",
+    "answerOptions": [
+      { "text": "Interview stakeholders.", "isCorrect": true, "rationale": "Stakeholder interviews reveal the domain language, concepts, processes, ownership and business problems needed before defining boundaries." },
+      { "text": "Identify relationships between different concepts.", "isCorrect": false, "rationale": "Relationships can be analyzed after the relevant concepts have been disclosed." },
+      { "text": "Organize the business concepts.", "isCorrect": false, "rationale": "Organization follows discovery; the concepts must first be gathered from stakeholders and other sources." },
+      { "text": "Define clear boundaries and responsibilities.", "isCorrect": false, "rationale": "Boundaries and responsibilities are an outcome of the analysis, not its first step." }
     ]
   }
 ];
