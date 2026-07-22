@@ -15,7 +15,17 @@
     "needsManualReview": true,
     "documentationUrl": "",
     "verified": false,
-    "lastReviewed": ""
+    "lastReviewed": "",
+    "validationStatus": "NEEDS_MANUAL_REVIEW",
+    "validatedAt": "2026-07-22",
+    "documentationUrls": [],
+    "reviewNotes": "OCR/import source is not used by the runtime simulator and contains incomplete or corrupted question text/options. Manual reconstruction against an official source is required before import.",
+    "tags": [
+      "odc-udemy",
+      "import-bank",
+      "ocr",
+      "needs-manual-review"
+    ]
   },
   {
     "id": 2,
@@ -48,7 +58,17 @@
     "needsManualReview": false,
     "documentationUrl": "",
     "verified": false,
-    "lastReviewed": ""
+    "lastReviewed": "",
+    "validationStatus": "NEEDS_MANUAL_REVIEW",
+    "validatedAt": "2026-07-22",
+    "documentationUrls": [],
+    "reviewNotes": "OCR/import source is not used by the runtime simulator and contains incomplete or corrupted question text/options. Manual reconstruction against an official source is required before import.",
+    "tags": [
+      "odc-udemy",
+      "import-bank",
+      "ocr",
+      "needs-manual-review"
+    ]
   },
   {
     "id": 3,
@@ -81,7 +101,17 @@
     "needsManualReview": false,
     "documentationUrl": "",
     "verified": false,
-    "lastReviewed": ""
+    "lastReviewed": "",
+    "validationStatus": "NEEDS_MANUAL_REVIEW",
+    "validatedAt": "2026-07-22",
+    "documentationUrls": [],
+    "reviewNotes": "OCR/import source is not used by the runtime simulator and contains incomplete or corrupted question text/options. Manual reconstruction against an official source is required before import.",
+    "tags": [
+      "odc-udemy",
+      "import-bank",
+      "ocr",
+      "needs-manual-review"
+    ]
   },
   {
     "id": 4,
@@ -114,7 +144,17 @@
     "needsManualReview": false,
     "documentationUrl": "",
     "verified": false,
-    "lastReviewed": ""
+    "lastReviewed": "",
+    "validationStatus": "NEEDS_MANUAL_REVIEW",
+    "validatedAt": "2026-07-22",
+    "documentationUrls": [],
+    "reviewNotes": "OCR/import source is not used by the runtime simulator and contains incomplete or corrupted question text/options. Manual reconstruction against an official source is required before import.",
+    "tags": [
+      "odc-udemy",
+      "import-bank",
+      "ocr",
+      "needs-manual-review"
+    ]
   },
   {
     "id": 5,
@@ -142,7 +182,17 @@
     "needsManualReview": true,
     "documentationUrl": "",
     "verified": false,
-    "lastReviewed": ""
+    "lastReviewed": "",
+    "validationStatus": "NEEDS_MANUAL_REVIEW",
+    "validatedAt": "2026-07-22",
+    "documentationUrls": [],
+    "reviewNotes": "OCR/import source is not used by the runtime simulator and contains incomplete or corrupted question text/options. Manual reconstruction against an official source is required before import.",
+    "tags": [
+      "odc-udemy",
+      "import-bank",
+      "ocr",
+      "needs-manual-review"
+    ]
   },
   {
     "id": 6,
@@ -175,7 +225,17 @@
     "needsManualReview": false,
     "documentationUrl": "",
     "verified": false,
-    "lastReviewed": ""
+    "lastReviewed": "",
+    "validationStatus": "NEEDS_MANUAL_REVIEW",
+    "validatedAt": "2026-07-22",
+    "documentationUrls": [],
+    "reviewNotes": "OCR/import source is not used by the runtime simulator and contains incomplete or corrupted question text/options. Manual reconstruction against an official source is required before import.",
+    "tags": [
+      "odc-udemy",
+      "import-bank",
+      "ocr",
+      "needs-manual-review"
+    ]
   },
   {
     "id": 7,
@@ -208,7 +268,17 @@
     "needsManualReview": true,
     "documentationUrl": "",
     "verified": false,
-    "lastReviewed": ""
+    "lastReviewed": "",
+    "validationStatus": "NEEDS_MANUAL_REVIEW",
+    "validatedAt": "2026-07-22",
+    "documentationUrls": [],
+    "reviewNotes": "OCR/import source is not used by the runtime simulator and contains incomplete or corrupted question text/options. Manual reconstruction against an official source is required before import.",
+    "tags": [
+      "odc-udemy",
+      "import-bank",
+      "ocr",
+      "needs-manual-review"
+    ]
   },
   {
     "id": 8,
@@ -231,7 +301,17 @@
     "needsManualReview": true,
     "documentationUrl": "",
     "verified": false,
-    "lastReviewed": ""
+    "lastReviewed": "",
+    "validationStatus": "NEEDS_MANUAL_REVIEW",
+    "validatedAt": "2026-07-22",
+    "documentationUrls": [],
+    "reviewNotes": "OCR/import source is not used by the runtime simulator and contains incomplete or corrupted question text/options. Manual reconstruction against an official source is required before import.",
+    "tags": [
+      "odc-udemy",
+      "import-bank",
+      "ocr",
+      "needs-manual-review"
+    ]
   },
   {
     "id": 9,
@@ -264,7 +344,17 @@
     "needsManualReview": false,
     "documentationUrl": "",
     "verified": false,
-    "lastReviewed": ""
+    "lastReviewed": "",
+    "validationStatus": "NEEDS_MANUAL_REVIEW",
+    "validatedAt": "2026-07-22",
+    "documentationUrls": [],
+    "reviewNotes": "OCR/import source is not used by the runtime simulator and contains incomplete or corrupted question text/options. Manual reconstruction against an official source is required before import.",
+    "tags": [
+      "odc-udemy",
+      "import-bank",
+      "ocr",
+      "needs-manual-review"
+    ]
   },
   {
     "id": 10,
@@ -287,7 +377,17 @@
     "needsManualReview": true,
     "documentationUrl": "",
     "verified": false,
-    "lastReviewed": ""
+    "lastReviewed": "",
+    "validationStatus": "NEEDS_MANUAL_REVIEW",
+    "validatedAt": "2026-07-22",
+    "documentationUrls": [],
+    "reviewNotes": "OCR/import source is not used by the runtime simulator and contains incomplete or corrupted question text/options. Manual reconstruction against an official source is required before import.",
+    "tags": [
+      "odc-udemy",
+      "import-bank",
+      "ocr",
+      "needs-manual-review"
+    ]
   },
   {
     "id": 11,
@@ -320,7 +420,17 @@
     "needsManualReview": true,
     "documentationUrl": "",
     "verified": false,
-    "lastReviewed": ""
+    "lastReviewed": "",
+    "validationStatus": "NEEDS_MANUAL_REVIEW",
+    "validatedAt": "2026-07-22",
+    "documentationUrls": [],
+    "reviewNotes": "OCR/import source is not used by the runtime simulator and contains incomplete or corrupted question text/options. Manual reconstruction against an official source is required before import.",
+    "tags": [
+      "odc-udemy",
+      "import-bank",
+      "ocr",
+      "needs-manual-review"
+    ]
   },
   {
     "id": 12,
@@ -353,7 +463,17 @@
     "needsManualReview": true,
     "documentationUrl": "",
     "verified": false,
-    "lastReviewed": ""
+    "lastReviewed": "",
+    "validationStatus": "NEEDS_MANUAL_REVIEW",
+    "validatedAt": "2026-07-22",
+    "documentationUrls": [],
+    "reviewNotes": "OCR/import source is not used by the runtime simulator and contains incomplete or corrupted question text/options. Manual reconstruction against an official source is required before import.",
+    "tags": [
+      "odc-udemy",
+      "import-bank",
+      "ocr",
+      "needs-manual-review"
+    ]
   },
   {
     "id": 13,
@@ -376,7 +496,17 @@
     "needsManualReview": true,
     "documentationUrl": "",
     "verified": false,
-    "lastReviewed": ""
+    "lastReviewed": "",
+    "validationStatus": "NEEDS_MANUAL_REVIEW",
+    "validatedAt": "2026-07-22",
+    "documentationUrls": [],
+    "reviewNotes": "OCR/import source is not used by the runtime simulator and contains incomplete or corrupted question text/options. Manual reconstruction against an official source is required before import.",
+    "tags": [
+      "odc-udemy",
+      "import-bank",
+      "ocr",
+      "needs-manual-review"
+    ]
   },
   {
     "id": 14,
@@ -409,7 +539,17 @@
     "needsManualReview": false,
     "documentationUrl": "",
     "verified": false,
-    "lastReviewed": ""
+    "lastReviewed": "",
+    "validationStatus": "NEEDS_MANUAL_REVIEW",
+    "validatedAt": "2026-07-22",
+    "documentationUrls": [],
+    "reviewNotes": "OCR/import source is not used by the runtime simulator and contains incomplete or corrupted question text/options. Manual reconstruction against an official source is required before import.",
+    "tags": [
+      "odc-udemy",
+      "import-bank",
+      "ocr",
+      "needs-manual-review"
+    ]
   },
   {
     "id": 15,
@@ -442,7 +582,17 @@
     "needsManualReview": false,
     "documentationUrl": "",
     "verified": false,
-    "lastReviewed": ""
+    "lastReviewed": "",
+    "validationStatus": "NEEDS_MANUAL_REVIEW",
+    "validatedAt": "2026-07-22",
+    "documentationUrls": [],
+    "reviewNotes": "OCR/import source is not used by the runtime simulator and contains incomplete or corrupted question text/options. Manual reconstruction against an official source is required before import.",
+    "tags": [
+      "odc-udemy",
+      "import-bank",
+      "ocr",
+      "needs-manual-review"
+    ]
   },
   {
     "id": 16,
@@ -465,7 +615,17 @@
     "needsManualReview": false,
     "documentationUrl": "",
     "verified": false,
-    "lastReviewed": ""
+    "lastReviewed": "",
+    "validationStatus": "NEEDS_MANUAL_REVIEW",
+    "validatedAt": "2026-07-22",
+    "documentationUrls": [],
+    "reviewNotes": "OCR/import source is not used by the runtime simulator and contains incomplete or corrupted question text/options. Manual reconstruction against an official source is required before import.",
+    "tags": [
+      "odc-udemy",
+      "import-bank",
+      "ocr",
+      "needs-manual-review"
+    ]
   },
   {
     "id": 17,
@@ -498,7 +658,17 @@
     "needsManualReview": true,
     "documentationUrl": "",
     "verified": false,
-    "lastReviewed": ""
+    "lastReviewed": "",
+    "validationStatus": "NEEDS_MANUAL_REVIEW",
+    "validatedAt": "2026-07-22",
+    "documentationUrls": [],
+    "reviewNotes": "OCR/import source is not used by the runtime simulator and contains incomplete or corrupted question text/options. Manual reconstruction against an official source is required before import.",
+    "tags": [
+      "odc-udemy",
+      "import-bank",
+      "ocr",
+      "needs-manual-review"
+    ]
   },
   {
     "id": 18,
@@ -521,7 +691,17 @@
     "needsManualReview": true,
     "documentationUrl": "",
     "verified": false,
-    "lastReviewed": ""
+    "lastReviewed": "",
+    "validationStatus": "NEEDS_MANUAL_REVIEW",
+    "validatedAt": "2026-07-22",
+    "documentationUrls": [],
+    "reviewNotes": "OCR/import source is not used by the runtime simulator and contains incomplete or corrupted question text/options. Manual reconstruction against an official source is required before import.",
+    "tags": [
+      "odc-udemy",
+      "import-bank",
+      "ocr",
+      "needs-manual-review"
+    ]
   },
   {
     "id": 19,
@@ -554,7 +734,17 @@
     "needsManualReview": true,
     "documentationUrl": "",
     "verified": false,
-    "lastReviewed": ""
+    "lastReviewed": "",
+    "validationStatus": "NEEDS_MANUAL_REVIEW",
+    "validatedAt": "2026-07-22",
+    "documentationUrls": [],
+    "reviewNotes": "OCR/import source is not used by the runtime simulator and contains incomplete or corrupted question text/options. Manual reconstruction against an official source is required before import.",
+    "tags": [
+      "odc-udemy",
+      "import-bank",
+      "ocr",
+      "needs-manual-review"
+    ]
   },
   {
     "id": 20,
@@ -582,7 +772,17 @@
     "needsManualReview": true,
     "documentationUrl": "",
     "verified": false,
-    "lastReviewed": ""
+    "lastReviewed": "",
+    "validationStatus": "NEEDS_MANUAL_REVIEW",
+    "validatedAt": "2026-07-22",
+    "documentationUrls": [],
+    "reviewNotes": "OCR/import source is not used by the runtime simulator and contains incomplete or corrupted question text/options. Manual reconstruction against an official source is required before import.",
+    "tags": [
+      "odc-udemy",
+      "import-bank",
+      "ocr",
+      "needs-manual-review"
+    ]
   },
   {
     "id": 21,
@@ -610,7 +810,17 @@
     "needsManualReview": true,
     "documentationUrl": "",
     "verified": false,
-    "lastReviewed": ""
+    "lastReviewed": "",
+    "validationStatus": "NEEDS_MANUAL_REVIEW",
+    "validatedAt": "2026-07-22",
+    "documentationUrls": [],
+    "reviewNotes": "OCR/import source is not used by the runtime simulator and contains incomplete or corrupted question text/options. Manual reconstruction against an official source is required before import.",
+    "tags": [
+      "odc-udemy",
+      "import-bank",
+      "ocr",
+      "needs-manual-review"
+    ]
   },
   {
     "id": 22,
@@ -643,7 +853,17 @@
     "needsManualReview": false,
     "documentationUrl": "",
     "verified": false,
-    "lastReviewed": ""
+    "lastReviewed": "",
+    "validationStatus": "NEEDS_MANUAL_REVIEW",
+    "validatedAt": "2026-07-22",
+    "documentationUrls": [],
+    "reviewNotes": "OCR/import source is not used by the runtime simulator and contains incomplete or corrupted question text/options. Manual reconstruction against an official source is required before import.",
+    "tags": [
+      "odc-udemy",
+      "import-bank",
+      "ocr",
+      "needs-manual-review"
+    ]
   },
   {
     "id": 23,
@@ -676,7 +896,17 @@
     "needsManualReview": false,
     "documentationUrl": "",
     "verified": false,
-    "lastReviewed": ""
+    "lastReviewed": "",
+    "validationStatus": "NEEDS_MANUAL_REVIEW",
+    "validatedAt": "2026-07-22",
+    "documentationUrls": [],
+    "reviewNotes": "OCR/import source is not used by the runtime simulator and contains incomplete or corrupted question text/options. Manual reconstruction against an official source is required before import.",
+    "tags": [
+      "odc-udemy",
+      "import-bank",
+      "ocr",
+      "needs-manual-review"
+    ]
   },
   {
     "id": 24,
@@ -709,7 +939,17 @@
     "needsManualReview": true,
     "documentationUrl": "",
     "verified": false,
-    "lastReviewed": ""
+    "lastReviewed": "",
+    "validationStatus": "NEEDS_MANUAL_REVIEW",
+    "validatedAt": "2026-07-22",
+    "documentationUrls": [],
+    "reviewNotes": "OCR/import source is not used by the runtime simulator and contains incomplete or corrupted question text/options. Manual reconstruction against an official source is required before import.",
+    "tags": [
+      "odc-udemy",
+      "import-bank",
+      "ocr",
+      "needs-manual-review"
+    ]
   },
   {
     "id": 25,
@@ -732,7 +972,17 @@
     "needsManualReview": true,
     "documentationUrl": "",
     "verified": false,
-    "lastReviewed": ""
+    "lastReviewed": "",
+    "validationStatus": "NEEDS_MANUAL_REVIEW",
+    "validatedAt": "2026-07-22",
+    "documentationUrls": [],
+    "reviewNotes": "OCR/import source is not used by the runtime simulator and contains incomplete or corrupted question text/options. Manual reconstruction against an official source is required before import.",
+    "tags": [
+      "odc-udemy",
+      "import-bank",
+      "ocr",
+      "needs-manual-review"
+    ]
   },
   {
     "id": 26,
@@ -760,7 +1010,17 @@
     "needsManualReview": false,
     "documentationUrl": "",
     "verified": false,
-    "lastReviewed": ""
+    "lastReviewed": "",
+    "validationStatus": "NEEDS_MANUAL_REVIEW",
+    "validatedAt": "2026-07-22",
+    "documentationUrls": [],
+    "reviewNotes": "OCR/import source is not used by the runtime simulator and contains incomplete or corrupted question text/options. Manual reconstruction against an official source is required before import.",
+    "tags": [
+      "odc-udemy",
+      "import-bank",
+      "ocr",
+      "needs-manual-review"
+    ]
   },
   {
     "id": 27,
@@ -788,7 +1048,17 @@
     "needsManualReview": true,
     "documentationUrl": "",
     "verified": false,
-    "lastReviewed": ""
+    "lastReviewed": "",
+    "validationStatus": "NEEDS_MANUAL_REVIEW",
+    "validatedAt": "2026-07-22",
+    "documentationUrls": [],
+    "reviewNotes": "OCR/import source is not used by the runtime simulator and contains incomplete or corrupted question text/options. Manual reconstruction against an official source is required before import.",
+    "tags": [
+      "odc-udemy",
+      "import-bank",
+      "ocr",
+      "needs-manual-review"
+    ]
   },
   {
     "id": 28,
@@ -821,7 +1091,17 @@
     "needsManualReview": false,
     "documentationUrl": "",
     "verified": false,
-    "lastReviewed": ""
+    "lastReviewed": "",
+    "validationStatus": "NEEDS_MANUAL_REVIEW",
+    "validatedAt": "2026-07-22",
+    "documentationUrls": [],
+    "reviewNotes": "OCR/import source is not used by the runtime simulator and contains incomplete or corrupted question text/options. Manual reconstruction against an official source is required before import.",
+    "tags": [
+      "odc-udemy",
+      "import-bank",
+      "ocr",
+      "needs-manual-review"
+    ]
   },
   {
     "id": 29,
@@ -854,7 +1134,17 @@
     "needsManualReview": false,
     "documentationUrl": "",
     "verified": false,
-    "lastReviewed": ""
+    "lastReviewed": "",
+    "validationStatus": "NEEDS_MANUAL_REVIEW",
+    "validatedAt": "2026-07-22",
+    "documentationUrls": [],
+    "reviewNotes": "OCR/import source is not used by the runtime simulator and contains incomplete or corrupted question text/options. Manual reconstruction against an official source is required before import.",
+    "tags": [
+      "odc-udemy",
+      "import-bank",
+      "ocr",
+      "needs-manual-review"
+    ]
   },
   {
     "id": 30,
@@ -872,7 +1162,17 @@
     "needsManualReview": true,
     "documentationUrl": "",
     "verified": false,
-    "lastReviewed": ""
+    "lastReviewed": "",
+    "validationStatus": "NEEDS_MANUAL_REVIEW",
+    "validatedAt": "2026-07-22",
+    "documentationUrls": [],
+    "reviewNotes": "OCR/import source is not used by the runtime simulator and contains incomplete or corrupted question text/options. Manual reconstruction against an official source is required before import.",
+    "tags": [
+      "odc-udemy",
+      "import-bank",
+      "ocr",
+      "needs-manual-review"
+    ]
   },
   {
     "id": 31,
@@ -905,7 +1205,17 @@
     "needsManualReview": false,
     "documentationUrl": "",
     "verified": false,
-    "lastReviewed": ""
+    "lastReviewed": "",
+    "validationStatus": "NEEDS_MANUAL_REVIEW",
+    "validatedAt": "2026-07-22",
+    "documentationUrls": [],
+    "reviewNotes": "OCR/import source is not used by the runtime simulator and contains incomplete or corrupted question text/options. Manual reconstruction against an official source is required before import.",
+    "tags": [
+      "odc-udemy",
+      "import-bank",
+      "ocr",
+      "needs-manual-review"
+    ]
   },
   {
     "id": 32,
@@ -938,7 +1248,17 @@
     "needsManualReview": false,
     "documentationUrl": "",
     "verified": false,
-    "lastReviewed": ""
+    "lastReviewed": "",
+    "validationStatus": "NEEDS_MANUAL_REVIEW",
+    "validatedAt": "2026-07-22",
+    "documentationUrls": [],
+    "reviewNotes": "OCR/import source is not used by the runtime simulator and contains incomplete or corrupted question text/options. Manual reconstruction against an official source is required before import.",
+    "tags": [
+      "odc-udemy",
+      "import-bank",
+      "ocr",
+      "needs-manual-review"
+    ]
   },
   {
     "id": 33,
@@ -971,7 +1291,17 @@
     "needsManualReview": false,
     "documentationUrl": "",
     "verified": false,
-    "lastReviewed": ""
+    "lastReviewed": "",
+    "validationStatus": "NEEDS_MANUAL_REVIEW",
+    "validatedAt": "2026-07-22",
+    "documentationUrls": [],
+    "reviewNotes": "OCR/import source is not used by the runtime simulator and contains incomplete or corrupted question text/options. Manual reconstruction against an official source is required before import.",
+    "tags": [
+      "odc-udemy",
+      "import-bank",
+      "ocr",
+      "needs-manual-review"
+    ]
   },
   {
     "id": 34,
@@ -1004,7 +1334,17 @@
     "needsManualReview": false,
     "documentationUrl": "",
     "verified": false,
-    "lastReviewed": ""
+    "lastReviewed": "",
+    "validationStatus": "NEEDS_MANUAL_REVIEW",
+    "validatedAt": "2026-07-22",
+    "documentationUrls": [],
+    "reviewNotes": "OCR/import source is not used by the runtime simulator and contains incomplete or corrupted question text/options. Manual reconstruction against an official source is required before import.",
+    "tags": [
+      "odc-udemy",
+      "import-bank",
+      "ocr",
+      "needs-manual-review"
+    ]
   },
   {
     "id": 35,
@@ -1032,7 +1372,17 @@
     "needsManualReview": true,
     "documentationUrl": "",
     "verified": false,
-    "lastReviewed": ""
+    "lastReviewed": "",
+    "validationStatus": "NEEDS_MANUAL_REVIEW",
+    "validatedAt": "2026-07-22",
+    "documentationUrls": [],
+    "reviewNotes": "OCR/import source is not used by the runtime simulator and contains incomplete or corrupted question text/options. Manual reconstruction against an official source is required before import.",
+    "tags": [
+      "odc-udemy",
+      "import-bank",
+      "ocr",
+      "needs-manual-review"
+    ]
   },
   {
     "id": 36,
@@ -1065,7 +1415,17 @@
     "needsManualReview": true,
     "documentationUrl": "",
     "verified": false,
-    "lastReviewed": ""
+    "lastReviewed": "",
+    "validationStatus": "NEEDS_MANUAL_REVIEW",
+    "validatedAt": "2026-07-22",
+    "documentationUrls": [],
+    "reviewNotes": "OCR/import source is not used by the runtime simulator and contains incomplete or corrupted question text/options. Manual reconstruction against an official source is required before import.",
+    "tags": [
+      "odc-udemy",
+      "import-bank",
+      "ocr",
+      "needs-manual-review"
+    ]
   },
   {
     "id": 37,
@@ -1093,7 +1453,17 @@
     "needsManualReview": true,
     "documentationUrl": "",
     "verified": false,
-    "lastReviewed": ""
+    "lastReviewed": "",
+    "validationStatus": "NEEDS_MANUAL_REVIEW",
+    "validatedAt": "2026-07-22",
+    "documentationUrls": [],
+    "reviewNotes": "OCR/import source is not used by the runtime simulator and contains incomplete or corrupted question text/options. Manual reconstruction against an official source is required before import.",
+    "tags": [
+      "odc-udemy",
+      "import-bank",
+      "ocr",
+      "needs-manual-review"
+    ]
   },
   {
     "id": 38,
@@ -1121,7 +1491,17 @@
     "needsManualReview": false,
     "documentationUrl": "",
     "verified": false,
-    "lastReviewed": ""
+    "lastReviewed": "",
+    "validationStatus": "NEEDS_MANUAL_REVIEW",
+    "validatedAt": "2026-07-22",
+    "documentationUrls": [],
+    "reviewNotes": "OCR/import source is not used by the runtime simulator and contains incomplete or corrupted question text/options. Manual reconstruction against an official source is required before import.",
+    "tags": [
+      "odc-udemy",
+      "import-bank",
+      "ocr",
+      "needs-manual-review"
+    ]
   },
   {
     "id": 39,
@@ -1149,7 +1529,17 @@
     "needsManualReview": false,
     "documentationUrl": "",
     "verified": false,
-    "lastReviewed": ""
+    "lastReviewed": "",
+    "validationStatus": "NEEDS_MANUAL_REVIEW",
+    "validatedAt": "2026-07-22",
+    "documentationUrls": [],
+    "reviewNotes": "OCR/import source is not used by the runtime simulator and contains incomplete or corrupted question text/options. Manual reconstruction against an official source is required before import.",
+    "tags": [
+      "odc-udemy",
+      "import-bank",
+      "ocr",
+      "needs-manual-review"
+    ]
   },
   {
     "id": 40,
@@ -1182,7 +1572,17 @@
     "needsManualReview": false,
     "documentationUrl": "",
     "verified": false,
-    "lastReviewed": ""
+    "lastReviewed": "",
+    "validationStatus": "NEEDS_MANUAL_REVIEW",
+    "validatedAt": "2026-07-22",
+    "documentationUrls": [],
+    "reviewNotes": "OCR/import source is not used by the runtime simulator and contains incomplete or corrupted question text/options. Manual reconstruction against an official source is required before import.",
+    "tags": [
+      "odc-udemy",
+      "import-bank",
+      "ocr",
+      "needs-manual-review"
+    ]
   },
   {
     "id": 41,
@@ -1215,7 +1615,17 @@
     "needsManualReview": true,
     "documentationUrl": "",
     "verified": false,
-    "lastReviewed": ""
+    "lastReviewed": "",
+    "validationStatus": "NEEDS_MANUAL_REVIEW",
+    "validatedAt": "2026-07-22",
+    "documentationUrls": [],
+    "reviewNotes": "OCR/import source is not used by the runtime simulator and contains incomplete or corrupted question text/options. Manual reconstruction against an official source is required before import.",
+    "tags": [
+      "odc-udemy",
+      "import-bank",
+      "ocr",
+      "needs-manual-review"
+    ]
   },
   {
     "id": 42,
@@ -1248,7 +1658,17 @@
     "needsManualReview": true,
     "documentationUrl": "",
     "verified": false,
-    "lastReviewed": ""
+    "lastReviewed": "",
+    "validationStatus": "NEEDS_MANUAL_REVIEW",
+    "validatedAt": "2026-07-22",
+    "documentationUrls": [],
+    "reviewNotes": "OCR/import source is not used by the runtime simulator and contains incomplete or corrupted question text/options. Manual reconstruction against an official source is required before import.",
+    "tags": [
+      "odc-udemy",
+      "import-bank",
+      "ocr",
+      "needs-manual-review"
+    ]
   },
   {
     "id": 43,
@@ -1271,7 +1691,17 @@
     "needsManualReview": true,
     "documentationUrl": "",
     "verified": false,
-    "lastReviewed": ""
+    "lastReviewed": "",
+    "validationStatus": "NEEDS_MANUAL_REVIEW",
+    "validatedAt": "2026-07-22",
+    "documentationUrls": [],
+    "reviewNotes": "OCR/import source is not used by the runtime simulator and contains incomplete or corrupted question text/options. Manual reconstruction against an official source is required before import.",
+    "tags": [
+      "odc-udemy",
+      "import-bank",
+      "ocr",
+      "needs-manual-review"
+    ]
   },
   {
     "id": 44,
@@ -1304,7 +1734,17 @@
     "needsManualReview": true,
     "documentationUrl": "",
     "verified": false,
-    "lastReviewed": ""
+    "lastReviewed": "",
+    "validationStatus": "NEEDS_MANUAL_REVIEW",
+    "validatedAt": "2026-07-22",
+    "documentationUrls": [],
+    "reviewNotes": "OCR/import source is not used by the runtime simulator and contains incomplete or corrupted question text/options. Manual reconstruction against an official source is required before import.",
+    "tags": [
+      "odc-udemy",
+      "import-bank",
+      "ocr",
+      "needs-manual-review"
+    ]
   },
   {
     "id": 45,
@@ -1332,7 +1772,17 @@
     "needsManualReview": false,
     "documentationUrl": "",
     "verified": false,
-    "lastReviewed": ""
+    "lastReviewed": "",
+    "validationStatus": "NEEDS_MANUAL_REVIEW",
+    "validatedAt": "2026-07-22",
+    "documentationUrls": [],
+    "reviewNotes": "OCR/import source is not used by the runtime simulator and contains incomplete or corrupted question text/options. Manual reconstruction against an official source is required before import.",
+    "tags": [
+      "odc-udemy",
+      "import-bank",
+      "ocr",
+      "needs-manual-review"
+    ]
   },
   {
     "id": 46,
@@ -1385,7 +1835,17 @@
     "needsManualReview": true,
     "documentationUrl": "",
     "verified": false,
-    "lastReviewed": ""
+    "lastReviewed": "",
+    "validationStatus": "NEEDS_MANUAL_REVIEW",
+    "validatedAt": "2026-07-22",
+    "documentationUrls": [],
+    "reviewNotes": "OCR/import source is not used by the runtime simulator and contains incomplete or corrupted question text/options. Manual reconstruction against an official source is required before import.",
+    "tags": [
+      "odc-udemy",
+      "import-bank",
+      "ocr",
+      "needs-manual-review"
+    ]
   },
   {
     "id": 47,
@@ -1418,7 +1878,17 @@
     "needsManualReview": false,
     "documentationUrl": "",
     "verified": false,
-    "lastReviewed": ""
+    "lastReviewed": "",
+    "validationStatus": "NEEDS_MANUAL_REVIEW",
+    "validatedAt": "2026-07-22",
+    "documentationUrls": [],
+    "reviewNotes": "OCR/import source is not used by the runtime simulator and contains incomplete or corrupted question text/options. Manual reconstruction against an official source is required before import.",
+    "tags": [
+      "odc-udemy",
+      "import-bank",
+      "ocr",
+      "needs-manual-review"
+    ]
   },
   {
     "id": 48,
@@ -1451,7 +1921,17 @@
     "needsManualReview": false,
     "documentationUrl": "",
     "verified": false,
-    "lastReviewed": ""
+    "lastReviewed": "",
+    "validationStatus": "NEEDS_MANUAL_REVIEW",
+    "validatedAt": "2026-07-22",
+    "documentationUrls": [],
+    "reviewNotes": "OCR/import source is not used by the runtime simulator and contains incomplete or corrupted question text/options. Manual reconstruction against an official source is required before import.",
+    "tags": [
+      "odc-udemy",
+      "import-bank",
+      "ocr",
+      "needs-manual-review"
+    ]
   },
   {
     "id": 49,
@@ -1479,7 +1959,17 @@
     "needsManualReview": true,
     "documentationUrl": "",
     "verified": false,
-    "lastReviewed": ""
+    "lastReviewed": "",
+    "validationStatus": "NEEDS_MANUAL_REVIEW",
+    "validatedAt": "2026-07-22",
+    "documentationUrls": [],
+    "reviewNotes": "OCR/import source is not used by the runtime simulator and contains incomplete or corrupted question text/options. Manual reconstruction against an official source is required before import.",
+    "tags": [
+      "odc-udemy",
+      "import-bank",
+      "ocr",
+      "needs-manual-review"
+    ]
   },
   {
     "id": 50,
@@ -1512,7 +2002,17 @@
     "needsManualReview": false,
     "documentationUrl": "",
     "verified": false,
-    "lastReviewed": ""
+    "lastReviewed": "",
+    "validationStatus": "NEEDS_MANUAL_REVIEW",
+    "validatedAt": "2026-07-22",
+    "documentationUrls": [],
+    "reviewNotes": "OCR/import source is not used by the runtime simulator and contains incomplete or corrupted question text/options. Manual reconstruction against an official source is required before import.",
+    "tags": [
+      "odc-udemy",
+      "import-bank",
+      "ocr",
+      "needs-manual-review"
+    ]
   },
   {
     "id": 51,
@@ -1540,7 +2040,17 @@
     "needsManualReview": false,
     "documentationUrl": "",
     "verified": false,
-    "lastReviewed": ""
+    "lastReviewed": "",
+    "validationStatus": "NEEDS_MANUAL_REVIEW",
+    "validatedAt": "2026-07-22",
+    "documentationUrls": [],
+    "reviewNotes": "OCR/import source is not used by the runtime simulator and contains incomplete or corrupted question text/options. Manual reconstruction against an official source is required before import.",
+    "tags": [
+      "odc-udemy",
+      "import-bank",
+      "ocr",
+      "needs-manual-review"
+    ]
   },
   {
     "id": 52,
@@ -1573,7 +2083,17 @@
     "needsManualReview": false,
     "documentationUrl": "",
     "verified": false,
-    "lastReviewed": ""
+    "lastReviewed": "",
+    "validationStatus": "NEEDS_MANUAL_REVIEW",
+    "validatedAt": "2026-07-22",
+    "documentationUrls": [],
+    "reviewNotes": "OCR/import source is not used by the runtime simulator and contains incomplete or corrupted question text/options. Manual reconstruction against an official source is required before import.",
+    "tags": [
+      "odc-udemy",
+      "import-bank",
+      "ocr",
+      "needs-manual-review"
+    ]
   },
   {
     "id": 53,
@@ -1606,7 +2126,17 @@
     "needsManualReview": false,
     "documentationUrl": "",
     "verified": false,
-    "lastReviewed": ""
+    "lastReviewed": "",
+    "validationStatus": "NEEDS_MANUAL_REVIEW",
+    "validatedAt": "2026-07-22",
+    "documentationUrls": [],
+    "reviewNotes": "OCR/import source is not used by the runtime simulator and contains incomplete or corrupted question text/options. Manual reconstruction against an official source is required before import.",
+    "tags": [
+      "odc-udemy",
+      "import-bank",
+      "ocr",
+      "needs-manual-review"
+    ]
   },
   {
     "id": 54,
@@ -1634,7 +2164,17 @@
     "needsManualReview": false,
     "documentationUrl": "",
     "verified": false,
-    "lastReviewed": ""
+    "lastReviewed": "",
+    "validationStatus": "NEEDS_MANUAL_REVIEW",
+    "validatedAt": "2026-07-22",
+    "documentationUrls": [],
+    "reviewNotes": "OCR/import source is not used by the runtime simulator and contains incomplete or corrupted question text/options. Manual reconstruction against an official source is required before import.",
+    "tags": [
+      "odc-udemy",
+      "import-bank",
+      "ocr",
+      "needs-manual-review"
+    ]
   },
   {
     "id": 55,
@@ -1667,7 +2207,17 @@
     "needsManualReview": false,
     "documentationUrl": "",
     "verified": false,
-    "lastReviewed": ""
+    "lastReviewed": "",
+    "validationStatus": "NEEDS_MANUAL_REVIEW",
+    "validatedAt": "2026-07-22",
+    "documentationUrls": [],
+    "reviewNotes": "OCR/import source is not used by the runtime simulator and contains incomplete or corrupted question text/options. Manual reconstruction against an official source is required before import.",
+    "tags": [
+      "odc-udemy",
+      "import-bank",
+      "ocr",
+      "needs-manual-review"
+    ]
   },
   {
     "id": 56,
@@ -1700,7 +2250,17 @@
     "needsManualReview": false,
     "documentationUrl": "",
     "verified": false,
-    "lastReviewed": ""
+    "lastReviewed": "",
+    "validationStatus": "NEEDS_MANUAL_REVIEW",
+    "validatedAt": "2026-07-22",
+    "documentationUrls": [],
+    "reviewNotes": "OCR/import source is not used by the runtime simulator and contains incomplete or corrupted question text/options. Manual reconstruction against an official source is required before import.",
+    "tags": [
+      "odc-udemy",
+      "import-bank",
+      "ocr",
+      "needs-manual-review"
+    ]
   },
   {
     "id": 57,
@@ -1728,7 +2288,17 @@
     "needsManualReview": true,
     "documentationUrl": "",
     "verified": false,
-    "lastReviewed": ""
+    "lastReviewed": "",
+    "validationStatus": "NEEDS_MANUAL_REVIEW",
+    "validatedAt": "2026-07-22",
+    "documentationUrls": [],
+    "reviewNotes": "OCR/import source is not used by the runtime simulator and contains incomplete or corrupted question text/options. Manual reconstruction against an official source is required before import.",
+    "tags": [
+      "odc-udemy",
+      "import-bank",
+      "ocr",
+      "needs-manual-review"
+    ]
   },
   {
     "id": 58,
@@ -1751,7 +2321,17 @@
     "needsManualReview": true,
     "documentationUrl": "",
     "verified": false,
-    "lastReviewed": ""
+    "lastReviewed": "",
+    "validationStatus": "NEEDS_MANUAL_REVIEW",
+    "validatedAt": "2026-07-22",
+    "documentationUrls": [],
+    "reviewNotes": "OCR/import source is not used by the runtime simulator and contains incomplete or corrupted question text/options. Manual reconstruction against an official source is required before import.",
+    "tags": [
+      "odc-udemy",
+      "import-bank",
+      "ocr",
+      "needs-manual-review"
+    ]
   },
   {
     "id": 59,
@@ -1774,7 +2354,17 @@
     "needsManualReview": false,
     "documentationUrl": "",
     "verified": false,
-    "lastReviewed": ""
+    "lastReviewed": "",
+    "validationStatus": "NEEDS_MANUAL_REVIEW",
+    "validatedAt": "2026-07-22",
+    "documentationUrls": [],
+    "reviewNotes": "OCR/import source is not used by the runtime simulator and contains incomplete or corrupted question text/options. Manual reconstruction against an official source is required before import.",
+    "tags": [
+      "odc-udemy",
+      "import-bank",
+      "ocr",
+      "needs-manual-review"
+    ]
   },
   {
     "id": 60,
@@ -1807,7 +2397,17 @@
     "needsManualReview": false,
     "documentationUrl": "",
     "verified": false,
-    "lastReviewed": ""
+    "lastReviewed": "",
+    "validationStatus": "NEEDS_MANUAL_REVIEW",
+    "validatedAt": "2026-07-22",
+    "documentationUrls": [],
+    "reviewNotes": "OCR/import source is not used by the runtime simulator and contains incomplete or corrupted question text/options. Manual reconstruction against an official source is required before import.",
+    "tags": [
+      "odc-udemy",
+      "import-bank",
+      "ocr",
+      "needs-manual-review"
+    ]
   },
   {
     "id": 61,
@@ -1830,7 +2430,17 @@
     "needsManualReview": false,
     "documentationUrl": "",
     "verified": false,
-    "lastReviewed": ""
+    "lastReviewed": "",
+    "validationStatus": "NEEDS_MANUAL_REVIEW",
+    "validatedAt": "2026-07-22",
+    "documentationUrls": [],
+    "reviewNotes": "OCR/import source is not used by the runtime simulator and contains incomplete or corrupted question text/options. Manual reconstruction against an official source is required before import.",
+    "tags": [
+      "odc-udemy",
+      "import-bank",
+      "ocr",
+      "needs-manual-review"
+    ]
   },
   {
     "id": 62,
@@ -1858,7 +2468,17 @@
     "needsManualReview": false,
     "documentationUrl": "",
     "verified": false,
-    "lastReviewed": ""
+    "lastReviewed": "",
+    "validationStatus": "NEEDS_MANUAL_REVIEW",
+    "validatedAt": "2026-07-22",
+    "documentationUrls": [],
+    "reviewNotes": "OCR/import source is not used by the runtime simulator and contains incomplete or corrupted question text/options. Manual reconstruction against an official source is required before import.",
+    "tags": [
+      "odc-udemy",
+      "import-bank",
+      "ocr",
+      "needs-manual-review"
+    ]
   },
   {
     "id": 63,
@@ -1876,7 +2496,17 @@
     "needsManualReview": true,
     "documentationUrl": "",
     "verified": false,
-    "lastReviewed": ""
+    "lastReviewed": "",
+    "validationStatus": "NEEDS_MANUAL_REVIEW",
+    "validatedAt": "2026-07-22",
+    "documentationUrls": [],
+    "reviewNotes": "OCR/import source is not used by the runtime simulator and contains incomplete or corrupted question text/options. Manual reconstruction against an official source is required before import.",
+    "tags": [
+      "odc-udemy",
+      "import-bank",
+      "ocr",
+      "needs-manual-review"
+    ]
   },
   {
     "id": 64,
@@ -1909,7 +2539,17 @@
     "needsManualReview": false,
     "documentationUrl": "",
     "verified": false,
-    "lastReviewed": ""
+    "lastReviewed": "",
+    "validationStatus": "NEEDS_MANUAL_REVIEW",
+    "validatedAt": "2026-07-22",
+    "documentationUrls": [],
+    "reviewNotes": "OCR/import source is not used by the runtime simulator and contains incomplete or corrupted question text/options. Manual reconstruction against an official source is required before import.",
+    "tags": [
+      "odc-udemy",
+      "import-bank",
+      "ocr",
+      "needs-manual-review"
+    ]
   },
   {
     "id": 65,
@@ -1942,6 +2582,16 @@
     "needsManualReview": false,
     "documentationUrl": "",
     "verified": false,
-    "lastReviewed": ""
+    "lastReviewed": "",
+    "validationStatus": "NEEDS_MANUAL_REVIEW",
+    "validatedAt": "2026-07-22",
+    "documentationUrls": [],
+    "reviewNotes": "OCR/import source is not used by the runtime simulator and contains incomplete or corrupted question text/options. Manual reconstruction against an official source is required before import.",
+    "tags": [
+      "odc-udemy",
+      "import-bank",
+      "ocr",
+      "needs-manual-review"
+    ]
   }
 ]
