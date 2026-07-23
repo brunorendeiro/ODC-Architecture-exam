@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://odc-architecture-exam.vercel.app/sitemap.xml
