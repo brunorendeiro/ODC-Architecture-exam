@@ -13193,6 +13193,7 @@ function restartExam() {
 <script>
 (function () {
   var GA_MEASUREMENT_ID = 'G-8PWRSDS62T';
+  var AD_CLIENT = 'ca-pub-4561414438757131';
   var CONSENT_KEY = 'odc-architecture-analytics-consent';
 
   function getStoredConsent() {
@@ -13214,9 +13215,25 @@ function restartExam() {
     gtag('config', GA_MEASUREMENT_ID);
   }
 
+  function loadAds() {
+    if (document.getElementById('adsbygoogle-script')) return;
+    var script = document.createElement('script');
+    script.id = 'adsbygoogle-script';
+    script.async = true;
+    script.crossOrigin = 'anonymous';
+    script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=' + AD_CLIENT;
+    document.head.appendChild(script);
+
+    window.adsbygoogle = window.adsbygoogle || [];
+    window.adsbygoogle.push({ google_ad_client: AD_CLIENT, enable_page_level_ads: true });
+  }
+
   function setConsent(value) {
     window.localStorage.setItem(CONSENT_KEY, value);
-    if (value === 'granted') loadAnalytics();
+    if (value === 'granted') {
+      loadAnalytics();
+      loadAds();
+    }
   }
 
   function renderBanner() {
@@ -13226,7 +13243,7 @@ function restartExam() {
     banner.setAttribute('aria-live', 'polite');
     banner.setAttribute('aria-label', 'Cookies');
     banner.innerHTML =
-      '<p>I use Google Analytics to understand how many people use this tool. Do you accept analytics cookies?</p>' +
+      '<p>I use Google Analytics and Google AdSense to understand visits and show ads. Do you accept analytics and advertising cookies?</p>' +
       '<div class="cookie-actions">' +
       '<button type="button" class="cookie-reject">Reject</button>' +
       '<button type="button" class="cookie-accept">Accept</button>' +
@@ -13247,6 +13264,7 @@ function restartExam() {
     var consent = getStoredConsent();
     if (consent === 'granted') {
       loadAnalytics();
+      loadAds();
     } else if (consent === null) {
       renderBanner();
     }
